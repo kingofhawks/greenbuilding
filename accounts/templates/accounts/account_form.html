@@ -1,27 +1,21 @@
-{% extends "base.html" %}
-{% load i18n %}
-
+{% extends "accounts_base.html" %}
 {% block meta_title %}{{ title }}{% endblock %}
 {% block title %}{{ title }}{% endblock %}
 {% block body_id %}account{% endblock %}
 
-{% block breadcrumb_menu %}
-{{ block.super }}
-<li>{{ title }}</li>
-{% endblock %}
-
 {% block main %}
 
-
 <form method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}> {% csrf_token %}
+<div class="panel panel-primary">
+  <div class="panel-heading">{{ title }}</div>
+  <div class="panel-body">
     {{ form.as_p }}
-    <fieldset>
-    <legend>{{ title }}</legend>
     <div class="form-actions">
         {% block account_form_actions %}
-        <input class="btn btn-primary btn-lg pull-right" type="submit" value="{{ title }}">
+        <input class="btn btn-success btn-lg form-control" type="submit" value="{{ title }}">
         {% endblock %}
     </div>
-    </fieldset>
+    </div>
+</div>
 </form>
 {% endblock %}

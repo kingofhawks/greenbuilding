@@ -58,7 +58,7 @@ msgstr ""
 #: .\views.py:25 .\templates\accounts\includes\user_panel.html:23
 #: .\templates\accounts\includes\user_panel_nav.html:16
 msgid "Sign up"
-msgstr ""
+msgstr "注册"
 
 #: .\templates\accounts\account_login.html:7
 msgid ""
