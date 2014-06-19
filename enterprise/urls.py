@@ -5,5 +5,5 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'worksmart.views.home', name='home'),
     #url(r'^$', views.trend, name='trend'),
-    url(r'^dashboard/$', views.dashboard, name='core.dashboard'),
+    url(r'^list/new/$', views.new_list, name='enterprise.list.new'),
 )

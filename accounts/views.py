@@ -12,7 +12,7 @@ def login(request, template="accounts/account_login.html"):
     if request.method == "POST" and form.is_valid():
         authenticated_user = form.save()
         print authenticated_user
-        return  redirect('/core/dashboard/')
+        return  redirect('core.dashboard')
     context = {"form": form, "title": _("Log in")}
     return render(request, template, context)
 

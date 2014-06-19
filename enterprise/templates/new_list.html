@@ -1,0 +1,38 @@
+{% extends "enterprise_base.html" %}
+{% load i18n %}
+
+{% block main %}
+<div class="btn-group">
+  <a href="{% url "login" %}" class="btn btn-default">{% trans "Create" %}</a>
+  <button type="button" class="btn btn-default">{% trans "Modify" %}</button>
+  <button type="button" class="btn btn-default">{% trans "Delete" %}</button>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <th>{% trans "Project" %}</th>
+        <th>{% trans "Date" %}</th>
+    </thead>
+    {% for submission in submissions %}
+        <tr>
+            {# Each "submission" is a Submission model object. #}
+            <td>{{ submission.project|upper }}</td>
+            <td>{{ submission.date }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+    {% if contacts.has_previous %}
+    <a href="?page={{ contacts.previous_page_number }}">previous</a>
+    {% endif %}
+    <span class="current">
+    Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+    </span>
+    {% if contacts.has_next %}
+    <a href="?page={{ contacts.next_page_number }}">next</a>
+    {% endif %}
+    </span>
+</div>
+{% endblock %}
