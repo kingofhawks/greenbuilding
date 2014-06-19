@@ -1,9 +1,17 @@
 from django.shortcuts import render
 from models import Submission
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import ListView
+
+
+class SubmissionList(ListView):
+    model = Submission
+    template_name = 'submission_list.html'
+    context_object_name = 'submissions'
+
 
 # Create your views here.
-def  new_list(request, template="new_list.html"):
+def  new_list(request, template="submission_list.html"):
     submission_list = Submission.objects.all()
     print submission_list
     paginator = Paginator(submission_list, 25) # Show 25 contacts per page
