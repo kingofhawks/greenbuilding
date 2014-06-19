@@ -1,5 +1,20 @@
 from django.contrib import admin
-
-# Register your models here.
 from models import Submission
-admin.site.register(Submission)
+from django.utils.translation import ugettext as _
+
+
+class SubmissionAdmin(admin.ModelAdmin):
+    fieldsets = [('Project Info',{'fields':['project','grade']}),(None,{'fields':['date']})]
+    list_display = ('project', 'grade','date')
+    actions = ['change_grade']
+
+    def change_grade(self, request, queryset):
+        rows_updated = queryset.update(grade=1)
+        if rows_updated == 1:
+            message_bit = "1 story was"
+        else:
+            message_bit = "%s stories were" % rows_updated
+        self.message_user(request, "%s successfully marked as published." % message_bit)
+    change_grade.short_description = _("Change Grade")
+
+admin.site.register(Submission, SubmissionAdmin)
