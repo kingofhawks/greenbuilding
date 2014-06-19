@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.utils.translation import ugettext as _
 from forms import SignupForm,LoginForm
+
 
 # Create your views here.
 def login(request, template="accounts/account_login.html"):
@@ -11,7 +12,7 @@ def login(request, template="accounts/account_login.html"):
     if request.method == "POST" and form.is_valid():
         authenticated_user = form.save()
         print authenticated_user
-        #return login_redirect(request)
+        return  redirect('/core/dashboard/')
     context = {"form": form, "title": _("Log in")}
     return render(request, template, context)
 
