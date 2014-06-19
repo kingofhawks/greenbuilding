@@ -1,7 +1,13 @@
 from django.shortcuts import render
-from models import Submission
+from models import Submission,Project
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
+
+
+class ProjectList(ListView):
+    model = Project
+    template_name = 'project_list.html'
+    context_object_name = 'projects'
 
 
 class SubmissionList(ListView):

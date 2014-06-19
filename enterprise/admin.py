@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Submission
+from models import Submission,Project
 from django.utils.translation import ugettext as _
 
 
@@ -18,3 +18,4 @@ class SubmissionAdmin(admin.ModelAdmin):
     change_grade.short_description = _("Change Grade")
 
 admin.site.register(Submission, SubmissionAdmin)
+admin.site.register(Project)

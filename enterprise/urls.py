@@ -6,5 +6,6 @@ urlpatterns = patterns('',
     # url(r'^$', 'worksmart.views.home', name='home'),
     #url(r'^$', views.trend, name='trend'),
     #url(r'^list/new/$', views.new_list, name='enterprise.list.new'),
-    url(r'^submissions$', views.SubmissionList.as_view(), name='enterprise.list.new'),
+    url(r'^submissions$', views.SubmissionList.as_view(), name='enterprise.submissions'),
+    url(r'^projects$', views.ProjectList.as_view(), name='enterprise.projects'),
 )

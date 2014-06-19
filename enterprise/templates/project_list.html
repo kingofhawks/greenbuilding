@@ -1,0 +1,17 @@
+{% extends "list_base.html" %}
+{% load i18n %}
+
+{% block list %}
+    <table class="table table-hover table-bordered">
+    <thead>
+        <th>{% trans "Project" %}</th>
+        <th>{% trans "Location" %}</th>
+    </thead>
+    {% for p in projects %}
+        <tr>
+            <td>{{ p.name }}</td>
+            <td>{{ p.location }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
