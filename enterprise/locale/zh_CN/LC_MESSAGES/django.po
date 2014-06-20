@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-19 11:23+0800\n"
+"POT-Creation-Date: 2014-06-20 11:11+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,75 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\templates\new_list.html:6
-msgid "Enterprise New List"
+#: .\admin.py:18
+msgid "Change Grade"
+msgstr ""
+
+#: .\models.py:7
+msgid "project_name"
+msgstr "项目名称"
+
+#: .\models.py:8
+msgid "location"
+msgstr ""
+
+#: .\models.py:9
+msgid "description"
+msgstr ""
+
+#: .\models.py:12 .\templates\project_list.html:7
+#: .\templates\submission_list.html:7
+msgid "Project"
+msgstr ""
+
+#: .\models.py:20
+msgid "grade"
+msgstr ""
+
+#: .\models.py:21
+msgid "project"
+msgstr ""
+
+#: .\models.py:22
+msgid "date"
+msgstr ""
+
+#: .\models.py:25
+msgid "Submission"
+msgstr ""
+
+#: .\templates\enterprise_base.html:6
+msgid "Project List"
+msgstr "项目库"
+
+#: .\templates\enterprise_base.html:7
+msgid "Submission List"
 msgstr "申报创建列表"
 
-#: .\templates\new_list.html:7
-msgid "Enterprise Review List"
+#: .\templates\enterprise_base.html:8
+#, fuzzy
+msgid "Review List"
 msgstr "申报评审列表"
+
+#: .\templates\list_base.html:6
+msgid "Create"
+msgstr ""
+
+#: .\templates\list_base.html:7
+msgid "Modify"
+msgstr ""
+
+#: .\templates\list_base.html:8
+msgid "Delete"
+msgstr ""
+
+#: .\templates\project_list.html:8
+msgid "Location"
+msgstr ""
+
+#: .\templates\submission_list.html:8
+msgid "Date"
+msgstr ""
+
+#~ msgid "Enterprise New List"
+#~ msgstr "申报创建列表"

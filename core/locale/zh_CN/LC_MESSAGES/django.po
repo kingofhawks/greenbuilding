@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-19 10:08+0800\n"
+"POT-Creation-Date: 2014-06-20 11:08+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,30 +17,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\templates\core_base.html:50
-msgid "Powered by"
-msgstr ""
-
-#: .\templates\core_base.html:52
-msgid "and"
-msgstr ""
-
-#: .\templates\dashboard.html:21
+#: .\templates\core_base.html:23
 msgid "Enterprise Info"
-msgstr "企业信息"
+msgstr "企业库"
 
-#: .\templates\dashboard.html:22
-msgid "Enterprise Submit"
-msgstr "企业申报"
+#: .\templates\core_base.html:24
+msgid "Project Application"
+msgstr "项目申报"
 
-#: .\templates\dashboard.html:23
+#: .\templates\core_base.html:25
 msgid "Self Evaluation"
 msgstr "企业自评"
 
-#: .\templates\dashboard.html:24
+#: .\templates\core_base.html:26
 msgid "Process Monitor"
 msgstr "过程监督"
 
-#: .\templates\dashboard.html:44
+#: .\templates\core_base.html:27
+msgid "Selection"
+msgstr "考评评选"
+
+#: .\templates\core_base.html:36
 msgid "Profile"
 msgstr ""
+
+#: .\templates\core_base.html:38
+msgid "Settings"
+msgstr ""
+
+#: .\templates\core_base.html:40
+msgid "Sign Out"
+msgstr "退出"
+
+#: .\templates\core_base.html:91
+msgid "Powered by"
+msgstr ""
+
+#: .\templates\core_base.html:93
+msgid "and"
+msgstr ""
+
+#~ msgid "Enterprise Submit"
+#~ msgstr "项目申报"
