@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Submission,Project
+from models import Submission,Project,ApplicationReview
 from django.utils.translation import ugettext as _
 
 
@@ -19,3 +19,4 @@ class SubmissionAdmin(admin.ModelAdmin):
 
 admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Project)
+admin.site.register(ApplicationReview)
