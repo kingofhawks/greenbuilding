@@ -43,7 +43,7 @@ msgstr ""
 
 #: .\templates\core_base.html:38
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: .\templates\core_base.html:40
 msgid "Sign Out"
