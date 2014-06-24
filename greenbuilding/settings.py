@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
+     'core',
     'accounts',
     'enterprise',
 )
@@ -92,3 +92,4 @@ STATICFILES_DIRS = (
     #define the global static files folder here,default put all under project's static folder!
     os.path.join(BASE_DIR, "static"),
 )
+

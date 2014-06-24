@@ -1,6 +1,14 @@
 from django.shortcuts import render,redirect
 from django.utils.translation import ugettext as _
 from forms import SignupForm,LoginForm
+from django.views.generic import ListView
+from models import UserProfile
+
+
+class CompanyList(ListView):
+    model = UserProfile
+    template_name = 'company_list.html'
+    context_object_name = 'companies'
 
 
 # Create your views here.

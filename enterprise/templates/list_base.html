@@ -3,9 +3,9 @@
 
 {% block main %}
 <div class="btn-group">
-  <a href="{% url "login" %}" class="btn btn-default">{% trans "Create" %}</a>
-  <button type="button" class="btn btn-default">{% trans "Modify" %}</button>
-  <button type="button" class="btn btn-default">{% trans "Delete" %}</button>
+  <a href="{% url "enterprise.project.add" %}" class="btn btn-default">{% trans "Create" %}</a>
+  <a href="{% url "login" %}" class="btn btn-default">{% trans "Modify" %}</a>
+  <a href="{% url "login" %}" class="btn btn-default">{% trans "Delete" %}</a>
 </div>
 
 {% block list %}

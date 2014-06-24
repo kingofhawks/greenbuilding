@@ -1,17 +1,20 @@
 {% extends "list_base.html" %}
 {% load i18n %}
 
+{% block left_panel %}
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="{% url "enterprise.evaluations" %}">{% trans "Self Evaluation" %}</a></li>
+</ul>
+{% endblock %}
+
 {% block list %}
 <table class="table table-hover table-bordered">
     <thead>
         <th>{% trans "Project" %}</th>
-        <th>{% trans "Date" %}</th>
     </thead>
     {% for p in projects %}
         <tr>
-            {# Each "submission" is a Submission model object. #}
             <td>{{ p.project.name|upper }}</td>
-            <td>{{ p.date }}</td>
         </tr>
     {% endfor %}
 </table>

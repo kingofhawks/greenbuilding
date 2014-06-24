@@ -1,0 +1,13 @@
+{% extends "enterprise_base.html" %}
+
+{% block content %}
+    <form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <div class="form-actions">
+        {% block account_form_actions %}
+        <input class="btn btn-success btn-lg form-control" type="submit" value="{{ title }}">
+        {% endblock %}
+    </div>
+    </form>
+{%  endblock %}

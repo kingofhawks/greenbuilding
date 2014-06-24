@@ -2,16 +2,15 @@
 {% load i18n %}
 
 {% block list %}
-<table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered">
     <thead>
         <th>{% trans "Project" %}</th>
-        <th>{% trans "Date" %}</th>
+        <th>{% trans "Location" %}</th>
     </thead>
     {% for p in projects %}
         <tr>
-            {# Each "submission" is a Submission model object. #}
             <td>{{ p.project.name|upper }}</td>
-            <td>{{ p.date }}</td>
+            <td>{{ p.location }}</td>
         </tr>
     {% endfor %}
 </table>
