@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
-from models import Submission,Project,ApplicationReview,SelfEvaluation,Selection
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
+from models import Submission,Project,ApplicationReview,SelfEvaluation,Selection, PM10
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from forms import ProjectForm
 from django.utils.translation import ugettext as _
+import json
+from django.http import HttpResponse
 
 
 class ProjectList(ListView):
@@ -63,3 +65,57 @@ def create_project(request, template="create_project.html"):
         return  redirect('enterprise.projects')
     context = {"form": form, "title": _("Create Project")}
     return render(request, template, context)
+
+
+def project_detail(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    print project
+    return render(request, 'project_detail.html',{'project':project})
+
+
+def project_submission(request, project_id):
+    submission = get_object_or_404(Submission, project_id=project_id)
+    print submission
+    return render(request, 'project_submission.html',{'submission':submission})
+
+
+def project_review(request, project_id):
+    submission = get_object_or_404(Submission, project_id=project_id)
+    print submission
+    return render(request, 'project_submission.html',{'submission':submission})
+
+
+def project_evaluation(request, project_id):
+    submission = get_object_or_404(Submission, project_id=project_id)
+    print submission
+    return render(request, 'project_submission.html',{'submission':submission})
+
+
+def project_monitor(request, project_id):
+    submission = get_object_or_404(Submission, project_id=project_id)
+    print submission
+    return render(request, 'project_submission.html',{'submission':submission})
+
+
+def project_selection(request, project_id):
+    submission = get_object_or_404(Submission, project_id=project_id)
+    print submission
+    return render(request, 'project_submission.html',{'submission':submission})
+
+
+def project_pm10(request, project_id):
+
+    return render_to_response( 'project_pm10.html',{'project_id':project_id})
+
+
+def pm10_data(request, project_id):
+    query_set = PM10.objects.filter(project_id=project_id)
+    pm10_list = []
+
+    for pm10 in query_set:
+        pm10_list.append({'date':pm10.date.date(),'value': pm10.value})
+
+    #json.dumps do not work with DateTime object type,need to use DjangoJSONEncoder
+
+    from django.core.serializers.json import DjangoJSONEncoder
+    return HttpResponse(json.dumps(pm10_list, cls=DjangoJSONEncoder), content_type="application/json")

@@ -1,0 +1,26 @@
+{% extends "enterprise_base.html" %}
+{% load i18n %}
+
+{% block main %}
+<ul class="nav nav-pills">
+    <li><a href="{% url "enterprise.project.detail" project.id%}">{% trans "Project Summary"%}</a></li>
+    <li><a href="{% url "enterprise.project.submission" project.id%}">{% trans "Submission"%}</a></li>
+    <li><a href="{% url "enterprise.project.review" project.id%}">{% trans "Application Review"%}</a></li>
+    <li><a href="{% url "enterprise.project.evaluation" project.id%}">{% trans "Self Evaluation"%}</a></li>
+    <li  class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="{% url "enterprise.project.monitor" project.id%}">{% trans "Process Monitor"%}</a>
+        <ul class="dropdown-menu">
+            <li><a href="{% url "enterprise.project.pm10" project.id%}">{% trans "PM10" %}</a></li>
+            <li class="divider"></li>
+            <li><a href="#">{% trans "Sign Out" %}</a></li>
+          </ul>
+    </li>
+    <li><a href="{% url "enterprise.project.selection" project.id%}">{% trans "Selection"%}</a></li>
+</ul>
+
+    <div class="container">
+        <label>{% trans "Project" %}</label>{{ project.name }}<br>
+        <label>{% trans "Location" %}</label>
+        <label>{% trans "Location" %}</label>
+    </div>
+{% endblock %}

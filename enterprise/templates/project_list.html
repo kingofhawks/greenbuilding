@@ -9,7 +9,7 @@
     </thead>
     {% for p in projects %}
         <tr>
-            <td>{{ p.name }}</td>
+            <td><a href="{%  url 'enterprise.project.detail' p.id %}">{{ p.name }}</a></td>
             <td>{{ p.location }}</td>
         </tr>
     {% endfor %}

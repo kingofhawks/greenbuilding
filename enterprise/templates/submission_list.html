@@ -5,12 +5,14 @@
 <table class="table table-hover table-bordered">
     <thead>
         <th>{% trans "Project" %}</th>
+        <th>{% trans "Grade" %}</th>
         <th>{% trans "Date" %}</th>
     </thead>
     {% for p in projects %}
         <tr>
             {# Each "submission" is a Submission model object. #}
             <td>{{ p.project.name|upper }}</td>
+            <td>{{ p.grade}}</td>
             <td>{{ p.date }}</td>
         </tr>
     {% endfor %}

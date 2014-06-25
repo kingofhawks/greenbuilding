@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-20 16:38+0800\n"
+"POT-Creation-Date: 2014-06-24 16:14+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,59 +21,79 @@ msgstr ""
 msgid "Change Grade"
 msgstr ""
 
-#: .\models.py:7
+#: .\models.py:9
 msgid "project_name"
 msgstr "项目名称"
 
-#: .\models.py:8
-msgid "location"
-msgstr ""
-
-#: .\models.py:9
-msgid "description"
-msgstr ""
-
 #: .\models.py:10
+msgid "location"
+msgstr "地点"
+
+#: .\models.py:11
+msgid "description"
+msgstr "描述"
+
+#: .\models.py:12
 msgid "construct_company"
 msgstr ""
 
-#: .\models.py:11
-msgid "contact"
-msgstr ""
-
-#: .\models.py:12
-msgid "phone"
-msgstr ""
-
 #: .\models.py:13
-msgid "address"
-msgstr ""
+msgid "contact"
+msgstr "联系人"
 
 #: .\models.py:14
-msgid "zipcode"
-msgstr ""
+msgid "phone"
+msgstr "联系人手机"
 
-#: .\models.py:17
+#: .\models.py:15
+msgid "address"
+msgstr "地址"
+
+#: .\models.py:16
+msgid "zipcode"
+msgstr "邮编"
+
+#: .\models.py:19
 msgid "project"
 msgstr "项目名称"
 
-#: .\models.py:25 .\models.py:40
+#: .\models.py:27 .\models.py:42 .\models.py:67
 msgid "grade"
 msgstr "申报等级"
 
-#: .\models.py:27 .\models.py:41
+#: .\models.py:29 .\models.py:43
 msgid "date"
 msgstr ""
 
-#: .\models.py:30
+#: .\models.py:32
 #, fuzzy
 #| msgid "Submission List"
 msgid "submission"
 msgstr "申报创建列表"
 
-#: .\models.py:44
+#: .\models.py:46
 msgid "application_review"
+msgstr "应用评审"
+
+#: .\models.py:55
+msgid "completion_date"
 msgstr ""
+
+#: .\models.py:56
+msgid "awards"
+msgstr ""
+
+#: .\models.py:59
+msgid "self_evaluation"
+msgstr "企业自评"
+
+#: .\models.py:68
+msgid "passed"
+msgstr "通过"
+
+#: .\models.py:71
+msgid "selection"
+msgstr "考评评选"
 
 #: .\templates\enterprise_base.html:6
 msgid "Project List"
@@ -98,19 +118,58 @@ msgstr "修改"
 
 #: .\templates\list_base.html:8
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
-#: .\templates\project_list.html:7 .\templates\submission_list.html:7
+#: .\templates\project_detail.html:6
+msgid "Project Summary"
+msgstr "项目信息"
+
+#: .\templates\project_detail.html:7
+#, fuzzy
+#| msgid "Submission List"
+msgid "Submission"
+msgstr "申报创建列表"
+
+#: .\templates\project_detail.html:8
+msgid "Application Review"
+msgstr "应用评审"
+
+#: .\templates\project_detail.html:9 .\templates\self_evaluation_list.html:6
+msgid "Self Evaluation"
+msgstr "企业自评"
+
+#: .\templates\project_detail.html:10
+msgid "Process Monitor"
+msgstr "过程监督"
+
+#: .\templates\project_detail.html:11
+msgid "Selection"
+msgstr "考评评选"
+
+#: .\templates\project_list.html:7 .\templates\review_list.html:7
+#: .\templates\self_evaluation_list.html:13 .\templates\submission_list.html:7
 msgid "Project"
-msgstr ""
+msgstr "项目"
 
-#: .\templates\project_list.html:8
+#: .\templates\project_list.html:8 .\templates\review_list.html:9
 msgid "Location"
-msgstr ""
+msgstr "地点"
 
-#: .\templates\submission_list.html:8
+#: .\templates\review_list.html:8 .\templates\submission_list.html:8
+#, fuzzy
+#| msgid "grade"
+msgid "Grade"
+msgstr "申报等级"
+
+#: .\templates\submission_list.html:9
 msgid "Date"
 msgstr ""
+
+#: .\views.py:64
+#, fuzzy
+#| msgid "Create"
+msgid "Create Project"
+msgstr "新增"
 
 #~ msgid "Enterprise New List"
 #~ msgstr "申报创建列表"

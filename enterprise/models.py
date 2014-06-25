@@ -65,12 +65,24 @@ class SelfEvaluation(models.Model):
 class Selection(models.Model):
     project = models.ForeignKey('Project')
     grade = models.SmallIntegerField(verbose_name=_("grade"))
-    passed = models.BooleanField(verbose_name=_('passed'))
+    passed = models.BooleanField(verbose_name=_('passed'),default=False)
 
     class Meta:
         verbose_name = _("selection")
 
     def __str__(self):
         return 'Selection:{}'.format(self.project.name)
+
+
+class PM10(models.Model):
+    project = models.ForeignKey('Project')
+    value = models.SmallIntegerField(verbose_name=_('value'))
+    date = models.DateTimeField(verbose_name=_('date'))
+
+    class Meta:
+        verbose_name = _('pm10')
+
+    def __str__(self):
+        return 'PM10:{}'.format(self.value)
 
 
