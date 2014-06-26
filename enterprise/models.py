@@ -25,7 +25,7 @@ class Project(models.Model):
 
 class Submission(models.Model):
     grade = models.SmallIntegerField(verbose_name=_("grade"))
-    project = models.ForeignKey('Project')
+    project = models.ForeignKey(Project)
     date = models.DateTimeField(verbose_name=_("date"))
 
     class Meta:
@@ -38,9 +38,10 @@ class Submission(models.Model):
 
 #Project application review form
 class ApplicationReview(models.Model):
-    project = models.ForeignKey('Project')
+    project = models.ForeignKey(Project)
     grade = models.SmallIntegerField(verbose_name=_("grade"))
     date = models.DateTimeField(verbose_name=_("date"))
+    achievement = models.FileField(verbose_name=_('achievement'), blank=True)
 
     class Meta:
         verbose_name = _("application_review")
@@ -51,7 +52,7 @@ class ApplicationReview(models.Model):
 
 
 class SelfEvaluation(models.Model):
-    project = models.ForeignKey('Project')
+    project = models.ForeignKey(Project)
     completion_date = models.DateTimeField(verbose_name=_("completion_date"))
     awards = models.CharField(verbose_name=_('awards'),max_length=256,blank=True)
 
@@ -62,10 +63,20 @@ class SelfEvaluation(models.Model):
         return 'SelfEvaluation:{}'.format(self.project.name)
 
 
+class ProgressMonitor(models.Model):
+    project = models.ForeignKey(Project)
+    date = models.DateTimeField(verbose_name=_("date"))
+    pm10_threshold = models.IntegerField(verbose_name=_('pm10_threshold'))
+
+    class Meta:
+        verbose_name = _("progress_monitor")
+
+
 class Selection(models.Model):
-    project = models.ForeignKey('Project')
+    project = models.ForeignKey(Project)
     grade = models.SmallIntegerField(verbose_name=_("grade"))
     passed = models.BooleanField(verbose_name=_('passed'),default=False)
+    user = models.ForeignKey(User)
 
     class Meta:
         verbose_name = _("selection")

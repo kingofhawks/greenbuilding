@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from models import Submission,Project,ApplicationReview,SelfEvaluation,Selection, PM10
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response, get_list_or_404
+from models import Submission,Project,ApplicationReview,SelfEvaluation,Selection, PM10, ProgressMonitor
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from forms import ProjectForm
@@ -70,37 +70,37 @@ def create_project(request, template="create_project.html"):
 def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
-    return render(request, 'project_detail.html',{'project':project})
+    return render(request, 'project_detail.html',{'project':project, 'project_id':project_id})
 
 
 def project_submission(request, project_id):
     submission = get_object_or_404(Submission, project_id=project_id)
     print submission
-    return render(request, 'project_submission.html',{'submission':submission})
+    return render(request, 'project_submission.html',{'submission':submission ,'project_id':project_id})
 
 
 def project_review(request, project_id):
-    submission = get_object_or_404(Submission, project_id=project_id)
-    print submission
-    return render(request, 'project_submission.html',{'submission':submission})
+    review = get_object_or_404(ApplicationReview, project_id=project_id)
+    print review
+    return render(request, 'project_review.html',{'review':review, 'project_id':project_id})
 
 
 def project_evaluation(request, project_id):
-    submission = get_object_or_404(Submission, project_id=project_id)
-    print submission
-    return render(request, 'project_submission.html',{'submission':submission})
+    evaluation = get_object_or_404(SelfEvaluation, project_id=project_id)
+    print evaluation
+    return render(request, 'project_evaluation.html',{'evaluation':evaluation, 'project_id':project_id})
 
 
 def project_monitor(request, project_id):
-    submission = get_object_or_404(Submission, project_id=project_id)
-    print submission
-    return render(request, 'project_submission.html',{'submission':submission})
+    monitor = get_object_or_404(ProgressMonitor, project_id=project_id)
+    print monitor
+    return render(request, 'project_monitor.html',{'monitor':monitor, 'project_id':project_id})
 
 
 def project_selection(request, project_id):
-    submission = get_object_or_404(Submission, project_id=project_id)
-    print submission
-    return render(request, 'project_submission.html',{'submission':submission})
+    selections = Selection.objects.filter(project_id=project_id)
+    print selections
+    return render(request, 'project_selection.html',{'selections':selections, 'project_id':project_id})
 
 
 def project_pm10(request, project_id):
@@ -116,6 +116,10 @@ def pm10_data(request, project_id):
         pm10_list.append({'date':pm10.date.date(),'value': pm10.value})
 
     #json.dumps do not work with DateTime object type,need to use DjangoJSONEncoder
-
     from django.core.serializers.json import DjangoJSONEncoder
     return HttpResponse(json.dumps(pm10_list, cls=DjangoJSONEncoder), content_type="application/json")
+
+
+def project_noise(request, project_id):
+
+    return render_to_response( 'project_pm10.html',{'project_id':project_id})

@@ -1,0 +1,17 @@
+{% extends "project_base.html" %}
+{% load i18n %}
+
+{% block project_main %}
+    <table class="table table-hover table-bordered">
+    <thead>
+        <th>{% trans "User" %}</th>
+        <th>{% trans "Passed" %}</th>
+    </thead>
+    {% for p in selections %}
+        <tr>
+            <td>{{ p.user.username }}</td>
+            <td>{{ p.passed }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

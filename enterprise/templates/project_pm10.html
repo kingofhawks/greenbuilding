@@ -1,4 +1,4 @@
-{% extends "enterprise_base.html" %}
+{% extends "project_base.html" %}
 {% load staticfiles i18n%}
 
 {% block extra_css %}
@@ -116,6 +116,6 @@ d3.json("{% url 'enterprise.project.pm10_data' project_id%}", function(error, da
 </script>
 {% endblock %}
 
-{% block main %}
+{% block project_main %}
 <div id="chart" class="container"></div>
 {% endblock %}

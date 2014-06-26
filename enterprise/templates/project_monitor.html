@@ -1,0 +1,9 @@
+{% extends "project_base.html" %}
+{% load i18n %}
+
+{% block project_main %}
+    <div class="container">
+        <label>{% trans "Project" %}</label><p>{{ monitor.project.name }}<br></p>
+        <label>{% trans "Date" %}</label><p>{{ monitor.date }}<br></p>
+    </div>
+{% endblock %}
