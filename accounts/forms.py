@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
@@ -8,6 +7,8 @@ from django.db.models.manager import Manager
 from django import forms
 from django.utils.http import int_to_base36
 from django.utils.translation import ugettext, ugettext_lazy as _
+from django.forms import ModelForm
+from models import UserProfile
 
 
 class SignupForm(forms.Form):
@@ -86,3 +87,10 @@ class PasswordResetForm( forms.Form):
         email.
         """
         return getattr(self, "_user", None)
+
+
+class ProfileForm(ModelForm):
+        class Meta:
+            model = UserProfile
+            fields = ['company']
+

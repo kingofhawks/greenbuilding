@@ -6,6 +6,7 @@ from forms import ProjectForm
 from django.utils.translation import ugettext as _
 import json
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 class ProjectList(ListView):
@@ -67,47 +68,58 @@ def create_project(request, template="create_project.html"):
     return render(request, template, context)
 
 
+@login_required
 def project_detail(request, project_id):
+    print request.user.is_authenticated()
+    print 'session*************'
+    print request.session
     project = get_object_or_404(Project, pk=project_id)
     print project
     return render(request, 'project_detail.html',{'project':project, 'project_id':project_id})
 
 
+@login_required
 def project_submission(request, project_id):
     submission = get_object_or_404(Submission, project_id=project_id)
     print submission
     return render(request, 'project_submission.html',{'submission':submission ,'project_id':project_id})
 
 
+@login_required
 def project_review(request, project_id):
     review = get_object_or_404(ApplicationReview, project_id=project_id)
     print review
     return render(request, 'project_review.html',{'review':review, 'project_id':project_id})
 
 
+@login_required
 def project_evaluation(request, project_id):
     evaluation = get_object_or_404(SelfEvaluation, project_id=project_id)
     print evaluation
     return render(request, 'project_evaluation.html',{'evaluation':evaluation, 'project_id':project_id})
 
 
+@login_required
 def project_monitor(request, project_id):
     monitor = get_object_or_404(ProgressMonitor, project_id=project_id)
     print monitor
     return render(request, 'project_monitor.html',{'monitor':monitor, 'project_id':project_id})
 
 
+@login_required
 def project_selection(request, project_id):
     selections = Selection.objects.filter(project_id=project_id)
     print selections
     return render(request, 'project_selection.html',{'selections':selections, 'project_id':project_id})
 
 
+@login_required
 def project_pm10(request, project_id):
 
     return render_to_response( 'project_pm10.html',{'project_id':project_id})
 
 
+@login_required
 def pm10_data(request, project_id):
     query_set = PM10.objects.filter(project_id=project_id)
     pm10_list = []
@@ -120,6 +132,7 @@ def pm10_data(request, project_id):
     return HttpResponse(json.dumps(pm10_list, cls=DjangoJSONEncoder), content_type="application/json")
 
 
+@login_required
 def project_noise(request, project_id):
 
     return render_to_response( 'project_pm10.html',{'project_id':project_id})

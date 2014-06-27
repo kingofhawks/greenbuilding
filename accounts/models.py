@@ -45,3 +45,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     company = models.CharField(_('company'), max_length= 255, blank=False)
     test = models.CharField(_('test'),max_length= 32,blank=True)
+
+    def __str__(self):
+        return self.company

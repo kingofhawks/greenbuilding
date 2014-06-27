@@ -51,9 +51,9 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog fa-2x"></i></a>
           <ul class="dropdown-menu">
-            <li><a href="#">{% trans "Settings" %}</a></li>
+            <li><a href="{% url 'profile' %}">{% trans "Settings" %}</a></li>
             <li class="divider"></li>
-            <li><a href="#">{% trans "Sign Out" %}</a></li>
+            <li><a href="{% url 'logout' %}">{% trans "Sign Out" %}</a></li>
           </ul>
         </li>
       </ul>
