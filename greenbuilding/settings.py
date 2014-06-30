@@ -93,3 +93,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+#uploaded content goes to this directory
+MEDIA_ROOT = 'media'
+MEDIA_URL = '/media/'
+
+

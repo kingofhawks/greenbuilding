@@ -2,19 +2,21 @@
 {% load i18n %}
 
 {% block project_main %}
-    <div class="container">
-        <label>{% trans "Project" %}</label><p>{{ review.project.name }}<br></p>
-        <label>{% trans "Grade" %}</label><p>{{ review.grade }}<br></p>
-    <label>{% trans "Achievement" %}</label><p>{{ review.achievement }}<br></p>
+<div class="container">
+    <label>{% trans "Project" %}</label><p>{{ review.project.name }}<br></p>
+    <label>{% trans "Grade" %}</label><p>{{ review.grade }}<br></p>
+    <label>{% trans "Achievement" %}</label>
+<div>
     <video id="example_video_1"
       controls preload="auto" width="640" height="200"
       poster="/static/images/oceans-clip.png">
-     <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+     <source src="/media/{{ review.achievement }}" type='video/mp4' />
      <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
      <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
      <p>To view this video please enable JavaScript, and consider upgrading to a web browser that
          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
      </p>
     </video>
-    </div>
+</div>
+</div>
 {% endblock %}

@@ -41,7 +41,7 @@ class ApplicationReview(models.Model):
     project = models.ForeignKey(Project)
     grade = models.SmallIntegerField(verbose_name=_("grade"))
     date = models.DateTimeField(verbose_name=_("date"))
-    achievement = models.FileField(verbose_name=_('achievement'), blank=True)
+    achievement = models.FileField(verbose_name=_('achievement'), upload_to='video', blank=True)
 
     class Meta:
         verbose_name = _("application_review")

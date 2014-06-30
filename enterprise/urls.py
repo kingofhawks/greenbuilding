@@ -3,9 +3,6 @@ import views
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'worksmart.views.home', name='home'),
-    #url(r'^$', views.trend, name='trend'),
-    #url(r'^list/new/$', views.new_list, name='enterprise.list.new'),
     url(r'^projects$', views.ProjectList.as_view(), name='enterprise.projects'),
     url(r'^submissions$', views.SubmissionList.as_view(), name='enterprise.applications'),
     url(r'^reviews', views.ApplicationReviewList.as_view(), name='enterprise.reviews'),
@@ -21,5 +18,6 @@ urlpatterns = patterns('',
     url(r'^projects/(?P<project_id>\d+)/pm10/$', views.project_pm10, name='enterprise.project.pm10'),
     url(r'^projects/(?P<project_id>\d+)/pm10/data/$', views.pm10_data, name='enterprise.project.pm10_data'),
     url(r'^projects/(?P<project_id>\d+)/noise/$', views.project_noise, name='enterprise.project.noise'),
-
 )
+
+
