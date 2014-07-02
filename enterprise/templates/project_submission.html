@@ -26,6 +26,8 @@
     <div class="container">
         <label>{% trans "Project" %}</label><p>{{ submission.project.name }}<br></p>
         <label>{% trans "Grade" %}</label><p>{{ submission.grade }}<br></p>
-        <a href="javascript:download_pdf()" class="button">{% trans "Download PDF" %}</a>
+        <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>
+        <a href="#" class="btn btn-primary">{% trans "Approve" %}</a>
+        <a href="#" class="btn btn-primary">{% trans "Deny" %}</a>
     </div>
 {% endblock %}
