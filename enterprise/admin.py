@@ -4,7 +4,9 @@ from django.utils.translation import ugettext as _
 
 
 class SubmissionAdmin(admin.ModelAdmin):
-    fieldsets = [('Project Info',{'fields':['project','grade']}),(None,{'fields':['date']})]
+    fieldsets = [('Project Info', {'fields':['project', 'grade']}),
+                 ('Company Info', {'fields':['person_in_charge','phone1','technical_in_charge','phone2','company_technical_in_charge','phone3']}),
+                 (None,{'fields':['content','measures', 'schedule','benefits', 'company_opinion', 'management_opinion','approved',  'date']})]
     list_display = ('project', 'grade','date')
     actions = ['change_grade']
 

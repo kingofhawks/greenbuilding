@@ -9,18 +9,18 @@ class Project(models.Model):
 
     #project info
     name = models.CharField(verbose_name=_("project_name"), max_length=256)
-    location = models.CharField(verbose_name=_("location"), max_length=256,blank=True)
-    area = models.IntegerField(verbose_name=_('area'), blank=True)
-    cost = models.IntegerField(verbose_name=_('cost'), blank=True)
-    structure_type = models.CharField(verbose_name=_('structure_type'), max_length=32, blank=True)
-    start_date = models.DateField(verbose_name=_('start_date'),blank=True)
-    end_date = models.DateField(verbose_name=_('end_date'),blank=True)
-    description = models.CharField(verbose_name=_("description"),max_length=1024,blank=True)
+    location = models.CharField(verbose_name=_("location"), max_length=256, blank=True, null=True)
+    area = models.IntegerField(verbose_name=_('area'), blank=True, null=True)
+    cost = models.IntegerField(verbose_name=_('cost'), blank=True, null=True)
+    structure_type = models.CharField(verbose_name=_('structure_type'), max_length=32, blank=True, null=True)
+    start_date = models.DateField(verbose_name=_('start_date'), blank=True, null=True)
+    end_date = models.DateField(verbose_name=_('end_date'), blank=True, null=True)
+    description = models.CharField(verbose_name=_("description"),max_length=1024,blank=True, null=True)
 
     #company info
-    construct_company = models.CharField(verbose_name=_('construct_company'), max_length=256, blank=True)
-    postal_address = models.CharField(verbose_name=_('postal_address'), max_length=256, blank=True)
-    zipcode = models.CharField(verbose_name=_('zipcode'), max_length=6, blank=True)
+    construct_company = models.CharField(verbose_name=_('construct_company'), max_length=256, blank=True, null=True)
+    postal_address = models.CharField(verbose_name=_('postal_address'), max_length=256, blank=True, null=True)
+    zipcode = models.CharField(verbose_name=_('zipcode'), max_length=6, blank=True, null=True)
 
     class Meta:
         verbose_name = _("project")
@@ -34,18 +34,18 @@ class Submission(models.Model):
     grade = models.SmallIntegerField(verbose_name=_("grade"))
     project = models.ForeignKey(Project)
     date = models.DateTimeField(verbose_name=_("date"))
-    person_in_charge = models.CharField(verbose_name=_('person_in_charge'), max_length=32, blank=True)
-    phone1 = models.CharField(verbose_name=_('phone1'), max_length=32, blank=True)
-    technical_in_charge = models.CharField(verbose_name=_('technical_in_charge'), max_length=32, blank=True)
-    phone2 = models.CharField(verbose_name=_('phone2'), max_length=32, blank=True)
-    company_technical_in_charge = models.CharField(verbose_name=_('company_technical_in_charge'), max_length=32, blank=True)
-    phone3 = models.CharField(verbose_name=_('phone3'), max_length=32, blank=True)
-    content = models.CharField(verbose_name=_('content'), max_length= 2048, blank=True)
-    measures = models.CharField(verbose_name=_('measures'), max_length=1024, blank=True)
-    schedule = models.CharField(verbose_name=_('schedule'), max_length=1024, blank=True)
-    benefits = models.CharField(verbose_name=_('benefits'), max_length=1024, blank=True)
-    company_opinion = models.CharField(verbose_name=_('company_opinion'), max_length=2048, blank=True)
-    management_opinion = models.CharField(verbose_name=_('management_opinion'), max_length=2048, blank=True)
+    person_in_charge = models.CharField(verbose_name=_('person_in_charge'), max_length=32, blank=True, null=True)
+    phone1 = models.CharField(verbose_name=_('phone1'), max_length=32, blank=True, null=True)
+    technical_in_charge = models.CharField(verbose_name=_('technical_in_charge'), max_length=32, blank=True, null=True)
+    phone2 = models.CharField(verbose_name=_('phone2'), max_length=32, blank=True, null=True)
+    company_technical_in_charge = models.CharField(verbose_name=_('company_technical_in_charge'), max_length=32, blank=True, null=True)
+    phone3 = models.CharField(verbose_name=_('phone3'), max_length=32, blank=True, null=True)
+    content = models.CharField(verbose_name=_('content'), max_length= 2048, blank=True, null=True)
+    measures = models.CharField(verbose_name=_('measures'), max_length=1024, blank=True, null=True)
+    schedule = models.CharField(verbose_name=_('schedule'), max_length=1024, blank=True, null=True)
+    benefits = models.CharField(verbose_name=_('benefits'), max_length=1024, blank=True, null=True)
+    company_opinion = models.CharField(verbose_name=_('company_opinion'), max_length=2048, blank=True, null=True)
+    management_opinion = models.CharField(verbose_name=_('management_opinion'), max_length=2048, blank=True, null=True)
     approved = models.BooleanField(verbose_name=_('approved'), default=False)
 
     class Meta:
@@ -61,12 +61,12 @@ class ApplicationReview(models.Model):
     project = models.ForeignKey(Project)
     grade = models.SmallIntegerField(verbose_name=_("grade"))
     date = models.DateTimeField(verbose_name=_("date"))
-    achievement = models.FileField(verbose_name=_('achievement'), upload_to='video', blank=True)
-    contact = models.CharField(verbose_name=_('contact'), max_length=32, blank=True)
-    phone = models.CharField(verbose_name=_('phone'), max_length=32, blank=True)
-    content = models.CharField(verbose_name=_('content'), max_length=2048, blank=True)
-    company_opinion = models.CharField(verbose_name=_('company_opinion'), max_length=2048, blank=True)
-    management_opinion = models.CharField(verbose_name=_('management_opinion'), max_length=2048, blank=True)
+    achievement = models.FileField(verbose_name=_('achievement'), upload_to='video', blank=True, null=True)
+    contact = models.CharField(verbose_name=_('contact'), max_length=32, blank=True, null=True)
+    phone = models.CharField(verbose_name=_('phone'), max_length=32, blank=True, null=True)
+    content = models.CharField(verbose_name=_('content'), max_length=2048, blank=True, null=True)
+    company_opinion = models.CharField(verbose_name=_('company_opinion'), max_length=2048, blank=True, null=True)
+    management_opinion = models.CharField(verbose_name=_('management_opinion'), max_length=2048, blank=True, null=True)
     approved = models.BooleanField(verbose_name=_('approved'), default=False)
 
     class Meta:
@@ -80,7 +80,7 @@ class ApplicationReview(models.Model):
 class SelfEvaluation(models.Model):
     project = models.ForeignKey(Project)
     completion_date = models.DateTimeField(verbose_name=_("completion_date"))
-    awards = models.CharField(verbose_name=_('awards'),max_length=256,blank=True)
+    awards = models.CharField(verbose_name=_('awards'),max_length=256, blank=True, null=True)
 
     class Meta:
         verbose_name = _("self_evaluation")
