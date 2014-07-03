@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from datetime import datetime
+from django.core.urlresolvers import reverse
 
 
 # Create your models here.
@@ -54,6 +56,9 @@ class Submission(models.Model):
 
     def __str__(self):
         return 'Submission:{}'.format(self.project.name)
+
+    def get_absolute_url(self):
+        return reverse('enterprise.project.submission', args=[str(self.id)])
 
 
 #Project application review form
@@ -127,7 +132,7 @@ class Notification(models.Model):
     label = models.CharField(verbose_name=_('label'), max_length=128)
     project_url = models.CharField(verbose_name=_('project_url'), max_length=128)
     processed = models.BooleanField(verbose_name=_('processed'), default=False)
-    date = models.DateTimeField(verbose_name=_('date'), blank=True, null=True)
+    date = models.DateTimeField(verbose_name=_('date'), blank=True, null=True, default=datetime.utcnow())
 
     class Meta:
         verbose_name = _('notification')

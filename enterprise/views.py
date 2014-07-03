@@ -7,6 +7,7 @@ from django.utils.translation import ugettext as _
 import json
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.messages import info
 
 
 class ProjectList(ListView):
@@ -92,6 +93,17 @@ def project_submission(request, project_id):
     submission = get_object_or_404(Submission, project_id=project_id)
     print submission
     return render(request, 'project_submission.html',{'submission':submission ,'project_id':project_id})
+
+
+def submission_commit(request):
+    project_id = request.POST.get('project_id')
+    print project_id
+    submission = get_object_or_404(Submission, pk=project_id)
+    n = Notification(label=submission.project.name, project_url=submission.get_absolute_url());
+    n.save();
+    #info(request, _("Submission committed"))
+
+    return HttpResponse(json.dumps('OK'), content_type="application/json")
 
 
 @login_required

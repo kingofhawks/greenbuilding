@@ -20,6 +20,23 @@
         doc.output('dataurlnewwindow');
     }
 
+    function commit(){
+        console.log("commit");
+        $.post('enterprise.submission.commit',function(){
+            console.log("ok")
+        }).done(function(){
+            console.log("done");
+        });
+    }
+
+    //Best to attach onclick event in jQuery ready() function like this
+    $(document).ready(function(){
+        $("#approve").click(function(){
+            console.log("approve");
+        });
+    });
+
+
     </script>
 {% endblock %}
 
@@ -28,8 +45,7 @@
         <label>{% trans "Project" %}</label><p>{{ submission.project.name }}<br></p>
         <label>{% trans "Grade" %}</label><p>{{ submission.grade }}<br></p>
         <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>
-        <a href="#" class="btn btn-primary">{% trans "Approve" %}</a>
+        <a href="#" id="approve" class="btn btn-primary">{% trans "Approve" %}</a>
         <a href="#" class="btn btn-primary">{% trans "Deny" %}</a>
-        <a href="#" class="btn btn-primary">{% trans "Submit" %}</a>
     </div>
 {% endblock %}
