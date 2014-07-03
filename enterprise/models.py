@@ -80,7 +80,7 @@ class ApplicationReview(models.Model):
 class SelfEvaluation(models.Model):
     project = models.ForeignKey(Project)
     completion_date = models.DateTimeField(verbose_name=_("completion_date"))
-    awards = models.CharField(verbose_name=_('awards'),max_length=256, blank=True, null=True)
+    awards = models.CharField(verbose_name=_('awards'), max_length=256, blank=True, null=True)
 
     class Meta:
         verbose_name = _("self_evaluation")
@@ -121,5 +121,18 @@ class PM10(models.Model):
 
     def __str__(self):
         return 'PM10:{}'.format(self.value)
+
+
+class Notification(models.Model):
+    label = models.CharField(verbose_name=_('label'), max_length=128)
+    project_url = models.CharField(verbose_name=_('project_url'), max_length=128)
+    processed = models.BooleanField(verbose_name=_('processed'), default=False)
+    date = models.DateTimeField(verbose_name=_('date'), blank=True, null=True)
+
+    class Meta:
+        verbose_name = _('notification')
+
+    def __str__(self):
+        return 'Notification:{}'.format(self.label)
 
 

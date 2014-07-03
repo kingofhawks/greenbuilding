@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Submission,Project,ApplicationReview,SelfEvaluation,Selection, PM10, ProgressMonitor
+from models import Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor, Notification
 from django.utils.translation import ugettext as _
 
 
@@ -26,4 +26,5 @@ admin.site.register(SelfEvaluation)
 admin.site.register(Selection)
 admin.site.register(PM10)
 admin.site.register(ProgressMonitor)
+admin.site.register(Notification)
 

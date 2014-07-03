@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response, get_list_or_404
-from models import Submission,Project,ApplicationReview,SelfEvaluation,Selection, PM10, ProgressMonitor
+from models import Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor, Notification
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from forms import ProjectForm
@@ -39,8 +39,17 @@ class SelectionList(ListView):
     context_object_name = 'projects'
 
 
+class NotificationList(ListView):
+    model = Notification
+    template_name = 'notification_list.html'
+    context_object_name = 'notifications'
+
+    def get_queryset(self):
+        return Notification.objects.filter(processed=False)
+
+
 # Create your views here.
-def  new_list(request, template="submission_list.html"):
+def new_list(request, template="submission_list.html"):
     submission_list = Submission.objects.all()
     print submission_list
     paginator = Paginator(submission_list, 25) # Show 25 contacts per page
@@ -136,3 +145,11 @@ def pm10_data(request, project_id):
 def project_noise(request, project_id):
 
     return render_to_response( 'project_pm10.html',{'project_id':project_id})
+
+
+def notification_data(request):
+    from django.core import serializers
+    query_set = Notification.objects.filter(processed=False)
+    data = serializers.serialize("json", query_set)
+
+    return HttpResponse(data, content_type="application/json")

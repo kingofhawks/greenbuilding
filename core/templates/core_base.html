@@ -15,6 +15,39 @@
 </style>
 {% endblock %}
 
+{% block extra_js %}
+    <script src="{% static 'vendor/favico-0.3.4.min.js' %}"></script>
+    <script>
+    $(document).ready(function() {
+        var favicon = new Favico({
+            animation : 'popFade'
+        });
+
+        $.get("{% url 'enterprise.notification_data' %}",function(data){
+           console.log("success.");
+        }).done(function(data){
+            var count = data.length;
+            $("#badge").text(count);
+
+            favicon.badge(count);
+        });
+
+{#        $('#plusOne').click(function() {#}
+{#            badge = badge + 1;#}
+{#            favicon.badge(badge);#}
+{#        });#}
+{#        $('#minusOne').click(function() {#}
+{#            badge = (badge-1 < 0) ? 0 : (badge - 1);#}
+{#            favicon.badge(badge);#}
+{#        });#}
+{#        $('#reset').click(function() {#}
+{#            favicon.reset();#}
+{#        });#}
+
+    });
+    </script>
+{% endblock %}
+
 
 {% block content %}
 <div id="wrapper">
@@ -48,6 +81,9 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
+          <li>
+              <a href="{% url 'enterprise.notifications' %}">{% trans "Notification" %} <span class="badge" id="badge"></span></a>
+          </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog fa-2x"></i></a>
           <ul class="dropdown-menu">

@@ -3,6 +3,7 @@
 
 {% block extra_js %}
     <script src="{% static 'jspdf/dist/jspdf.min.js' %}"></script>
+
     <script>
     function download_pdf(){
         console.log('pdf')
@@ -29,5 +30,6 @@
         <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>
         <a href="#" class="btn btn-primary">{% trans "Approve" %}</a>
         <a href="#" class="btn btn-primary">{% trans "Deny" %}</a>
+        <a href="#" class="btn btn-primary">{% trans "Submit" %}</a>
     </div>
 {% endblock %}
