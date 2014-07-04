@@ -3,12 +3,10 @@
 *.py[co]
 __pycache__
 MANIFEST
-dist/
 docs/_build/
 docs/locale/
 tests/coverage_html/
 tests/.coverage
-build/
 migrations/
 *.sqlite3
 
