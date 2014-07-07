@@ -3,6 +3,7 @@
 
 {% block extra_js %}
     <script src="{% static 'jspdf/dist/jspdf.min.js' %}"></script>
+    <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
 
     <script>
     function download_pdf(){
@@ -33,6 +34,20 @@
     $(document).ready(function(){
         $("#approve").click(function(){
             console.log("approve");
+            var csrf_token = $.cookie('csrftoken');
+            $.post("{% url 'enterprise.submission.approve'%}",{project_id:"{{ submission.id }}", csrfmiddlewaretoken:csrf_token},
+                    function(data){
+                console.log(data);
+            })
+        });
+
+        $("#deny").click(function(){
+            console.log("deny");
+            var csrf_token = $.cookie('csrftoken');
+            $.post("{% url 'enterprise.submission.deny'%}",{project_id:"{{ submission.id }}", csrfmiddlewaretoken:csrf_token},
+                    function(data){
+                console.log(data);
+            })
         });
     });
 
@@ -44,8 +59,9 @@
     <div class="container">
         <label>{% trans "Project" %}</label><p>{{ submission.project.name }}<br></p>
         <label>{% trans "Grade" %}</label><p>{{ submission.grade }}<br></p>
+        <label>{% trans "Approved" %}</label><p>{{ submission.approved }}<br></p>
         <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>
         <a href="#" id="approve" class="btn btn-primary">{% trans "Approve" %}</a>
-        <a href="#" class="btn btn-primary">{% trans "Deny" %}</a>
+        <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>
     </div>
 {% endblock %}

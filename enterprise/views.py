@@ -99,9 +99,41 @@ def submission_commit(request):
     project_id = request.POST.get('project_id')
     print project_id
     submission = get_object_or_404(Submission, pk=project_id)
-    n = Notification(label=submission.project.name, project_url=submission.get_absolute_url());
+    project = submission.project.name
+    n = Notification(label=project, type=1, project_url=submission.get_absolute_url());
     n.save();
-    #info(request, _("Submission committed"))
+
+    return HttpResponse(json.dumps('OK'), content_type="application/json")
+
+
+def submission_approve(request):
+    project_id = request.POST.get('project_id')
+    print project_id
+    #update submission status
+    submission = get_object_or_404(Submission, pk=project_id)
+    print submission
+    submission.approved = True
+    submission.save()
+
+    #clear relevant notification
+    notification = get_object_or_404(Notification, label=submission.project.name)
+    print notification
+    notification.delete()
+    info(request, _("Submission approved"))
+
+    return HttpResponse(json.dumps('OK'), content_type="application/json")
+
+
+def submission_deny(request):
+    project_id = request.POST.get('project_id')
+    print project_id
+    submission = get_object_or_404(Submission, pk=project_id)
+    submission.approved = False
+    submission.save();
+
+    notification = get_object_or_404(Notification, project=submission.project.name)
+    notification.delete()
+    info(request, _("Submission denied"))
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 

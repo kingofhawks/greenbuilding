@@ -129,7 +129,8 @@ class PM10(models.Model):
 
 
 class Notification(models.Model):
-    label = models.CharField(verbose_name=_('label'), max_length=128)
+    label = models.CharField(verbose_name=_('label'), max_length=256)
+    type = models.SmallIntegerField(verbose_name=_('type'))
     project_url = models.CharField(verbose_name=_('project_url'), max_length=128)
     processed = models.BooleanField(verbose_name=_('processed'), default=False)
     date = models.DateTimeField(verbose_name=_('date'), blank=True, null=True, default=datetime.utcnow())
