@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n staticfiles%}
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'jquery/jquery.qtip.min.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'peity/jquery.peity.min.js' %}"></script>
+    <script>
+    $(document).ready(function(){
+        $("span.pie").peity("pie");
+    });
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <label>{% trans "Progress" %}</label><span class="pie">{{ project.get_progress }}</span>
+    </div>
+{% endblock %}

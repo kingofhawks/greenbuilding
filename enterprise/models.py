@@ -31,6 +31,9 @@ class Project(models.Model):
     def __str__(self):
         return 'Project:{}'.format(self.name)
 
+    def get_progress(self):
+        return "3/5"
+
 
 class Submission(models.Model):
     grade = models.SmallIntegerField(verbose_name=_("grade"))

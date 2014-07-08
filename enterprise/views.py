@@ -88,6 +88,12 @@ def project_detail(request, project_id):
     return render(request, 'project_detail.html',{'project':project, 'project_id':project_id})
 
 
+def project_progress(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    print project
+    return render(request, 'project_progress.html',{'project':project, 'project_id':project_id})
+
+
 @login_required
 def project_submission(request, project_id):
     submission = get_object_or_404(Submission, project_id=project_id)

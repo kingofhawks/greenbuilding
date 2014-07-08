@@ -12,14 +12,37 @@
     <script>
     $(document).ready(function(){
         $('.detail').each(function() {
-             $(this).qtip({
-                 content: {
-                     text: $('.tooltiptext')
-                 }
-             });
-         });
-        $("span.pie").peity("pie");
+{#             $(this).qtip({#}
+{#                 content: {#}
+{#                     text: $('.tooltiptext')#}
+{#                 }#}
+{#             });#}
 
+            $(this).qtip({
+            content: {
+                text: function(event, api) {
+                    $.ajax({
+                        url: api.elements.target.attr('href') // Use href attribute as URL
+                    })
+                    .then(function(content) {
+                        // Set the tooltip content upon successful retrieval
+                        api.set('content.text', content);
+                    }, function(xhr, status, error) {
+                        // Upon failure... set the tooltip content to error
+                        api.set('content.text', status + ': ' + error);
+                    });
+
+                    return 'Loading...'; // Set some initial text
+                }
+            },
+            position: {
+                viewport: $(window)
+            },
+            style: 'qtip-wiki'
+         });
+
+        $("span.pie").peity("pie");
+         });
     });
 
     </script>
@@ -37,13 +60,10 @@
             <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.name }}</a></td>
             <td>{{ p.location }}</td>
             <td>
-                <a href="#" class="detail">{% trans "Detail" %}</a>
+                <a href="{% url 'enterprise.project.progress' p.id %}" class="detail">{% trans "Detail" %}</a>
             </td>
         </tr>
     {% endfor %}
 </table>
 
-    <div class="tooltiptext">
-        <span class="pie">1/5</span>
-    </div>
 {% endblock %}
