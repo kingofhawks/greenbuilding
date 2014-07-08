@@ -1,17 +1,49 @@
 {% extends "list_base.html" %}
-{% load i18n %}
+{% load i18n staticfiles%}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'hint.css/hint.min.css' %}">
+    <link rel="stylesheet" href="{% static 'jquery/jquery.qtip.min.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'peity/jquery.peity.min.js' %}"></script>
+    <script src="{% static 'jquery/jquery.qtip.min.js' %}"></script>
+    <script>
+    $(document).ready(function(){
+        $('.detail').each(function() {
+             $(this).qtip({
+                 content: {
+                     text: $('.tooltiptext')
+                 }
+             });
+         });
+        $("span.pie").peity("pie");
+
+    });
+
+    </script>
+{% endblock %}
 
 {% block list %}
 <table class="table table-hover table-bordered">
     <thead>
         <th>{% trans "Project" %}</th>
         <th>{% trans "Location" %}</th>
+        <th>{% trans "Progress" %}</th>
     </thead>
     {% for p in projects %}
         <tr>
-            <td><a href="{%  url 'enterprise.project.detail' p.id %}">{{ p.name }}</a></td>
+            <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.name }}</a></td>
             <td>{{ p.location }}</td>
+            <td>
+                <a href="#" class="detail">{% trans "Detail" %}</a>
+            </td>
         </tr>
     {% endfor %}
 </table>
+
+    <div class="tooltiptext">
+        <span class="pie">1/5</span>
+    </div>
 {% endblock %}
