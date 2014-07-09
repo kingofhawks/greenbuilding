@@ -78,6 +78,16 @@ def create_project(request, template="create_project.html"):
     return render(request, template, context)
 
 
+def delete_project(request, template="create_project.html"):
+    form = ProjectForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_project = form.save()
+        print new_project
+        return  redirect('enterprise.projects')
+    context = {"form": form, "title": _("Create Project")}
+    return render(request, template, context)
+
+
 @login_required
 def project_detail(request, project_id):
     print request.user.is_authenticated()
@@ -98,7 +108,7 @@ def project_progress(request, project_id):
 def project_submission(request, project_id):
     submission = get_object_or_404(Submission, project_id=project_id)
     print submission
-    return render(request, 'project_submission.html',{'submission':submission ,'project_id':project_id})
+    return render(request, 'project_submission.html', {'submission': submission, 'project_id': project_id})
 
 
 def submission_commit(request):

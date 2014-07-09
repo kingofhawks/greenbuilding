@@ -4,11 +4,16 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'hint.css/hint.min.css' %}">
     <link rel="stylesheet" href="{% static 'jquery/jquery.qtip.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
+    <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
 {% endblock %}
 
 {% block extra_js %}
     <script src="{% static 'peity/jquery.peity.min.js' %}"></script>
     <script src="{% static 'jquery/jquery.qtip.min.js' %}"></script>
+    <script src="{% static 'vex/js/vex.combined.min.js' %}"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os';</script>
+    <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script>
     $(document).ready(function(){
         $('.detail').each(function() {
@@ -44,9 +49,36 @@
         $("span.pie").peity("pie");
          });
 
+        $("#delete").click(function() {
+            console.log("delete now");
+
+            vex.dialog.confirm({
+              message:"{% trans 'Are you sure to delete this project?' %}",
+              callback: function(value) {
+                if (value === false) {
+                  return console.log('Cancelled');
+                }
+            var csrf_token = $.cookie('csrftoken');
+            $.post("{% url 'enterprise.project.delete'%}",{project_id:"{{ submission.id }}", csrfmiddlewaretoken:csrf_token},
+                    function(data){
+                console.log(data);
+            })
+                return console.log('Username', data.code, 'Password', data.amount);
+              }
+            });
+        });
+
     });
 
     </script>
+{% endblock %}
+
+{% block toolbar %}
+<div class="btn-group">
+  <a href="{% url "enterprise.project.add" %}" class="btn btn-default">{% trans "Create" %}</a>
+  <a href="{% url "login" %}" class="btn btn-default">{% trans "Modify" %}</a>
+  <a id="delete" href="#" class="btn btn-default">{% trans "Delete" %}</a>
+</div>
 {% endblock %}
 
 {% block list %}
