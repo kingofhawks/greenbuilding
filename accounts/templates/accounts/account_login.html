@@ -1,6 +1,18 @@
 {% extends "accounts/account_form.html" %}
-{% load i18n %}
+{% load i18n staticfiles%}
 {% block header %}
+    <link rel="stylesheet" href="{% static 'nprogress/nprogress.css' %}">
+    <script src="{% static 'nprogress/nprogress.js' %}"></script>
+    <script>
+    $(document).ready(function(){
+        $( "form" ).submit(function( event ) {
+            console.log( "login now." );
+            NProgress.configure({ showSpinner: true});
+            NProgress.set(0.3);
+            NProgress.start();
+        });
+    });
+    </script>
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->

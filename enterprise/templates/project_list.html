@@ -43,6 +43,7 @@
 
         $("span.pie").peity("pie");
          });
+
     });
 
     </script>
@@ -60,10 +61,13 @@
             <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.name }}</a></td>
             <td>{{ p.location }}</td>
             <td>
-                <a href="{% url 'enterprise.project.progress' p.id %}" class="detail">{% trans "Detail" %}</a>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                    <a href="{% url 'enterprise.project.progress' p.id %}" class="detail">{% trans "Detail" %}</a>
+                  </div>
+                </div>
             </td>
         </tr>
     {% endfor %}
 </table>
-
 {% endblock %}
