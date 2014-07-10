@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+{#control paging for phantomjs PDf rendering#}
+<div style="page-break-after: always;">
+    <header>
+        <hgroup>
+            <h1 class="text-center">江苏省绿色施工工程</h1>
+            <h3 class="text-center">申报表</h3>
+        </hgroup>
+    </header>
+        <br><br><br>
+    <label>工程名称：</label>{{ submission.project.name }}<br><br>
+    <label>施工单位：</label><br><br>
+    <label>申报地区：</label><br><br>
+    <label>申报等级：</label>{{ submission.grade }}<br><br>
+    <label>申报时间：</label>{{ submission.date }}<br><br><br><br><br>
+    <h4 class="text-center"><b>江苏省建筑行业协会</b></h4>
+        <h5 class="text-center">年&nbsp;&nbsp;月&nbsp;&nbsp;日</h5>
+</div>
+<div style="page-break-after: always;">
+    <table class="table table-bordered">
+        <tr>
+            <td>工程名称</td>
+            <td colspan="5">{{ submission.project.name  }}</td>
+        </tr>
+        <tr>
+            <td>建筑面积</td>
+            <td></td>
+            <td>工程造价</td>
+            <td></td>
+            <td>结构类型</td>
+            <td>{{ submission.project.name  }}</td>
+        </tr>
+        <tr>
+            <td colspan="6" >工程概括</td>
+        </tr>
+
+        <tr>
+            <td colspan="6"><div style="height: 200px"></div></td>
+        </tr>
+        </table>
+</div>
+
+</div>
+{% endblock %}

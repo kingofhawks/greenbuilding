@@ -12,7 +12,8 @@
         var doc = new jsPDF();
 
         doc.setFontSize(40);
-        doc.text(35, 25, "{{ submission.project.name }}");
+        doc.text(35, 25,"江苏省绿色施工工程");
+        doc.text(35, 50, "{{ submission.project.name }}");
         doc.addImage(imgData, 'JPEG', 15, 40, 180, 160);
         //download this PDF file
         doc.save("demo.pdf");
@@ -52,7 +53,8 @@
             var doc = new jsPDF();
 
             doc.setFontSize(40);
-            doc.text(35, 25, "{{ submission.project.name }}");
+            doc.text(35, 25,"江苏省绿色施工工程");
+            doc.text(35, 50, "{{ submission.project.name }}");
             doc.addImage(imgData, 'JPEG', 15, 40, 180, 160);
 
             //open PDF in new window tab

@@ -1,0 +1,31 @@
+var page = require('webpage').create();
+page.viewportSize = { width: 1024, height : 3000 };
+page.paperSize = {
+    format: 'A4',
+    orientation: 'portrait',
+    margin: '0.8cm' ,
+/* default header/footer for pages that don't have custom overwrites (see below) */
+        header: {
+            height: "1cm",
+            contents: phantom.callback(function(pageNum, numPages) {
+                if (pageNum == 1) {
+                    return "";
+                }
+                return "<h1>Header <span style='float:right'>" + pageNum + " / " + numPages + "</span></h1>";
+            })
+        },
+        footer: {
+            height: "1cm",
+            contents: phantom.callback(function(pageNum, numPages) {
+                if (pageNum == numPages) {
+                    return "";
+                }
+                return "<h1>Footer <span style='float:right'>" + pageNum + " / " + numPages + "</span></h1>";
+            })
+        }};
+//page.content = '<html><body><p id="surface">hello world王小儿！</p></body></html>';
+page.open('http://127.0.0.1:8000/enterprise/projects/1/submission/pdf/', function() {
+  //page.render('github.png');
+  page.render('submission.pdf');
+  phantom.exit();
+});

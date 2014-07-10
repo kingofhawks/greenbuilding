@@ -111,6 +111,12 @@ def project_submission(request, project_id):
     return render(request, 'project_submission.html', {'submission': submission, 'project_id': project_id})
 
 
+def project_submission_pdf(request, project_id):
+    submission = get_object_or_404(Submission, project_id=project_id)
+    print submission
+    return render(request, 'project_submission_pdf.html', {'submission': submission, 'project_id': project_id})
+
+
 def submission_commit(request):
     project_id = request.POST.get('project_id')
     print project_id
