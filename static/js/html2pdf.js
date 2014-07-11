@@ -1,5 +1,5 @@
 var page = require('webpage').create();
-page.viewportSize = { width: 1024, height : 3000 };
+//page.viewportSize = { width: 1024, height : 3000 };
 page.paperSize = {
     format: 'A4',
     orientation: 'portrait',
