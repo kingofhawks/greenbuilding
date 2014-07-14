@@ -149,6 +149,10 @@ def submission_approve(request):
     notification.delete()
     info(request, _("Submission approved"))
 
+    #generate PDF
+    from tasks import html2pdf
+    html2pdf('E:/workspace/greenbuilding/media/submission/', project_id)
+
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
 
@@ -171,6 +175,12 @@ def project_review(request, project_id):
     review = get_object_or_404(ApplicationReview, project_id=project_id)
     print review
     return render(request, 'project_review.html',{'review':review, 'project_id':project_id})
+
+
+def project_review_pdf(request, project_id):
+    review = get_object_or_404(ApplicationReview, project_id=project_id)
+    print review
+    return render(request, 'project_review_pdf.html', {'review': review, 'project_id': project_id})
 
 
 @login_required

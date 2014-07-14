@@ -13,7 +13,8 @@
     // (CORS) - most servers don't support cross-origin browser requests.
     //
 {#    var url = 'http://cdn.mozilla.net/pdfjs/helloworld.pdf';#}
-    var url = "{% static 'js/submission.pdf' %}";
+{#    var url = "{% static 'js/submission.pdf' %}";#}
+    var url = "/media/submission/{{ project_id }}.pdf";
     
 
     //
