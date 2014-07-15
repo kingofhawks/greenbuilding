@@ -1,6 +1,14 @@
 {% extends "project_base.html" %}
 {% load i18n %}
 
+{% block left_panel %}
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="{% url "enterprise.project.monitor" project_id%}">{% trans "Phase Evaluation"%}</a></li>
+  <li><a href="{% url "enterprise.project.pm10" project_id%}">{% trans "PM10" %}</a></li>
+  <li><a href="{% url "enterprise.project.noise" project_id%}">{% trans "Noise" %}</a></li>
+</ul>
+{% endblock %}
+
 {% block project_main %}
     <div class="container">
         <label>{% trans "Project" %}</label><p>{{ monitor.project.name }}<br></p>

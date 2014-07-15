@@ -13,11 +13,13 @@
 <table class="table table-hover table-bordered">
     <thead>
         <th>{% trans "label" %}</th>
+        <th>{% trans "type" %}</th>
         <th>{% trans "project_url" %}</th>
     </thead>
     {% for p in notifications %}
         <tr>
             <td>{{ p.label }}</td>
+            <td>{{ p.type }}</td>
             <td><a href="{{ p.project_url }}">{{ p.project_url }}</a></td>
         </tr>
     {% endfor %}

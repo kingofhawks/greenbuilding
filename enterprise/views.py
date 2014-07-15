@@ -183,6 +183,17 @@ def project_review_pdf(request, project_id):
     return render(request, 'project_review_pdf.html', {'review': review, 'project_id': project_id})
 
 
+def review_commit(request):
+    project_id = request.POST.get('project_id')
+    print project_id
+    review = get_object_or_404(ApplicationReview, pk=project_id)
+    project = review.project.name
+    n = Notification(label=project, type=2, project_url=review.get_absolute_url());
+    n.save();
+
+    return HttpResponse(json.dumps('OK'), content_type="application/json")
+
+
 @login_required
 def project_evaluation(request, project_id):
     evaluation = get_object_or_404(SelfEvaluation, project_id=project_id)

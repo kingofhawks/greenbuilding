@@ -85,6 +85,10 @@ class ApplicationReview(models.Model):
         return 'ApplicationReview:{}'.format(self.project.name)
 
 
+    def get_absolute_url(self):
+        return reverse('enterprise.project.review', args=[str(self.id)])
+
+
 class SelfEvaluation(models.Model):
     project = models.ForeignKey(Project)
     completion_date = models.DateTimeField(verbose_name=_("completion_date"))
