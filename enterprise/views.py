@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, render_to_resp
 from models import Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor, Notification
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
-from forms import ProjectForm
+from forms import ProjectForm, SubmissionForm, ReviewForm
 from django.utils.translation import ugettext as _
 import json
 from django.http import HttpResponse
@@ -123,6 +123,16 @@ def project_submission_pdf(request, project_id):
     return render(request, 'project_submission_pdf.html', {'submission': submission, 'project_id': project_id})
 
 
+def create_submission(request, template="create_project.html"):
+    form = SubmissionForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_project = form.save()
+        print new_project
+        return  redirect('enterprise.submissions$')
+    context = {"form": form, "title": _("Create Submission")}
+    return render(request, template, context)
+
+
 def submission_commit(request):
     project_id = request.POST.get('project_id')
     print project_id
@@ -181,6 +191,16 @@ def project_review_pdf(request, project_id):
     review = get_object_or_404(ApplicationReview, project_id=project_id)
     print review
     return render(request, 'project_review_pdf.html', {'review': review, 'project_id': project_id})
+
+
+def create_review(request, template="create_project.html"):
+    form = ReviewForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_project = form.save()
+        print new_project
+        return  redirect('enterprise.reviews')
+    context = {"form": form, "title": _("Create ApplicationReview")}
+    return render(request, template, context)
 
 
 def review_commit(request):

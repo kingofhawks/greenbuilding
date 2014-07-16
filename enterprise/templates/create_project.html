@@ -1,6 +1,7 @@
 {% extends "enterprise_base.html" %}
 
 {% block main %}
+    <div>
     {{ block.super }}
     <form method="post"  role="form">
         {% csrf_token %}
@@ -10,5 +11,6 @@
             <input class="btn btn-success btn-lg form-control" type="submit" value="{{ title }}">
             {% endblock %}
         </div>
+    </div>
     </form>
 {%  endblock %}
