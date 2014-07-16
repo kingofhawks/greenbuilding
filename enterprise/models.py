@@ -38,7 +38,7 @@ class Project(models.Model):
 class Submission(models.Model):
     grade = models.SmallIntegerField(verbose_name=_("grade"))
     project = models.ForeignKey(Project)
-    date = models.DateTimeField(verbose_name=_("date"))
+    date = models.DateTimeField(verbose_name=_("date"), default=datetime.utcnow())
     person_in_charge = models.CharField(verbose_name=_('person_in_charge'), max_length=32, blank=True, null=True)
     phone1 = models.CharField(verbose_name=_('phone1'), max_length=32, blank=True, null=True)
     technical_in_charge = models.CharField(verbose_name=_('technical_in_charge'), max_length=32, blank=True, null=True)
@@ -68,7 +68,7 @@ class Submission(models.Model):
 class ApplicationReview(models.Model):
     project = models.ForeignKey(Project)
     grade = models.SmallIntegerField(verbose_name=_("grade"))
-    date = models.DateTimeField(verbose_name=_("date"))
+    date = models.DateTimeField(verbose_name=_("date"), default=datetime.utcnow())
     achievement = models.FileField(verbose_name=_('achievement'), upload_to='video', blank=True, null=True)
     contact = models.CharField(verbose_name=_('contact'), max_length=32, blank=True, null=True)
     phone = models.CharField(verbose_name=_('phone'), max_length=32, blank=True, null=True)

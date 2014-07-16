@@ -2,10 +2,12 @@
 {% load i18n %}
 
 {% block project_main %}
+{% if review %}
 <div class="container">
     <label>{% trans "Project" %}</label><p>{{ review.project.name }}<br></p>
     <label>{% trans "Grade" %}</label><p>{{ review.grade }}<br></p>
     <label>{% trans "Achievement" %}</label>
+<div>
 <div>
     <video id="example_video_1"
       controls preload="auto" width="640" height="200"
@@ -17,6 +19,8 @@
          <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
      </p>
     </video>
+</div>
+{% endif %}
 </div>
 </div>
 {% endblock %}

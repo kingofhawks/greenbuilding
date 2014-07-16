@@ -62,6 +62,7 @@
   <a href="{% url "enterprise.submission.add" %}" class="btn btn-default">{% trans "Create" %}</a>
   <a href="{% url "login" %}" class="btn btn-default">{% trans "Modify" %}</a>
   <a href="{% url "login" %}" class="btn btn-default">{% trans "Delete" %}</a>
+  <a href="#" class="btn btn-default" onclick="commit();return false;">{% trans "Submit" %}</a>
 </div>
 {% endblock %}
 
@@ -76,12 +77,12 @@
         {% for p in projects %}
             <tr data-row-key="{{ p.id }}">
                 {# Each "submission" is a Submission model object. #}
-                <td>{{ p.project.name|upper }}</td>
+                <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.project.name }}</a></td>
                 <td>{{ p.grade}}</td>
                 <td>{{ p.date }}</td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
-     <a href="#" class="btn btn-primary" onclick="commit();return false;">{% trans "Submit" %}</a>
+
 {% endblock %}

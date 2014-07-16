@@ -68,6 +68,7 @@
 
 {% block project_main %}
     <div class="container">
+    {% if submission %}
         <label>{% trans "Project" %}</label><p>{{ submission.project.name }}<br></p>
         <label>{% trans "Grade" %}</label><p>{{ submission.grade }}<br></p>
         <label>{% trans "Approved" %}</label><p>{{ submission.approved }}<br></p>
@@ -76,5 +77,7 @@
         <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>
         <a href="#" id="approve" class="btn btn-primary">{% trans "Approve" %}</a>
         <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>
+    {% else %}
+    {% endif %}
     </div>
 {% endblock %}

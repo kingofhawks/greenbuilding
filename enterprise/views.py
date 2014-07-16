@@ -5,9 +5,9 @@ from django.views.generic import ListView
 from forms import ProjectForm, SubmissionForm, ReviewForm
 from django.utils.translation import ugettext as _
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
-from django.contrib.messages import info
+from django.contrib.messages import info, warning
 
 
 class ProjectList(ListView):
@@ -65,7 +65,7 @@ def new_list(request, template="submission_list.html"):
         # If page is out of range (e.g. 9999), deliver last page of results.
         submission_list = paginator.page(paginator.num_pages)
     print submission_list
-    return render(request, template,{'submissions':submission_list})
+    return render(request, template, {'submissions': submission_list})
 
 
 def create_project(request, template="create_project.html"):
@@ -73,7 +73,7 @@ def create_project(request, template="create_project.html"):
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
-        return  redirect('enterprise.projects')
+        return redirect('enterprise.projects')
     context = {"form": form, "title": _("Create Project")}
     return render(request, template, context)
 
@@ -83,7 +83,7 @@ def delete_project(request, template="create_project.html"):
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
-        return  redirect('enterprise.projects')
+        return redirect('enterprise.projects')
     context = {"form": form, "title": _("Create Project")}
     return render(request, template, context)
 
@@ -95,19 +95,23 @@ def project_detail(request, project_id):
     print request.session
     project = get_object_or_404(Project, pk=project_id)
     print project
-    return render(request, 'project_detail.html',{'project':project, 'project_id':project_id})
+    return render(request, 'project_detail.html', {'project': project, 'project_id': project_id})
 
 
 def project_progress(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
-    return render(request, 'project_progress.html',{'project':project, 'project_id':project_id})
+    return render(request, 'project_progress.html', {'project': project, 'project_id': project_id})
 
 
 @login_required
 def project_submission(request, project_id):
-    submission = get_object_or_404(Submission, project_id=project_id)
-    print submission
+    submission= None
+    try:
+        submission = get_object_or_404(Submission, project_id=project_id)
+        print submission
+    except Http404:
+        warning(request, _("Submission is not submitted yet."))
     return render(request, 'project_submission.html', {'submission': submission, 'project_id': project_id})
 
 
@@ -128,7 +132,7 @@ def create_submission(request, template="create_project.html"):
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
-        return  redirect('enterprise.submissions$')
+        return redirect('enterprise.submissions')
     context = {"form": form, "title": _("Create Submission")}
     return render(request, template, context)
 
@@ -182,8 +186,12 @@ def submission_deny(request):
 
 @login_required
 def project_review(request, project_id):
-    review = get_object_or_404(ApplicationReview, project_id=project_id)
-    print review
+    review = None
+    try:
+        review = get_object_or_404(ApplicationReview, project_id=project_id)
+        print review
+    except Http404:
+        warning(request, _('Review is not submitted yet.'))
     return render(request, 'project_review.html',{'review':review, 'project_id':project_id})
 
 
@@ -198,7 +206,7 @@ def create_review(request, template="create_project.html"):
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
-        return  redirect('enterprise.reviews')
+        return redirect('enterprise.reviews')
     context = {"form": form, "title": _("Create ApplicationReview")}
     return render(request, template, context)
 
@@ -218,27 +226,27 @@ def review_commit(request):
 def project_evaluation(request, project_id):
     evaluation = get_object_or_404(SelfEvaluation, project_id=project_id)
     print evaluation
-    return render(request, 'project_evaluation.html',{'evaluation':evaluation, 'project_id':project_id})
+    return render(request, 'project_evaluation.html', {'evaluation': evaluation, 'project_id': project_id})
 
 
 @login_required
 def project_monitor(request, project_id):
     monitor = get_object_or_404(ProgressMonitor, project_id=project_id)
     print monitor
-    return render(request, 'project_monitor.html',{'monitor':monitor, 'project_id':project_id})
+    return render(request, 'project_monitor.html', {'monitor': monitor, 'project_id': project_id})
 
 
 @login_required
 def project_selection(request, project_id):
     selections = Selection.objects.filter(project_id=project_id)
     print selections
-    return render(request, 'project_selection.html',{'selections':selections, 'project_id':project_id})
+    return render(request, 'project_selection.html', {'selections': selections, 'project_id': project_id})
 
 
 @login_required
 def project_pm10(request, project_id):
 
-    return render_to_response( 'project_pm10.html',{'project_id':project_id})
+    return render_to_response('project_pm10.html', {'project_id':project_id})
 
 
 @login_required
@@ -247,7 +255,7 @@ def pm10_data(request, project_id):
     pm10_list = []
 
     for pm10 in query_set:
-        pm10_list.append({'date':pm10.date.date(),'value': pm10.value})
+        pm10_list.append({'date': pm10.date.date(), 'value': pm10.value})
 
     #json.dumps do not work with DateTime object type,need to use DjangoJSONEncoder
     from django.core.serializers.json import DjangoJSONEncoder
@@ -257,7 +265,7 @@ def pm10_data(request, project_id):
 @login_required
 def project_noise(request, project_id):
 
-    return render_to_response( 'project_pm10.html',{'project_id':project_id})
+    return render_to_response('project_pm10.html', {'project_id': project_id})
 
 
 def notification_data(request):

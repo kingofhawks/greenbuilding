@@ -69,6 +69,7 @@
   <a href="{% url "enterprise.review.add" %}" class="btn btn-default">{% trans "Create" %}</a>
   <a href="{% url "login" %}" class="btn btn-default">{% trans "Modify" %}</a>
   <a href="{% url "login" %}" class="btn btn-default">{% trans "Delete" %}</a>
+  <a href="#" class="btn btn-default" id="submit">{% trans "Submit" %}</a>
 </div>
 {% endblock %}
 
@@ -81,12 +82,10 @@
     </thead>
     {% for p in projects %}
         <tr data-row-key="{{ p.id }}">
-            <td>{{ p.project.name|upper }}</td>
+            <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.project.name }}</a></td>
             <td>{{ p.grade }}</td>
             <td>{{ p.location }}</td>
         </tr>
     {% endfor %}
 </table>
-
-    <a href="#" class="btn btn-primary" id="submit">{% trans "Submit" %}</a>
 {% endblock %}

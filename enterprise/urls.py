@@ -4,7 +4,7 @@ import views
 urlpatterns = patterns('',
     # Examples:
     url(r'^projects$', views.ProjectList.as_view(), name='enterprise.projects'),
-    url(r'^submissions$', views.SubmissionList.as_view(), name='enterprise.applications'),
+    url(r'^submissions$', views.SubmissionList.as_view(), name='enterprise.submissions'),
     url(r'^reviews$', views.ApplicationReviewList.as_view(), name='enterprise.reviews'),
     url(r'^evaluations', views.SelfEvaluationList.as_view(), name='enterprise.evaluations'),
     url(r'^selections', views.SelectionList.as_view(), name='enterprise.selections'),
