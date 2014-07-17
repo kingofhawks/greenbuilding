@@ -61,7 +61,7 @@ class Submission(models.Model):
         return 'Submission:{}'.format(self.project.name)
 
     def get_absolute_url(self):
-        return reverse('enterprise.project.submission', args=[str(self.id)])
+        return reverse('enterprise.project.submission', args=[str(self.project.id)])
 
 
 #Project application review form
@@ -86,7 +86,7 @@ class ApplicationReview(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('enterprise.project.review', args=[str(self.id)])
+        return reverse('enterprise.project.review', args=[str(self.project.id)])
 
 
 class SelfEvaluation(models.Model):

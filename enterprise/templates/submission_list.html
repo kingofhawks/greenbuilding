@@ -84,7 +84,7 @@
         {% for p in projects %}
             <tr data-row-key="{{ p.id }}">
                 {# Each "submission" is a Submission model object. #}
-                <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.project.name }}</a></td>
+                <td><a href="{%  url 'enterprise.project.detail' p.project.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.project.name }}</a></td>
                 <td>{{ p.grade}}</td>
                 <td>{{ p.date }}</td>
             </tr>

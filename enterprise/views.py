@@ -165,7 +165,7 @@ def submission_approve(request):
     submission.save()
 
     #clear relevant notification
-    notification = get_object_or_404(Notification, label=submission.project.name)
+    notification = get_object_or_404(Notification, label=submission.project.name, type=1)
     print notification
     notification.delete()
     info(request, _("Submission approved"))
@@ -184,7 +184,7 @@ def submission_deny(request):
     submission.approved = False
     submission.save();
 
-    notification = get_object_or_404(Notification, project=submission.project.name)
+    notification = get_object_or_404(Notification, label=submission.project.name, type=1)
     notification.delete()
     info(request, _("Submission denied"))
 

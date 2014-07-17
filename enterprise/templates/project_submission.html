@@ -1,9 +1,16 @@
 {% extends "project_base.html" %}
 {% load i18n staticfiles%}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
+    <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
+{% endblock %}
+
 {% block extra_js %}
     <script src="{% static 'jspdf/dist/jspdf.min.js' %}"></script>
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
+    <script src="{% static 'vex/js/vex.combined.min.js' %}"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os';</script>
 
     <script>
     function download_pdf(){
@@ -36,16 +43,29 @@
             $.post("{% url 'enterprise.submission.approve'%}",{project_id:"{{ submission.id }}", csrfmiddlewaretoken:csrf_token},
                     function(data){
                 console.log(data);
+                        $("#approved").text("True")
             })
         });
 
         $("#deny").click(function(){
             console.log("deny");
-            var csrf_token = $.cookie('csrftoken');
-            $.post("{% url 'enterprise.submission.deny'%}",{project_id:"{{ submission.id }}", csrfmiddlewaretoken:csrf_token},
-                    function(data){
-                console.log(data);
-            })
+            vex.dialog.prompt({
+              message:"{% trans 'Please input reject reason:' %}",
+              placeholder: "{% trans 'Reject Reason' %}",
+              callback: function(value) {
+                console.log(value);
+                if (value === false) {
+                  return console.log('Cancelled');
+                }
+                var csrf_token = $.cookie('csrftoken');
+                $.post("{% url 'enterprise.submission.deny'%}",{project_id:"{{ submission.id }}", csrfmiddlewaretoken:csrf_token},
+                        function(data){
+                    console.log(data);
+                            $("#approved").text("False")
+                })
+              }
+            });
+
         });
 
         $("#preview").click(function(){
@@ -71,7 +91,7 @@
     {% if submission %}
         <label>{% trans "Project" %}</label><p>{{ submission.project.name }}<br></p>
         <label>{% trans "Grade" %}</label><p>{{ submission.grade }}<br></p>
-        <label>{% trans "Approved" %}</label><p>{{ submission.approved }}<br></p>
+        <label>{% trans "Approved" %}</label><p id="approved">{{ submission.approved }}<br></p>
 {#        <a href="#" id="preview" class="btn btn-primary">{% trans "Preview" %}</a>#}
         <a target="_blank" href="{{ MEDIA_URL }}/submission/{{ project_id }}.pdf" class="btn btn-primary">{% trans "Preview" %}</a>
         <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>
