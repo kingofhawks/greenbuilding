@@ -32,9 +32,16 @@
         var csrf_token = $.cookie('csrftoken');
         console.log(csrf_token);
         $.post("{% url 'enterprise.submission.commit'%}",{project_id:rowId, csrfmiddlewaretoken:csrf_token },function(data){
+            message = "{% trans 'Submission committed successfully' %}"
+            msg_level = "success"
+            if (data.indexOf("OK") == -1){
+                message = data
+                msg_level = "error"
+            }
+            console.log(message);
             Messenger().post({
-              message: "{% trans 'Submission committed successfully' %}",
-              type: "info",
+              message: message,
+              type: msg_level,
               showCloseButton:true
             })
         })

@@ -43,20 +43,19 @@
         var csrf_token = $.cookie('csrftoken');
         selected.forEach(function(element,index,array){
             console.log(element);
-{#            $.post("{% url 'enterprise.review.commit'%}",{project_id:element, csrfmiddlewaretoken:csrf_token },function(data){#}
-{#                console.log(data);#}
-{#                Messenger().post({#}
-{#                  message: "{% trans 'ApplicationReview committed successfully' %}",#}
-{#                  type: "info",#}
-{#                  showCloseButton:true#}
-{#                })#}
-{#            })#}
             $.post("{% url 'enterprise.review.commit'%}",{project_id:element, csrfmiddlewaretoken:csrf_token },function(data){
-            Messenger().post({
-              message: "{% trans 'Submission committed successfully' %}",
-              type: "info",
-              showCloseButton:true
-            })
+                message = "{% trans 'ApplicationReview committed successfully' %}"
+                msg_level = "success"
+                if (data.indexOf("OK") == -1){
+                    message = data
+                    msg_level = "error"
+                }
+                console.log(message);
+                Messenger().post({
+                  message: message,
+                  type: msg_level,
+                  showCloseButton:true
+                })
         })
         });
     } );

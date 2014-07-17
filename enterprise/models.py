@@ -146,6 +146,6 @@ class Notification(models.Model):
         verbose_name = _('notification')
 
     def __str__(self):
-        return 'Notification:{}'.format(self.label)
+        return 'Notification:{} type:{}'.format(self.label, self.type)
 
 

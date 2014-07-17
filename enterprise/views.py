@@ -142,10 +142,17 @@ def submission_commit(request):
     print project_id
     submission = get_object_or_404(Submission, pk=project_id)
     project = submission.project.name
-    n = Notification(label=project, type=1, project_url=submission.get_absolute_url());
-    n.save();
 
-    return HttpResponse(json.dumps('OK'), content_type="application/json")
+    messages = 'OK'
+    try:
+        notification = get_object_or_404(Notification, label=project, type=1)
+        print notification
+        messages = _('Submission already committed.')
+    except Http404:
+        n = Notification(label=project, type=1, project_url=submission.get_absolute_url());
+        n.save();
+
+    return HttpResponse(json.dumps(messages), content_type="application/json")
 
 
 def submission_approve(request):
@@ -216,10 +223,17 @@ def review_commit(request):
     print project_id
     review = get_object_or_404(ApplicationReview, pk=project_id)
     project = review.project.name
-    n = Notification(label=project, type=2, project_url=review.get_absolute_url());
-    n.save();
 
-    return HttpResponse(json.dumps('OK'), content_type="application/json")
+    messages = 'OK'
+    try:
+        notification = get_object_or_404(Notification, label=project, type=2)
+        print notification
+        messages = _('ApplicationReview already committed.')
+    except Http404:
+        n = Notification(label=project, type=2, project_url=review.get_absolute_url());
+        n.save();
+
+    return HttpResponse(json.dumps(messages), content_type="application/json")
 
 
 @login_required
