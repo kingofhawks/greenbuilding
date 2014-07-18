@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, render_to_resp
 from models import Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor, Notification
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
+from django.views.generic.edit import UpdateView
 from forms import ProjectForm, SubmissionForm, ReviewForm
 from django.utils.translation import ugettext as _
 import json
@@ -14,6 +15,11 @@ class ProjectList(ListView):
     model = Project
     template_name = 'project_list.html'
     context_object_name = 'projects'
+
+
+class ProjectUpdate(UpdateView):
+    model = Project
+    template_name = 'create_project.html'
 
 
 class SubmissionList(ListView):
@@ -106,7 +112,7 @@ def project_progress(request, project_id):
 
 @login_required
 def project_submission(request, project_id):
-    submission= None
+    submission = None
     try:
         submission = get_object_or_404(Submission, project_id=project_id)
         print submission
@@ -172,7 +178,8 @@ def submission_approve(request):
 
     #generate PDF
     from tasks import html2pdf
-    html2pdf('E:/workspace/greenbuilding/media/submission/', project_id)
+
+    html2pdf(request.build_absolute_uri(submission.get_pdf_url()), 'E:/workspace/greenbuilding/media/submission/', project_id)
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
@@ -234,6 +241,41 @@ def review_commit(request):
         n.save();
 
     return HttpResponse(json.dumps(messages), content_type="application/json")
+
+
+def review_approve(request, project_id):
+    #project_id = request.POST.get('project_id')
+    print project_id
+    #update review status
+    review = get_object_or_404(ApplicationReview, pk=project_id)
+    print review
+    review.approved = True
+    review.save()
+
+    #clear relevant notification
+    notification = get_object_or_404(Notification, label=review.project.name, type=2)
+    notification.delete()
+    info(request, _("ApplicatonReview approved"))
+
+    #generate PDF
+    from tasks import html2pdf
+    html2pdf(request.build_absolute_uri(review.get_pdf_url()), 'E:/workspace/greenbuilding/media/review/', project_id)
+
+    return HttpResponse(json.dumps('OK'), content_type="application/json")
+
+
+def review_deny(request, project_id):
+    #project_id = request.POST.get('project_id')
+    print project_id
+    review = get_object_or_404(ApplicationReview, pk=project_id)
+    review.approved = False
+    review.save();
+
+    notification = get_object_or_404(Notification, label=review.project.name, type=1)
+    notification.delete()
+    info(request, _("ApplicatonReview denied"))
+
+    return HttpResponse(json.dumps('OK'), content_type="application/json")
 
 
 @login_required

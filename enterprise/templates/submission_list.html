@@ -78,6 +78,7 @@
     <thead>
         <th>{% trans "Project" %}</th>
         <th>{% trans "Grade" %}</th>
+        <th>{% trans "Approved" %}</th>
         <th>{% trans "Date" %}</th>
     </thead>
     <tbody>
@@ -86,6 +87,7 @@
                 {# Each "submission" is a Submission model object. #}
                 <td><a href="{%  url 'enterprise.project.detail' p.project.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.project.name }}</a></td>
                 <td>{{ p.grade}}</td>
+                <td>{{ p.approved}}</td>
                 <td>{{ p.date }}</td>
             </tr>
         {% endfor %}

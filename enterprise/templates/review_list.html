@@ -77,12 +77,14 @@
     <thead>
         <th>{% trans "Project" %}</th>
         <th>{% trans "Grade" %}</th>
+        <th>{% trans "Approved" %}</th>
         <th>{% trans "Location" %}</th>
     </thead>
     {% for p in projects %}
         <tr data-row-key="{{ p.id }}">
             <td><a href="{%  url 'enterprise.project.detail' p.project.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.project.name }}</a></td>
             <td>{{ p.grade }}</td>
+            <td>{{ p.approved}}</td>
             <td>{{ p.location }}</td>
         </tr>
     {% endfor %}

@@ -93,7 +93,7 @@
         <label>{% trans "Grade" %}</label><p>{{ submission.grade }}<br></p>
         <label>{% trans "Approved" %}</label><p id="approved">{{ submission.approved }}<br></p>
 {#        <a href="#" id="preview" class="btn btn-primary">{% trans "Preview" %}</a>#}
-        <a target="_blank" href="{{ MEDIA_URL }}/submission/{{ project_id }}.pdf" class="btn btn-primary">{% trans "Preview" %}</a>
+        <a target="_blank" href="{{ MEDIA_URL }}/submission/{{ submission.id }}.pdf" class="btn btn-primary">{% trans "Preview" %}</a>
         <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>
         <a href="#" id="approve" class="btn btn-primary">{% trans "Approve" %}</a>
         <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>

@@ -1,13 +1,15 @@
 var page = require('webpage').create(), system = require('system');
 
 if (system.args.length <3) {
-  console.log('Usage: html2pdf.js <pdf_root> <project_id>');
+  console.log('Usage: html2pdf.js <pdf_url> <pdf_root> <project_id>');
   phantom.exit();
 }
 
-var pdf_root = system.args[1]
-var project_id = system.args[2]
-console.log(project_id);
+var pdf_url = system.args[1]
+var pdf_root = system.args[2]
+var project_id = system.args[3]
+console.log("pdf_url:"+pdf_url);
+console.log("project_id:"+project_id);
 //page.viewportSize = { width: 1024, height : 3000 };
 page.paperSize = {
     format: 'A4',
@@ -34,7 +36,7 @@ page.paperSize = {
         }};
 //page.content = '<html><body><p id="surface">hello world王小儿！</p></body></html>';
 t = Date.now();
-page.open('http://127.0.0.1:8000/enterprise/projects/1/submission/pdf/', function() {
+page.open(pdf_url, function() {
   //page.render('github.png');
 //  page.render('../../media/submission.pdf');
 //    'E:/workspace/greenbuilding/media/submission'

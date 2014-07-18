@@ -1,11 +1,58 @@
 {% extends "project_base.html" %}
-{% load i18n %}
+{% load i18n staticfiles %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
+    <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'jspdf/dist/jspdf.min.js' %}"></script>
+    <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
+    <script src="{% static 'vex/js/vex.combined.min.js' %}"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os';</script>
+
+    <script>
+    //Best to attach onclick event in jQuery ready() function like this
+    $(document).ready(function(){
+        $("#approve").click(function(){
+            var csrf_token = $.cookie('csrftoken');
+            $.post("{% url 'enterprise.review.approve' review.id%}",{project_id:"{{ review.id }}", csrfmiddlewaretoken:csrf_token},
+                    function(data){
+                console.log(data);
+                        $("#approved").text("True")
+            })
+        });
+
+        $("#deny").click(function(){
+            vex.dialog.prompt({
+              message:"{% trans 'Please input reject reason:' %}",
+              placeholder: "{% trans 'Reject Reason' %}",
+              callback: function(value) {
+                if (value === false) {
+                  return console.log('Cancelled');
+                }
+                var csrf_token = $.cookie('csrftoken');
+                $.post("{% url 'enterprise.review.deny'  review.id%}",{ csrfmiddlewaretoken:csrf_token},
+                        function(data){
+                            $("#approved").text("False")
+                })
+              }
+            });
+
+        });
+    });
+
+
+    </script>
+{% endblock %}
 
 {% block project_main %}
 {% if review %}
 <div class="container">
     <label>{% trans "Project" %}</label><p>{{ review.project.name }}<br></p>
     <label>{% trans "Grade" %}</label><p>{{ review.grade }}<br></p>
+    <label>{% trans "Approved" %}</label><p id="approved">{{ review.approved }}<br></p>
     <label>{% trans "Achievement" %}</label>
 <div>
 <div>
@@ -20,6 +67,11 @@
      </p>
     </video>
 </div>
+    <div>
+        <a target="_blank" href="{{ MEDIA_URL }}/review/{{ review.id }}.pdf" class="btn btn-primary">{% trans "Preview" %}</a>
+        <a href="#" id="approve" class="btn btn-primary">{% trans "Approve" %}</a>
+        <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>
+    </div>
 {% endif %}
 </div>
 </div>

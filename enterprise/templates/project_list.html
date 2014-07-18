@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static 'jquery/jquery.qtip.min.css' %}">
     <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
     <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
+    <link rel="stylesheet" href="{% static 'datatables/media/css/jquery.dataTables.css' %}">
 {% endblock %}
 
 {% block extra_js %}
@@ -14,8 +15,26 @@
     <script src="{% static 'vex/js/vex.combined.min.js' %}"></script>
     <script>vex.defaultOptions.className = 'vex-theme-os';</script>
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
+    <script src="{% static 'datatables/media/js/jquery.dataTables.js' %}"></script>
     <script>
     $(document).ready(function(){
+        //show table
+        var table = $('#table').DataTable();
+        var selected = [];
+
+        $('#table tbody').on( 'click', 'tr', function () {
+            $(this).toggleClass('selected');
+            var id = $(this).data("rowKey");
+            var index = $.inArray(id, selected);
+            if ( index === -1 ) {
+                selected.push( id );
+            } else {
+                selected.splice( index, 1 );
+            }
+            console.log(selected);
+        } );
+
+
         $('.detail').each(function() {
 {#             $(this).qtip({#}
 {#                 content: {#}
@@ -49,6 +68,14 @@
         $("span.pie").peity("pie");
          });
 
+        $("#modify").click(function(){
+            //a trick to pass JS variable to django url template tag
+            var url = "{% url 'enterprise.project.update' pk=99999 %}";
+            url = url.replace(/99999/, selected[0]);
+            window.location.href = url;
+{#            window.open("{% url "enterprise.project.update" pk=1 %}",'_parent'); //Also works            #}
+        });
+
         $("#delete").click(function() {
             console.log("delete now");
 
@@ -76,20 +103,20 @@
 {% block toolbar %}
 <div class="btn-group">
   <a href="{% url "enterprise.project.add" %}" class="btn btn-default">{% trans "Create" %}</a>
-  <a href="{% url "login" %}" class="btn btn-default">{% trans "Modify" %}</a>
+  <a id="modify" href="#" class="btn btn-default">{% trans "Modify" %}</a>
   <a id="delete" href="#" class="btn btn-default">{% trans "Delete" %}</a>
 </div>
 {% endblock %}
 
 {% block list %}
-<table class="table table-hover table-bordered">
+<table id="table" class="display table table-bordered">
     <thead>
         <th>{% trans "Project" %}</th>
         <th>{% trans "Location" %}</th>
         <th>{% trans "Progress" %}</th>
     </thead>
     {% for p in projects %}
-        <tr>
+        <tr data-row-key="{{ p.id }}">
             <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.name }}</a></td>
             <td>{{ p.location }}</td>
             <td>
