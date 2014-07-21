@@ -16,12 +16,13 @@
     //Best to attach onclick event in jQuery ready() function like this
     $(document).ready(function(){
         $("#approve").click(function(){
+            console.log(a);
             var csrf_token = $.cookie('csrftoken');
-            $.post("{% url 'enterprise.review.approve' review.id%}",{project_id:"{{ review.id }}", csrfmiddlewaretoken:csrf_token},
+                 $.post("{% url 'enterprise.review.approve' review.id%}",{project_id:"{{ review.id }}", csrfmiddlewaretoken:csrf_token},
                     function(data){
-                console.log(data);
                         $("#approved").text("True")
             })
+
         });
 
         $("#deny").click(function(){
@@ -43,12 +44,11 @@
         });
     });
 
-
     </script>
 {% endblock %}
 
 {% block project_main %}
-{% if review %}
+{% if review.id != 99999 %}
 <div class="container">
     <label>{% trans "Project" %}</label><p>{{ review.project.name }}<br></p>
     <label>{% trans "Grade" %}</label><p>{{ review.grade }}<br></p>

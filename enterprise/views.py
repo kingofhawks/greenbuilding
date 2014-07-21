@@ -206,7 +206,8 @@ def project_review(request, project_id):
         print review
     except Http404:
         warning(request, _('Review is not submitted yet.'))
-    return render(request, 'project_review.html',{'review':review, 'project_id':project_id})
+        review = ApplicationReview(id=99999)#hack an empty review
+    return render(request, 'project_review.html', {'review': review, 'project_id': project_id})
 
 
 def project_review_pdf(request, project_id):
