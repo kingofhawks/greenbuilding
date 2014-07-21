@@ -16,7 +16,6 @@
     //Best to attach onclick event in jQuery ready() function like this
     $(document).ready(function(){
         $("#approve").click(function(){
-            console.log(a);
             var csrf_token = $.cookie('csrftoken');
                  $.post("{% url 'enterprise.review.approve' review.id%}",{project_id:"{{ review.id }}", csrfmiddlewaretoken:csrf_token},
                     function(data){
