@@ -216,11 +216,15 @@ def project_review_pdf(request, project_id):
 
 
 def create_review(request, template="create_project.html"):
-    form = ReviewForm(request.POST or None)
-    if request.method == "POST" and form.is_valid():
+    #form = ReviewForm(request.POST or None)
+    if request.method == "POST":
+        #Must pass request.FILES to ModelForm so it can handle file upload
+        form = ReviewForm(request.POST, request.FILES)
         new_project = form.save()
         print new_project
         return redirect('enterprise.reviews')
+    else:
+        form = ReviewForm()
     context = {"form": form, "title": _("Create ApplicationReview")}
     return render(request, template, context)
 

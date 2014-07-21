@@ -34,9 +34,14 @@ class Project(models.Model):
     def get_progress(self):
         return "3/5"
 
+GRADE_CHOICES = (
+        (_('green_building'), _('green_building')),
+        (_('green_building_demo'), _('green_building_demo')),
+)
+
 
 class Submission(models.Model):
-    grade = models.SmallIntegerField(verbose_name=_("grade"))
+    grade = models.CharField(verbose_name=_("grade"), max_length=64, choices=GRADE_CHOICES)
     project = models.ForeignKey(Project)
     date = models.DateTimeField(verbose_name=_("date"), default=datetime.utcnow())
     person_in_charge = models.CharField(verbose_name=_('person_in_charge'), max_length=32, blank=True, null=True)
@@ -70,7 +75,7 @@ class Submission(models.Model):
 #Project application review form
 class ApplicationReview(models.Model):
     project = models.ForeignKey(Project)
-    grade = models.SmallIntegerField(verbose_name=_("grade"))
+    grade = models.CharField(verbose_name=_("grade"), max_length=64, choices=GRADE_CHOICES)
     date = models.DateTimeField(verbose_name=_("date"), default=datetime.utcnow())
     achievement = models.FileField(verbose_name=_('achievement'), upload_to='video', blank=True, null=True)
     contact = models.CharField(verbose_name=_('contact'), max_length=32, blank=True, null=True)

@@ -3,7 +3,7 @@
 {% block main %}
     <div>
     {{ block.super }}
-    <form method="post"  role="form">
+    <form method="post"  role="form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="form-actions">
@@ -11,6 +11,6 @@
             <input class="btn btn-success btn-lg form-control" type="submit" value="{{ title }}">
             {% endblock %}
         </div>
-    </div>
     </form>
+    </div>
 {%  endblock %}
