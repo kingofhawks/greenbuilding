@@ -1,5 +1,5 @@
 {% extends "project_base.html" %}
-{% load i18n staticfiles%}
+{% load i18n staticfiles project_filters%}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
@@ -110,7 +110,7 @@
     {% if submission %}
         <label>{% trans "Project" %}</label><p>{{ submission.project.name }}<br></p>
         <label>{% trans "Grade" %}</label><p>{{ submission.grade }}<br></p>
-        <label>{% trans "Approved" %}</label><p id="approved">{{ submission.approved }}<br></p>
+        <label>{% trans "Approved" %}</label><p id="approved">{{ submission.approved |approve_state}}<br></p>
 {#        <a href="#" id="preview" class="btn btn-primary">{% trans "Preview" %}</a>#}
         <a target="_blank" href="{{ MEDIA_URL }}/submission/{{ submission.id }}.pdf" class="btn btn-primary">{% trans "Preview" %}</a>
         <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>

@@ -14,7 +14,7 @@
     <label>施工单位：</label>{{ submission.project.construct_company }}<br><br>
     <label>申报地区：</label>{{ submission.project.location }}<br><br>
     <label>申报等级：</label>{{ submission.grade }}<br><br>
-    <label>申报时间：</label>{{ submission.date }}<br><br><br><br><br>
+    <label>申报时间：</label>{{ submission.date |date:"Y年m月j日"}}<br><br><br><br><br>
     <hgroup>
         <h4 class="text-center"><b>江苏省建筑行业协会</b></h4>
         <h5 class="text-center">年&nbsp;&nbsp;月&nbsp;&nbsp;日</h5>
@@ -38,9 +38,9 @@
             <td>工程造价</td>
             <td>{{ submission.project.cost  }}</td>
             <td>开工日期</td>
-            <td>{{ submission.project.start_date  }}</td>
+            <td>{{ submission.project.start_date |date:"Y年m月j日" }}</td>
             <td>竣工日期</td>
-            <td>{{ submission.project.end_date  }}</td>
+            <td>{{ submission.project.end_date |date:"Y年m月j日" }}</td>
         </tr>
         <tr>
             <td>施工单位名称</td>
