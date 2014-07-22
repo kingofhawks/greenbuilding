@@ -171,9 +171,12 @@ def submission_approve(request):
     submission.save()
 
     #clear relevant notification
-    notification = get_object_or_404(Notification, label=submission.project.name, type=1)
-    print notification
-    notification.delete()
+    try:
+        notification = get_object_or_404(Notification, label=submission.project.name, type=1)
+        print notification
+        notification.delete()
+    except Http404:
+        pass
     info(request, _("Submission approved"))
 
     #generate PDF
@@ -191,8 +194,12 @@ def submission_deny(request):
     submission.approved = False
     submission.save();
 
-    notification = get_object_or_404(Notification, label=submission.project.name, type=1)
-    notification.delete()
+    try:
+        notification = get_object_or_404(Notification, label=submission.project.name, type=1)
+        notification.delete()
+    except Http404:
+        pass
+
     info(request, _("Submission denied"))
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
@@ -257,9 +264,12 @@ def review_approve(request, project_id):
     review.approved = True
     review.save()
 
+    try:
     #clear relevant notification
-    notification = get_object_or_404(Notification, label=review.project.name, type=2)
-    notification.delete()
+        notification = get_object_or_404(Notification, label=review.project.name, type=2)
+        notification.delete()
+    except Http404:
+        pass
     info(request, _("ApplicatonReview approved"))
 
     #generate PDF
@@ -276,8 +286,11 @@ def review_deny(request, project_id):
     review.approved = False
     review.save();
 
-    notification = get_object_or_404(Notification, label=review.project.name, type=1)
-    notification.delete()
+    try:
+        notification = get_object_or_404(Notification, label=review.project.name, type=1)
+        notification.delete()
+    except Http404:
+        pass
     info(request, _("ApplicatonReview denied"))
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")

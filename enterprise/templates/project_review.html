@@ -1,12 +1,15 @@
 {% extends "project_base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles project_filters%}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
     <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
+    <link rel="stylesheet" href="{% static 'ladda/dist/ladda.min.css' %}">
 {% endblock %}
 
 {% block extra_js %}
+    <script src="{% static 'ladda/dist/spin.min.js' %}"></script>
+    <script src="{% static 'ladda/dist/ladda.min.js' %}"></script>
     <script src="{% static 'jspdf/dist/jspdf.min.js' %}"></script>
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script src="{% static 'vex/js/vex.combined.min.js' %}"></script>
@@ -15,11 +18,19 @@
     <script>
     //Best to attach onclick event in jQuery ready() function like this
     $(document).ready(function(){
+        var l = Ladda.create( document.querySelector( '#approve' ) );
+
+
         $("#approve").click(function(){
+            // Start loading
+            l.start();
+            l.setProgress( 0.5 );
+
             var csrf_token = $.cookie('csrftoken');
                  $.post("{% url 'enterprise.review.approve' review.id%}",{project_id:"{{ review.id }}", csrfmiddlewaretoken:csrf_token},
                     function(data){
-                        $("#approved").text("True")
+                        $("#approved").text("{% trans 'Approved' %}")
+                        l.stop();
             })
 
         });
@@ -35,7 +46,7 @@
                 var csrf_token = $.cookie('csrftoken');
                 $.post("{% url 'enterprise.review.deny'  review.id%}",{ csrfmiddlewaretoken:csrf_token},
                         function(data){
-                            $("#approved").text("False")
+                            $("#approved").text("{% trans 'Deny' %}")
                 })
               }
             });
@@ -68,7 +79,7 @@
 </div>
     <div>
         <a target="_blank" href="{{ MEDIA_URL }}/review/{{ review.id }}.pdf" class="btn btn-primary">{% trans "Preview" %}</a>
-        <a href="#" id="approve" class="btn btn-primary">{% trans "Approve" %}</a>
+        <button id="approve" class="ladda-button" data-style="expand-right" data-size="s" data-color="blue"><span class="ladda-label">{% trans "Approve" %}</span></button>
         <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>
     </div>
 {% endif %}
