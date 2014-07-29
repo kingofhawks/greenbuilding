@@ -4,11 +4,14 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'reveal.js/css/reveal.min.css' %}">
     <link rel="stylesheet" href="{% static 'reveal.js/css/theme/default.css' %}" id="theme">
+    <link rel="stylesheet" href="{% static 'medium-editor/dist/css/medium-editor.min.css' %}"> <!-- Core -->
+    <link rel="stylesheet" href="{% static 'medium-editor/dist/css/themes/default.min.css' %}"> <!-- or any other theme -->
 {% endblock %}
 
 {% block extra_js %}
     <script src="{% static 'reveal.js/lib/js/head.min.js' %}"></script>
     <script src="{% static 'reveal.js/js/reveal.min.js' %}"></script>
+    <script src="{% static 'medium-editor/dist/js/medium-editor.min.js' %}"></script>
 
     <script>
     $(document).ready(function(){
@@ -34,6 +37,14 @@
 				]
 			});
 
+        var elements = document.querySelectorAll('.editable'),
+        editor = new MediumEditor(elements);
+
+        $('.editable').on('input', function() {
+          // Do some work
+            console.log("update");
+        });
+
     });
 
     </script>
@@ -44,9 +55,9 @@
         <div class="slides">
             <section>
                 <header><h1>{% trans "Project General" %}</h1></header>
-                <h2>haha aaaa a a a </h2>
+                <p class="editable">Test project</p>
             </section>
-            <section>{% trans "Project Characteristic" %}</section>
+            <section class="editable">{% trans "Project Characteristic" %}</section>
             <section>{% trans "Construction Management" %}</section>
             <section>{% trans "Enviroment Protection Meature" %}</section>
             <section>
