@@ -296,6 +296,28 @@ def review_deny(request, project_id):
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
 
+def project_summary_report(request, project_id):
+    review = None
+    try:
+        review = get_object_or_404(ApplicationReview, project_id=project_id)
+        print review
+    except Http404:
+        warning(request, _('Review is not submitted yet.'))
+        review = ApplicationReview(id=99999)#hack an empty review
+    return render(request, 'project_summary_report.html', {'review': review, 'project_id': project_id})
+
+
+def project_presentation(request, project_id):
+    review = None
+    try:
+        review = get_object_or_404(ApplicationReview, project_id=project_id)
+        print review
+    except Http404:
+        warning(request, _('Review is not submitted yet.'))
+        review = ApplicationReview(id=99999)#hack an empty review
+    return render(request, 'project_presentation.html', {'review': review, 'project_id': project_id})
+
+
 def project_achievement(request, project_id):
     review = None
     try:

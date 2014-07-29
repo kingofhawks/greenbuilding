@@ -1,7 +1,7 @@
 {% load i18n staticfiles %}
 <ul class="nav nav-pills nav-stacked">
   <li class="active"><a href="{% url "enterprise.project.review" project_id%}">{% trans "Application Review"%}</a></li>
-  <li><a href="{% url "enterprise.submissions" %}">{% trans "Summary Report"%}</a></li>
-    <li><a href="{% url "enterprise.project.achievement" project_id%}">{% trans "achievement"%}</a></li>
+  <li><a href="{% url "enterprise.project.summary" project_id%}">{% trans "Summary Report"%}</a></li>
+  <li><a href="{% url "enterprise.project.achievement" project_id%}">{% trans "achievement"%}</a></li>
   <li><a href="{% url "enterprise.reviews" %}">{% trans "Meterials"%}</a></li>
 </ul>

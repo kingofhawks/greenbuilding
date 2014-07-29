@@ -1,0 +1,12 @@
+{% extends "project_base.html" %}
+{% load i18n %}
+
+{% block left_panel %}
+    {% include "review_left_panel.html" %}
+{% endblock %}
+
+{% block project_main %}
+    <a target="_blank" href="{% url 'enterprise.project.presentation' project_id%}">
+        <i class="fa fa-youtube-play fa-2x"></i>{% trans "Presentation" %}
+    </a>
+{% endblock %}

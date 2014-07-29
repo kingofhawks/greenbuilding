@@ -4,7 +4,6 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
     <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
-    <link rel="stylesheet" href="{% static 'reveal.js/css/reveal.min.css' %}">
 {% endblock %}
 
 {% block extra_js %}
@@ -12,8 +11,6 @@
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script src="{% static 'vex/js/vex.combined.min.js' %}"></script>
     <script>vex.defaultOptions.className = 'vex-theme-os';</script>
-    <script src="{% static 'reveal.js/lib/js/head.min.js' %}"></script>
-    <script src="{% static 'reveal.js/js/reveal.min.js' %}"></script>
     <script src="{% static 'spin.js/spin.js' %}"></script>
     <script src="{% static 'spin.js/jquery.spin.js' %}"></script>
 
@@ -50,21 +47,6 @@
         } else{
             $("#preview_pdf").hide();
         }
-
-        Reveal.initialize({
-				history: true,
-				transition: 'linear',
-
-				math: {
-					// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
-					config: 'TeX-AMS_HTML-full'
-				},
-
-				dependencies: [
-					{ src: "{% static 'reveal.js/lib/js/classList.js' %}" },
-					{ src: "{% static 'reveal.js/plugin/math/math.js' %}" , async: true }
-				]
-			});
 
 
         $("#approve").click(function(){
@@ -154,14 +136,5 @@
         <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>
     {% else %}
     {% endif %}
-    </div>
-    <div class="reveal">
-        <div class="slides">
-            <section>Single Horizontal Slide</section>
-            <section>
-                <section>Vertical Slide 1</section>
-                <section>Vertical Slide 2</section>
-            </section>
-        </div>
     </div>
 {% endblock %}

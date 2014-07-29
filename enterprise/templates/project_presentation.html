@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n staticfiles%}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'reveal.js/css/reveal.min.css' %}">
+    <link rel="stylesheet" href="{% static 'reveal.js/css/theme/default.css' %}" id="theme">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'reveal.js/lib/js/head.min.js' %}"></script>
+    <script src="{% static 'reveal.js/js/reveal.min.js' %}"></script>
+
+    <script>
+    $(document).ready(function(){
+        Reveal.initialize({
+				history: true,
+				transition: 'linear',
+                // Display controls in the bottom right corner
+                controls: true,
+
+                // Display a presentation progress bar
+                progress: true,
+                // Transition style
+                transition: 'default', // default/cube/page/concave/zoom/linear/fade/none,
+
+				math: {
+					// mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+
+				dependencies: [
+					{ src: "{% static 'reveal.js/lib/js/classList.js' %}" },
+					{ src: "{% static 'reveal.js/plugin/math/math.js' %}" , async: true }
+				]
+			});
+
+    });
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <header><h1>{% trans "Project General" %}</h1></header>
+                <h2>haha aaaa a a a </h2>
+            </section>
+            <section>{% trans "Project Characteristic" %}</section>
+            <section>{% trans "Construction Management" %}</section>
+            <section>{% trans "Enviroment Protection Meature" %}</section>
+            <section>
+                <section>{% trans "economize on raw materials" %}</section>
+                <section>{% trans "economize on water" %}</section>
+                <section>{% trans "economize on power" %}</section>
+                <section>{% trans "economize on land" %}</section>
+            </section>
+            <section>
+                <section>{% trans "New Technology" %}</section>
+                <section>{% trans "New Equipment" %}</section>
+                <section>{% trans "New Materials and  Craft" %}</section>
+            </section>
+            <section>{% trans "industrialization of construction industry" %}</section>
+            <section>{% trans "comprehensive benefit" %}</section>
+        </div>
+    </div>
+{% endblock %}
