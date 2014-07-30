@@ -85,6 +85,22 @@ class ApplicationReview(models.Model):
     management_opinion = models.CharField(verbose_name=_('management_opinion'), max_length=2048, blank=True, null=True)
     approved = models.BooleanField(verbose_name=_('approved'), default=False)
 
+    #summary report
+    general = models.CharField(verbose_name=_('general'), max_length=2048, blank=True, null=True)
+    characteristic = models.CharField(verbose_name=_('characteristic'), max_length=2048, blank=True, null=True)
+    construct_management = models.CharField(verbose_name=_('construct_management'), max_length=2048, blank=True, null=True)
+    env_protection_measure = models.CharField(verbose_name=_('env_protection_measure'), max_length=2048, blank=True, null=True)
+    economize_materials = models.CharField(verbose_name=_('economize_materials'), max_length=2048, blank=True, null=True)
+    economize_waters = models.CharField(verbose_name=_('economize_water'), max_length=2048, blank=True, null=True)
+    economize_powers = models.CharField(verbose_name=_('economize_power'), max_length=2048, blank=True, null=True)
+    economize_land = models.CharField(verbose_name=_('economize_land'), max_length=2048, blank=True, null=True)
+    new_technology = models.CharField(verbose_name=_('new_technology'), max_length=2048, blank=True, null=True)
+    new_equipment = models.CharField(verbose_name=_('new_equipment'), max_length=2048, blank=True, null=True)
+    new_craft = models.CharField(verbose_name=_('new_craft'), max_length=2048, blank=True, null=True)
+    industrialization = models.CharField(verbose_name=_('industrialization'), max_length=2048, blank=True, null=True)
+    comprehensive_benefit = models.CharField(verbose_name=_('comprehensive_benefit'), max_length=2048, blank=True, null=True)
+
+
     class Meta:
         verbose_name = _("application_review")
         ordering = ['date']

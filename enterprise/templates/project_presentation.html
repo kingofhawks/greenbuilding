@@ -42,7 +42,7 @@
 
         $('.editable').on('input', function() {
           // Do some work
-            console.log("update");
+            console.log($(this).html());
         });
 
     });
@@ -54,25 +54,61 @@
     <div class="reveal">
         <div class="slides">
             <section>
-                <header><h1>{% trans "Project General" %}</h1></header>
-                <p class="editable">Test project</p>
+                <h1>{% trans "Project General" %}</h1>
+                <p class="editable">{{ review.general }}</p>
             </section>
-            <section class="editable">{% trans "Project Characteristic" %}</section>
-            <section>{% trans "Construction Management" %}</section>
-            <section>{% trans "Enviroment Protection Meature" %}</section>
-            <section>
-                <section>{% trans "economize on raw materials" %}</section>
-                <section>{% trans "economize on water" %}</section>
-                <section>{% trans "economize on power" %}</section>
-                <section>{% trans "economize on land" %}</section>
+            <section class="editable">
+                <h1>{% trans "Project Characteristic" %}</h1>
+                <p class="editable">{{ review.characteristic }}</p>
             </section>
             <section>
-                <section>{% trans "New Technology" %}</section>
-                <section>{% trans "New Equipment" %}</section>
-                <section>{% trans "New Materials and  Craft" %}</section>
+                <h1>{% trans "Construction Management" %}</h1>
+                <p class="editable">{{ review.construct_management }}</p>
             </section>
-            <section>{% trans "industrialization of construction industry" %}</section>
-            <section>{% trans "comprehensive benefit" %}</section>
+            <section>
+                <h1>{% trans "Enviroment Protection Meature" %}</h1>
+                <p class="editable">{{ review.env_protection_measure }}</p>
+            </section>
+            <section>
+                <section>
+                    <h1>{% trans "economize on raw materials" %}</h1>
+                    <p class="editable">{{ review.economize_materials }}</p>
+                </section>
+                <section>
+                    <h1>{% trans "economize on water" %}</h1>
+                    <p class="editable">{{ review.economize_waters }}</p>
+                </section>
+                <section>
+                    <h1>{% trans "economize on power" %}</h1>
+                    <p class="editable">{{ review.economize_powers }}</p>
+                </section>
+                <section>
+                    <h1>{% trans "economize on land" %}</h1>
+                    <p class="editable">{{ review.economize_land }}</p>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>{% trans "New Technology" %}</h1>
+                    <p class="editable">{{ review.new_technology }}</p>
+                </section>
+                <section>
+                    <h1>{% trans "New Equipment" %}</h1>
+                    <p class="editable">{{ review.new_equipment }}</p>
+                </section>
+                <section>
+                    <h1>{% trans "New Materials and  Craft" %}</h1>
+                    <p class="editable">{{ review.new_craft }}</p>
+                </section>
+            </section>
+            <section>
+                <h1>{% trans "industrialization of construction industry" %}</h1>
+                <p class="editable">{{ review.industrialization }}</p>
+            </section>
+            <section>
+                <h1>{% trans "comprehensive benefit" %}</h1>
+                <p class="editable">{{ review.comprehensive_benefit }}</p>
+            </section>
         </div>
     </div>
 {% endblock %}
