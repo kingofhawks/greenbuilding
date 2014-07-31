@@ -318,6 +318,19 @@ def project_presentation(request, project_id):
     return render(request, 'project_presentation.html', {'review': review, 'project_id': project_id})
 
 
+def review_summary(request, project_id):
+    print project_id
+    field_id = request.POST.get('field_id')
+    field_content = request.POST.get('field_content')
+    print 'field_id:{} field_content:{}'.format(field_id,field_content)
+    from django.db import connection
+    cursor = connection.cursor()
+
+    cursor.execute("UPDATE enterprise_ApplicationReview SET {}".format(field_id)+" = %s WHERE id = %s", [field_content, project_id])
+
+    return HttpResponse(json.dumps('OK'), content_type="application/json")
+
+
 def project_achievement(request, project_id):
     review = None
     try:

@@ -100,7 +100,6 @@ class ApplicationReview(models.Model):
     industrialization = models.CharField(verbose_name=_('industrialization'), max_length=2048, blank=True, null=True)
     comprehensive_benefit = models.CharField(verbose_name=_('comprehensive_benefit'), max_length=2048, blank=True, null=True)
 
-
     class Meta:
         verbose_name = _("application_review")
         ordering = ['date']
