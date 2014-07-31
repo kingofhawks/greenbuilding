@@ -41,9 +41,9 @@ GRADE_CHOICES = (
 
 
 class Submission(models.Model):
-    grade = models.CharField(verbose_name=_("grade"), max_length=64, choices=GRADE_CHOICES)
+    grade = models.CharField(verbose_name=_("Grade"), max_length=64, choices=GRADE_CHOICES)
     project = models.ForeignKey(Project)
-    date = models.DateTimeField(verbose_name=_("date"), default=datetime.utcnow())
+    date = models.DateTimeField(verbose_name=_("Date"), default=datetime.utcnow())
     person_in_charge = models.CharField(verbose_name=_('person_in_charge'), max_length=32, blank=True, null=True)
     phone1 = models.CharField(verbose_name=_('phone1'), max_length=32, blank=True, null=True)
     technical_in_charge = models.CharField(verbose_name=_('technical_in_charge'), max_length=32, blank=True, null=True)
@@ -75,9 +75,9 @@ class Submission(models.Model):
 #Project application review form
 class ApplicationReview(models.Model):
     project = models.ForeignKey(Project)
-    grade = models.CharField(verbose_name=_("grade"), max_length=64, choices=GRADE_CHOICES)
-    date = models.DateTimeField(verbose_name=_("date"), default=datetime.utcnow())
-    achievement = models.FileField(verbose_name=_('achievement'), upload_to='video', blank=True, null=True)
+    grade = models.CharField(verbose_name=_("Grade"), max_length=64, choices=GRADE_CHOICES)
+    date = models.DateTimeField(verbose_name=_("Date"), default=datetime.utcnow())
+    achievement = models.FileField(verbose_name=_('Achievement'), upload_to='video', blank=True, null=True)
     contact = models.CharField(verbose_name=_('contact'), max_length=32, blank=True, null=True)
     phone = models.CharField(verbose_name=_('phone'), max_length=32, blank=True, null=True)
     content = models.CharField(verbose_name=_('content'), max_length=2048, blank=True, null=True)
@@ -86,19 +86,19 @@ class ApplicationReview(models.Model):
     approved = models.BooleanField(verbose_name=_('approved'), default=False)
 
     #summary report
-    general = models.CharField(verbose_name=_('general'), max_length=2048, blank=True, null=True)
-    characteristic = models.CharField(verbose_name=_('characteristic'), max_length=2048, blank=True, null=True)
-    construct_management = models.CharField(verbose_name=_('construct_management'), max_length=2048, blank=True, null=True)
-    env_protection_measure = models.CharField(verbose_name=_('env_protection_measure'), max_length=2048, blank=True, null=True)
-    economize_materials = models.CharField(verbose_name=_('economize_materials'), max_length=2048, blank=True, null=True)
-    economize_waters = models.CharField(verbose_name=_('economize_water'), max_length=2048, blank=True, null=True)
-    economize_powers = models.CharField(verbose_name=_('economize_power'), max_length=2048, blank=True, null=True)
-    economize_land = models.CharField(verbose_name=_('economize_land'), max_length=2048, blank=True, null=True)
-    new_technology = models.CharField(verbose_name=_('new_technology'), max_length=2048, blank=True, null=True)
-    new_equipment = models.CharField(verbose_name=_('new_equipment'), max_length=2048, blank=True, null=True)
-    new_craft = models.CharField(verbose_name=_('new_craft'), max_length=2048, blank=True, null=True)
-    industrialization = models.CharField(verbose_name=_('industrialization'), max_length=2048, blank=True, null=True)
-    comprehensive_benefit = models.CharField(verbose_name=_('comprehensive_benefit'), max_length=2048, blank=True, null=True)
+    general = models.CharField(verbose_name=_('Project General'), max_length=2048, blank=True, null=True)
+    characteristic = models.CharField(verbose_name=_('Project Characteristic'), max_length=2048, blank=True, null=True)
+    construct_management = models.CharField(verbose_name=_('Construct Management'), max_length=2048, blank=True, null=True)
+    env_protection_measure = models.CharField(verbose_name=_('Environment Protection Measure'), max_length=2048, blank=True, null=True)
+    economize_materials = models.CharField(verbose_name=_('Economize on raw materials'), max_length=2048, blank=True, null=True)
+    economize_waters = models.CharField(verbose_name=_('Economize on water'), max_length=2048, blank=True, null=True)
+    economize_powers = models.CharField(verbose_name=_('Economize on power'), max_length=2048, blank=True, null=True)
+    economize_land = models.CharField(verbose_name=_('Economize on land'), max_length=2048, blank=True, null=True)
+    new_technology = models.CharField(verbose_name=_('New Technology'), max_length=2048, blank=True, null=True)
+    new_equipment = models.CharField(verbose_name=_('New Equipment'), max_length=2048, blank=True, null=True)
+    new_craft = models.CharField(verbose_name=_('New Materials and  Craft'), max_length=2048, blank=True, null=True)
+    industrialization = models.CharField(verbose_name=_('Industrialization of construction industry'), max_length=2048, blank=True, null=True)
+    comprehensive_benefit = models.CharField(verbose_name=_('Comprehensive Benefit'), max_length=2048, blank=True, null=True)
 
     class Meta:
         verbose_name = _("application_review")
@@ -128,7 +128,7 @@ class SelfEvaluation(models.Model):
 
 class ProgressMonitor(models.Model):
     project = models.ForeignKey(Project)
-    date = models.DateTimeField(verbose_name=_("date"))
+    date = models.DateTimeField(verbose_name=_("Date"))
     pm10_threshold = models.IntegerField(verbose_name=_('pm10_threshold'))
 
     class Meta:
@@ -137,7 +137,7 @@ class ProgressMonitor(models.Model):
 
 class Selection(models.Model):
     project = models.ForeignKey(Project)
-    grade = models.SmallIntegerField(verbose_name=_("grade"))
+    grade = models.SmallIntegerField(verbose_name=_("Grade"))
     passed = models.BooleanField(verbose_name=_('passed'), default=False)
     user = models.ForeignKey(User)
 
@@ -150,8 +150,8 @@ class Selection(models.Model):
 
 class PM10(models.Model):
     project = models.ForeignKey('Project')
-    value = models.SmallIntegerField(verbose_name=_('value'))
-    date = models.DateTimeField(verbose_name=_('date'))
+    value = models.SmallIntegerField(verbose_name=_('Value'))
+    date = models.DateTimeField(verbose_name=_('Date'))
 
     class Meta:
         verbose_name = _('pm10')
@@ -165,7 +165,7 @@ class Notification(models.Model):
     type = models.SmallIntegerField(verbose_name=_('type'))
     project_url = models.CharField(verbose_name=_('project_url'), max_length=128)
     processed = models.BooleanField(verbose_name=_('processed'), default=False)
-    date = models.DateTimeField(verbose_name=_('date'), blank=True, null=True, default=datetime.utcnow())
+    date = models.DateTimeField(verbose_name=_('Date'), blank=True, null=True, default=datetime.utcnow())
 
     class Meta:
         verbose_name = _('notification')

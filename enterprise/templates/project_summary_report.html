@@ -1,33 +1,12 @@
 {% extends "project_base.html" %}
 {% load i18n staticfiles %}
 
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'medium-editor/dist/css/medium-editor.min.css' %}"> <!-- Core -->
-    <link rel="stylesheet" href="{% static 'medium-editor/dist/css/themes/default.min.css' %}"> <!-- or any other theme -->
-{% endblock %}
-
-{% block extra_js %}
-    <script src="{% static 'medium-editor/dist/js/medium-editor.min.js' %}"></script>
-    <script>
-    $(document).ready(function(){
-
-        var elements = document.querySelectorAll('.editable'),
-        editor = new MediumEditor(elements);
-
-    });
-
-    </script>
-{% endblock %}
-
 {% block left_panel %}
     {% include "review_left_panel.html" %}
 {% endblock %}
 
 {% block project_main %}
-    <a target="_blank" href="{% url 'enterprise.project.presentation' project_id%}">
-        <i class="fa fa-youtube-play fa-2x"></i>{% trans "Presentation" %}
+    <a class="btn btn-lg btn-primary" target="_blank" href="{% url 'enterprise.project.presentation' project_id%}">
+        <i class="fa fa-youtube-play fa-2x pull-left"></i> {% trans "Presentation" %}
     </a>
-
-    <div class="editable">
-    </div>
 {% endblock %}
