@@ -47,6 +47,8 @@
             var field_content = $(this).html()
             console.log(field_content);
             console.log(field_id);
+{#            var parser = new DOMParser();#}
+{#            var doc = parser.parseFromString(field_content, "application/xml");#}
             var csrf_token = $.cookie('csrftoken');
             $.post("{% url 'enterprise.review.summary' project_id%}",
                     {project_id:"{{ review.id }}", field_id:field_id, field_content:field_content, csrfmiddlewaretoken:csrf_token},
@@ -65,59 +67,59 @@
         <div class="slides">
             <section>
                 <h1>{% trans "Project General" %}</h1>
-                <p class="editable" id="general">{{ review.general |safe}}</p>
+                <div class="editable" id="general">{{ review.general |safe}}</div>
             </section>
-            <section class="editable">
+            <section>
                 <h1>{% trans "Project Characteristic" %}</h1>
-                <p class="editable" id="characteristic">{{ review.characteristic |safe}}</p>
+                <div class="editable" id="characteristic">{{ review.characteristic |safe}}</div>
             </section>
             <section>
                 <h1>{% trans "Construction Management" %}</h1>
-                <p class="editable" id="construct_management">{{ review.construct_management |safe}}</p>
+                <div class="editable" id="construct_management">{{ review.construct_management |safe}}</div>
             </section>
             <section>
                 <h1>{% trans "Enviroment Protection Meature" %}</h1>
-                <p class="editable" id="env_protection_measure">{{ review.env_protection_measure |safe}}</p>
+                <div class="editable" id="env_protection_measure">{{ review.env_protection_measure |safe}}</div>
             </section>
             <section>
                 <section>
                     <h1>{% trans "economize on raw materials" %}</h1>
-                    <p class="editable" id="economize_materials">{{ review.economize_materials |safe}}</p>
+                    <div class="editable" id="economize_materials">{{ review.economize_materials |safe}}</div>
                 </section>
                 <section>
                     <h1>{% trans "economize on water" %}</h1>
-                    <p class="editable" id="economize_waters">{{ review.economize_waters |safe}}</p>
+                    <div class="editable" id="economize_waters">{{ review.economize_waters |safe}}</div>
                 </section>
                 <section>
                     <h1>{% trans "economize on power" %}</h1>
-                    <p class="editable" id="economize_powers">{{ review.economize_powers |safe}}</p>
+                    <div class="editable" id="economize_powers">{{ review.economize_powers |safe}}</div>
                 </section>
                 <section>
                     <h1>{% trans "economize on land" %}</h1>
-                    <p class="editable" id="economize_land">{{ review.economize_land|safe }}</p>
+                    <div class="editable" id="economize_land">{{ review.economize_land|safe }}</div>
                 </section>
             </section>
             <section>
                 <section>
                     <h1>{% trans "New Technology" %}</h1>
-                    <p class="editable" id="new_technology">{{ review.new_technology|safe }}</p>
+                    <div class="editable" id="new_technology">{{ review.new_technology|safe }}</div>
                 </section>
                 <section>
                     <h1>{% trans "New Equipment" %}</h1>
-                    <p class="editable" id="new_equipment">{{ review.new_equipment|safe }}</p>
+                    <div class="editable" id="new_equipment">{{ review.new_equipment|safe }}</div>
                 </section>
                 <section>
                     <h1>{% trans "New Materials and  Craft" %}</h1>
-                    <p class="editable" id="new_craft">{{ review.new_craft |safe}}</p>
+                    <div class="editable" id="new_craft">{{ review.new_craft |safe}}</div>
                 </section>
             </section>
             <section>
                 <h1>{% trans "industrialization of construction industry" %}</h1>
-                <p class="editable" id="industrialization">{{ review.industrialization|safe }}</p>
+                <div class="editable" id="industrialization">{{ review.industrialization|safe }}</div>
             </section>
-            <section>
+            <section>`
                 <h1>{% trans "comprehensive benefit" %}</h1>
-                <p class="editable" id="comprehensive_benefit">{{ review.comprehensive_benefit |safe}}</p>
+                <div class="editable" id="comprehensive_benefit">{{ review.comprehensive_benefit |safe}}</div>
             </section>
         </div>
     </div>
