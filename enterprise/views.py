@@ -331,6 +331,20 @@ def review_summary(request, project_id):
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
 
+def review_photo(request, project_id):
+    print project_id
+    print request.FILES
+    #field_id = request.POST.get('field_id')
+    #field_content = request.POST.get('field_content')
+    ##print 'field_id:{} field_content:{}'.format(field_id,field_content)
+    #from django.db import connection
+    #cursor = connection.cursor()
+    #
+    #cursor.execute("UPDATE enterprise_ApplicationReview SET {}".format(field_id)+" = %s WHERE id = %s", [field_content, project_id])
+
+    return HttpResponse(json.dumps('OK'), content_type="application/json")
+
+
 def project_achievement(request, project_id):
     review = None
     try:
