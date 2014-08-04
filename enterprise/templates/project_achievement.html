@@ -52,10 +52,10 @@
 </div>
 
 <div class="your-class slider">
-  <div ><img src="/static/images/oceans-clip.png"></div>
-  <div><img src="/static/images/oceans-clip.png"></div>
-    <div><img src="/static/images/oceans-clip.png"></div>
-    <div><img data-lazy="/static/images/oceans-clip.png"></div>
+{% for picture in pictures %}
+     <div ><img src="/media/{{ picture.file }}"></div>
+{% endfor %}
+
 </div>
 
 {% endif %}

@@ -333,16 +333,17 @@ def review_summary(request, project_id):
 
 def review_photo(request, project_id):
     print project_id
+    review = None
+    try:
+        review = get_object_or_404(ApplicationReview, pk=project_id)
+        print review
+    except Http404:
+        warning(request, _('Review is not submitted yet.'))
+        review = ApplicationReview(id=99999)#hack an empty review
+
     print request.FILES
-    picture = Picture(file=request.FILES['files[]'])
+    picture = Picture(review=review, file=request.FILES['files[]'])
     picture.save()
-    #field_id = request.POST.get('field_id')
-    #field_content = request.POST.get('field_content')
-    ##print 'field_id:{} field_content:{}'.format(field_id,field_content)
-    #from django.db import connection
-    #cursor = connection.cursor()
-    #
-    #cursor.execute("UPDATE enterprise_ApplicationReview SET {}".format(field_id)+" = %s WHERE id = %s", [field_content, project_id])
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
@@ -355,7 +356,15 @@ def project_achievement(request, project_id):
     except Http404:
         warning(request, _('Review is not submitted yet.'))
         review = ApplicationReview(id=99999)#hack an empty review
-    return render(request, 'project_achievement.html', {'review': review, 'project_id': project_id})
+
+    pictures = None
+    try:
+        pictures = get_list_or_404(Picture, review=review)
+        print pictures
+    except Http404:
+        warning(request, _('Pictures is not uploaded yet.'))
+
+    return render(request, 'project_achievement.html', {'review': review, 'project_id': project_id, 'pictures': pictures})
 
 
 @login_required

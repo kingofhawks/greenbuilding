@@ -181,6 +181,7 @@ class Picture(models.Model):
     problems installing pillow, use a more generic FileField instead.
 
     """
+    review = models.ForeignKey(ApplicationReview)
     file = models.ImageField(upload_to="pictures")
     slug = models.SlugField(max_length=50, blank=True)
 
