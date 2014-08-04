@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response, get_list_or_404
-from models import Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor, Notification
+from models import Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor, Notification, Picture
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
@@ -334,6 +334,8 @@ def review_summary(request, project_id):
 def review_photo(request, project_id):
     print project_id
     print request.FILES
+    picture = Picture(file=request.FILES['files[]'])
+    picture.save()
     #field_id = request.POST.get('field_id')
     #field_content = request.POST.get('field_content')
     ##print 'field_id:{} field_content:{}'.format(field_id,field_content)
