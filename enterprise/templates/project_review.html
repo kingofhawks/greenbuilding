@@ -14,9 +14,6 @@
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script src="{% static 'vex/js/vex.combined.min.js' %}"></script>
     <script>vex.defaultOptions.className = 'vex-theme-os';</script>
-    <script src="{% static 'jquery-file-upload/js/vendor/jquery.ui.widget.js' %}"></script>
-    <script src="{% static 'jquery-file-upload/js/jquery.iframe-transport.js' %}"></script>
-    <script src="{% static 'jquery-file-upload/js/jquery.fileupload.js' %}"></script>
 
     <script>
     function csrfSafeMethod(method) {
@@ -60,31 +57,7 @@
             });
         });
 
-        $('#fileupload').fileupload({
-            crossDomain: false,
-            beforeSend: function(xhr, settings) {
-                if (!csrfSafeMethod(settings.type)) {
-                    xhr.setRequestHeader("X-CSRFToken", csrf_token);
-                }
-            },
-            dataType: 'json',
-            done: function (e, data) {
-                console.log(data);
-{#                $.each(data.result.files, function (index, file) {#}
-{#                    $('<p/>').text(file.name).appendTo(document.body);#}
-{#                });#}
-            },
-            progressall: function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
-                console.log(progress);
-                $('#progress .progress-bar').css(
-                    'width',
-                    progress + '%'
-                );
-            }
-        });
     });
-
     </script>
 {% endblock %}
 
@@ -104,13 +77,6 @@
     <button id="approve" class="ladda-button" data-style="expand-right" data-size="s" data-color="blue"><span class="ladda-label">{% trans "Approve" %}</span></button>
     <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>
 </div>
-    <div>
-        <input id="fileupload" type="file" name="files[]" data-url="{% url 'enterprise.review.photo' review.id%}" multiple>
-    </div>
-    <!-- The global progress bar -->
-    <div id="progress" class="progress">
-        <div class="progress-bar progress-bar-success"></div>
-    </div>
 {% endif %}
 </div>
 </div>

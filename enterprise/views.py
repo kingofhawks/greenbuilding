@@ -342,7 +342,7 @@ def review_photo(request, project_id):
         review = ApplicationReview(id=99999)#hack an empty review
 
     print request.FILES
-    picture = Picture(review=review, file=request.FILES['files[]'])
+    picture = Picture(review=review, file=request.FILES['files'])
     picture.save()
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
