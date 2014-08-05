@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block extra_css %}
+    <style>
+    .line {
+        height:30px
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+{#control paging for phantomjs PDf rendering#}
+
+<div style="page-break-after: always;">
+    <header>
+        <hgroup>
+            <h3 class="text-center">单位工程绿色施工评价汇总表</h3>
+        </hgroup>
+    </header>
+    <table class="table table-bordered">
+        <tr>
+            <td rowspan="2" colspan="3">工程名称</td>
+            <td rowspan="2" colspan="6"></td>
+            <td colspan="2">编号</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="2">填表日期</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="3">评价阶段</td>
+            <td colspan="6">阶段得分</td>
+            <td colspan="2">权重系数</td>
+            <td colspan="4">实得分</td>
+        </tr>
+        <tr>
+            <td colspan="3">地基与基础</td>
+            <td colspan="6"></td>
+            <td colspan="2">0.3</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="3">结构工程</td>
+            <td colspan="6"></td>
+            <td colspan="2">0.5</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="3">装饰装修与机电安装</td>
+            <td colspan="6"></td>
+            <td colspan="2">0.2</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="3">合计</td>
+            <td colspan="6"></td>
+            <td colspan="2">1</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr style="height:150px">
+            <td colspan="1">评价评论</td>
+            <td colspan="14"></td>
+        </tr>
+        <tr>
+            <td rowspan="2" colspan="1">签字盖章栏</td>
+            <td colspan="4">建设单位(章)</td>
+            <td colspan="5">监理单位(章)</td>
+            <td colspan="5">施工单位(章)</td>
+        </tr>
+        <tr style="height:150px">
+            <td colspan="4"></td>
+            <td colspan="5"></td>
+            <td colspan="5"></td>
+        </tr>
+        </table>
+</div>
+
+</div>
+{% endblock %}

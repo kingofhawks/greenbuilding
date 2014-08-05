@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response, get_list_or_404
-from models import Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor, Notification, Picture
+from models import (Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor,
+                    Notification, Picture, ElementEvaluationForm)
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
@@ -365,6 +366,38 @@ def project_achievement(request, project_id):
         warning(request, _('Pictures is not uploaded yet.'))
 
     return render(request, 'project_achievement.html', {'review': review, 'project_id': project_id, 'pictures': pictures})
+
+
+def element_evaluation_pdf(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    print project
+    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    print form
+    return render(request, 'element_evaluation_pdf.html', {'form': form, 'project_id': project_id})
+
+
+def batch_evaluation_pdf(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    print project
+    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    print form
+    return render(request, 'batch_evaluation_pdf.html', {'form': form, 'project_id': project_id})
+
+
+def stage_evaluation_pdf(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    print project
+    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    print form
+    return render(request, 'stage_evaluation_pdf.html', {'form': form, 'project_id': project_id})
+
+
+def unit_evaluation_pdf(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    print project
+    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    print form
+    return render(request, 'unit_evaluation_pdf.html', {'form': form, 'project_id': project_id})
 
 
 @login_required

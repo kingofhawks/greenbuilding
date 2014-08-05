@@ -202,3 +202,55 @@ class Picture(models.Model):
         super(Picture, self).delete(*args, **kwargs)
 
 
+class ControlItem(models.Model):
+    number_request = models.CharField(verbose_name=_('Number and Request'), max_length=128)
+    conclusion = models.CharField(verbose_name=_('Conclusion'), max_length=128)
+
+    def __str__(self):
+        return 'number_request:{}'.format(self.number_request)
+
+
+class BaseItem(models.Model):
+    number_request = models.CharField(verbose_name=_('Number and Request'), max_length=128)
+    count_standard = models.CharField(verbose_name=_('Count Standard'), max_length=128)
+    deserved_score = models.FloatField(verbose_name=_('Deserved Score'))
+    actual_score = models.FloatField(verbose_name=_('Actual Score'))
+
+    def __str__(self):
+        return 'number_request:{}'.format(self.number_request)
+
+
+class GeneralItem(BaseItem):
+    pass
+
+
+class ExcellentItem(BaseItem):
+    pass
+
+
+class ElementEvaluationForm(models.Model):
+    project = models.ForeignKey(Project)
+    number = models.CharField(verbose_name=_('Number'), max_length=128, blank=True, null=True)
+    date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
+    construction_phase = models.CharField(verbose_name=_('construction_phase'), max_length=64, blank=True, null=True)
+    evaluation_indicator = models.CharField(verbose_name=_('evaluation_indicator'), max_length=64, blank=True, null=True)
+    construction_part = models.CharField(verbose_name=_('construction_part'), max_length=64, blank=True, null=True)
+
+    control_items = models.ManyToManyField(ControlItem)
+    general_items = models.ManyToManyField(GeneralItem)
+    excellent_items = models.ManyToManyField(ExcellentItem)
+
+    evaluation_result = models.CharField(verbose_name=_('Evaluation Result'), max_length=2048, blank=True, null=True)
+    development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
+    supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
+    construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
+
+
+    def __str__(self):
+        return 'ElementEvaluationForm:{}'.format(self.project.name)
+
+
+
+
+
+

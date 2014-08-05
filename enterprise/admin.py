@@ -1,6 +1,6 @@
 from django.contrib import admin
 from models import (Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor,
-                    Notification, Picture)
+                    Notification, Picture, ControlItem, GeneralItem, ExcellentItem, ElementEvaluationForm)
 from django.utils.translation import ugettext as _
 
 
@@ -20,6 +20,7 @@ class SubmissionAdmin(admin.ModelAdmin):
         self.message_user(request, "%s successfully marked as published." % message_bit)
     change_grade.short_description = _("Change Grade")
 
+
 admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Project)
 admin.site.register(ApplicationReview)
@@ -29,4 +30,8 @@ admin.site.register(PM10)
 admin.site.register(ProgressMonitor)
 admin.site.register(Notification)
 admin.site.register(Picture)
+admin.site.register(ControlItem)
+admin.site.register(GeneralItem)
+admin.site.register(ExcellentItem)
+admin.site.register(ElementEvaluationForm)
 

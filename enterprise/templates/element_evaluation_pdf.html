@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block extra_css %}
+    <style>
+    .line {
+        height:30px
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+{#control paging for phantomjs PDf rendering#}
+
+<div style="page-break-after: always;">
+    <header>
+        <hgroup>
+            <h3 class="text-center">绿色施工要素评价表</h3>
+        </hgroup>
+    </header>
+    <table class="table table-bordered">
+        <tr>
+            <td rowspan="2" colspan="3">工程名称</td>
+            <td rowspan="2" colspan="6"></td>
+            <td colspan="2">编号</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="2">填表日期</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="3">施工单位</td>
+            <td colspan="6"></td>
+            <td colspan="2">施工阶段</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="3">评价指标</td>
+            <td colspan="6"></td>
+            <td colspan="2">施工部位</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td rowspan="4" colspan="1">控制项</td>
+            <td colspan="10">标准编号及标准要求</td>
+            <td colspan="4">评价结论</td>
+        </tr>
+        <tr class="line">
+            <td colspan="10"></td>
+            <td colspan="4"></td>
+        </tr>
+        <tr class="line">
+            <td colspan="10"></td>
+            <td colspan="4"></td>
+        </tr>
+        <tr class="line">
+            <td colspan="10"></td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td rowspan="7">一般项</td>
+            <td colspan="7">标准编号及标准要求</td>
+            <td colspan="3">计分标准</td>
+            <td colspan="2">应得分</td>
+            <td colspan="2">实得分</td>
+        </tr>
+        <tr class="line">
+            <td colspan="7"></td>
+            <td colspan="3"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr class="line">
+            <td colspan="7"></td>
+            <td colspan="3"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr class="line">
+            <td colspan="7"></td>
+            <td colspan="3"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr class="line">
+            <td colspan="7"></td>
+            <td colspan="3"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr class="line">
+            <td colspan="7"></td>
+            <td colspan="3"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr class="line">
+            <td colspan="7"></td>
+            <td colspan="3"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr style="height:100px">
+            <td>评价结果</td>
+            <td colspan="14"></td>
+        </tr>
+        <tr>
+            <td rowspan="2" colspan="1">签字栏</td>
+            <td colspan="4">建设单位</td>
+            <td colspan="5">监理单位</td>
+            <td colspan="5">施工单位</td>
+        </tr>
+        <tr style="height:50px">
+            <td colspan="4"></td>
+            <td colspan="5"></td>
+            <td colspan="5"></td>
+        </tr>
+        </table>
+</div>
+
+</div>
+{% endblock %}
