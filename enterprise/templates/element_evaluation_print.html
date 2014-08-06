@@ -3,8 +3,8 @@
 <head>
     <link rel="stylesheet" href="{% static 'pace/themes/pace-theme-barber-shop.css' %}">
     <script src="{% static 'vendor/pdf.js' %}"></script>
-{#    <script src="{% static 'vendor/pdf.worker.js' %}"></script>#}
     <script src="{% static 'pace/pace.min.js' %}"></script>
+    <script src="{% static 'js/pdf.form.js' %}"></script>
 </head>
 <body>
   <canvas id="the-canvas" style="border:1px  solid black"></canvas>
@@ -20,42 +20,8 @@
 {#    var url = 'http://cdn.mozilla.net/pdfjs/helloworld.pdf';#}
 
     PDFJS.workerSrc = "{% static 'vendor/pdf.worker.js' %}";
-    var url = "/media/review/form/element/{{ project_id }}.pdf";
-    
+   render_pdf("/media/review/form/element/{{ project_id }}.pdf");
 
-    //
-    // Disable workers to avoid yet another cross-origin issue (workers need the URL of
-    // the script to be loaded, and dynamically loading a cross-origin script does
-    // not work)
-    //
-    PDFJS.disableWorker = true;
-
-    //
-    // Asynchronous download PDF
-    //
-    PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
-        console.log(pdf);
-      //
-      // Fetch the first page
-      //
-      pdf.getPage(1).then(function getPageHelloWorld(page) {
-        var scale = 1;
-        var viewport = page.getViewport(scale);
-
-        //
-        // Prepare canvas using PDF page dimensions
-        //
-        var canvas = document.getElementById('the-canvas');
-        var context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        
-        //
-        // Render PDF page into canvas context
-        //
-        page.render({canvasContext: context, viewport: viewport});
-      });
-    });
   </script>
   
 </body>
