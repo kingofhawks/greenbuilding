@@ -94,7 +94,7 @@
     <h3 class="panel-title">{% trans "Batch Evaluation Form" %}</h3>
   </div>
   <div class="panel-body">
-    Panel content<a href="test">{% trans "Print" %}</a>
+    <a target="_main" href="{% url 'enterprise.project.print.batch' project_id %}" >{% trans "Print" %}</a>
   </div>
 </div>
 
@@ -103,7 +103,7 @@
     <h3 class="panel-title">{% trans "Stage Evaluation Form" %}</h3>
   </div>
   <div class="panel-body">
-    Panel content<a href="test">{% trans "Print" %}</a>
+    <a target="_main" href="{% url 'enterprise.project.print.stage' project_id %}" > {% trans "Print" %}</a>
   </div>
 </div>
 
@@ -112,7 +112,7 @@
     <h3 class="panel-title">{% trans "Unit Evaluation Form" %}</h3>
   </div>
   <div class="panel-body">
-    Panel content<a href="test">{% trans "Print" %}</a>
+    <a target="_main" href="{% url 'enterprise.project.print.unit' project_id %}" >{% trans "Print" %}</a>
   </div>
 </div>
 {% endif %}

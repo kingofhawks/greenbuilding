@@ -10,6 +10,8 @@ import json
 from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import info, warning
+from tasks import html2pdf
+from django.core.urlresolvers import reverse
 
 
 class ProjectList(ListView):
@@ -181,8 +183,6 @@ def submission_approve(request):
     info(request, _("Submission approved"))
 
     #generate PDF
-    from tasks import html2pdf
-
     html2pdf(request.build_absolute_uri(submission.get_pdf_url()), 'E:/workspace/greenbuilding/media/submission/', project_id)
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
@@ -274,7 +274,6 @@ def review_approve(request, project_id):
     info(request, _("ApplicatonReview approved"))
 
     #generate PDF
-    from tasks import html2pdf
     html2pdf(request.build_absolute_uri(review.get_pdf_url()), 'E:/workspace/greenbuilding/media/review/', project_id)
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
@@ -398,6 +397,70 @@ def unit_evaluation_pdf(request, project_id):
     form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
     print form
     return render(request, 'unit_evaluation_pdf.html', {'form': form, 'project_id': project_id})
+
+
+def project_evaluation_form(request, project_id):
+    review = None
+    try:
+        review = get_object_or_404(ApplicationReview, project_id=project_id)
+        print review
+    except Http404:
+        warning(request, _('Review is not submitted yet.'))
+        review = ApplicationReview(id=99999)#hack an empty review
+
+    return render(request, 'project_evaluation_form.html', {'review': review, 'project_id': project_id})
+
+
+def element_evaluation_print(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    print project
+    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    print form
+
+    #generate PDF
+    pdf_url = reverse('enterprise.project.pdf.element', args=[str(project_id)])
+    html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/element/', project_id)
+
+    return render(request, 'element_evaluation_print.html', {'form': form, 'project_id': project_id})
+
+
+def batch_evaluation_print(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    print project
+    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    print form
+
+    #generate PDF
+    pdf_url = reverse('enterprise.project.pdf.batch', args=[str(project_id)])
+    html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/batch/', project_id)
+
+    return render(request, 'batch_evaluation_print.html', {'form': form, 'project_id': project_id})
+
+
+def stage_evaluation_print(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    print project
+    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    print form
+
+    #generate PDF
+    pdf_url = reverse('enterprise.project.pdf.stage', args=[str(project_id)])
+    html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/stage/', project_id)
+
+    return render(request, 'stage_evaluation_print.html', {'form': form, 'project_id': project_id})
+
+
+def unit_evaluation_print(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    print project
+    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    print form
+
+    #generate PDF
+    pdf_url = reverse('enterprise.project.pdf.unit', args=[str(project_id)])
+    html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/unit/', project_id)
+
+    return render(request, 'unit_evaluation_print.html', {'form': form, 'project_id': project_id})
 
 
 @login_required
