@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import ugettext as _
-from forms import SignupForm,LoginForm, ProfileForm
+from forms import SignupForm, LoginForm, ProfileForm
 from django.views.generic import ListView
 from models import UserProfile
 from django.contrib.auth import login as auth_login, logout as auth_logout
@@ -25,9 +25,9 @@ def login(request, template="accounts/account_login.html"):
             if authenticated_user.is_active:
                 auth_login(request, authenticated_user)
                 # Redirect to a success page.
-                return  redirect('core.dashboard')
+                return redirect('core.dashboard')
             else:
-                return  redirect('core.dashboard')
+                return redirect('core.dashboard')
 
     context = {"form": form, "title": _("Log in")}
     return render(request, template, context)
@@ -67,10 +67,10 @@ def logout(request):
     return redirect('login')
 
 
-def profile(request, template ='accounts/account_profile.html'):
+def profile(request, template='accounts/account_profile.html'):
     p = get_object_or_404(UserProfile, user_id=request.user.pk)
     #load form initial value from models
-    form = ProfileForm(request.POST or None,initial={'company':p.company})
+    form = ProfileForm(request.POST or None, initial={'company': p.company})
     #print p
     #print p.company
     if request.method == "POST" and form.is_valid():
@@ -79,5 +79,5 @@ def profile(request, template ='accounts/account_profile.html'):
         p.save()
         info(request, _("Profile updated"))
 
-    context = {"form": form, "title": _("Update Profile"), "profile":p}
+    context = {"form": form, "title": _("Update Profile"), "profile": p}
     return render(request, template, context)

@@ -40,7 +40,7 @@
 
     //Best to attach onclick event in jQuery ready() function like this
     $(document).ready(function(){
-        var spinner;
+        var csrf_token = $.cookie('csrftoken');
 
         if ("{{ submission.approved }}" == "True"){
             $("#preview_pdf").show();
@@ -68,10 +68,8 @@
               top: '50%', // Top position relative to parent
               left: '50%' // Left position relative to parent
             };
-            spinner = new Spinner(opts).spin(this);
+            var spinner = new Spinner(opts).spin(this);
 
-
-            var csrf_token = $.cookie('csrftoken');
             $.post("{% url 'enterprise.submission.approve'%}",{project_id:"{{ submission.id }}", csrfmiddlewaretoken:csrf_token},
                     function(data){
                         console.log(data);
@@ -90,7 +88,6 @@
                 if (value === false) {
                   return console.log('Cancelled');
                 }
-                var csrf_token = $.cookie('csrftoken');
                 $.post("{% url 'enterprise.submission.deny'%}",{project_id:"{{ submission.id }}", csrfmiddlewaretoken:csrf_token},
                         function(data){
                             console.log(data);
@@ -116,7 +113,6 @@
             doc.output('dataurlnewwindow');
         })
     });
-
 
     </script>
 {% endblock %}

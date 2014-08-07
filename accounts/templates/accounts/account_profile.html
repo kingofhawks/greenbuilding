@@ -5,6 +5,7 @@
     <form method="post" action="{% url 'profile' %}">
     {% csrf_token %}
         {{ form.as_p }}
+        <label>{% trans "User" %}：<span>{{ user }}</span></label>
         <input class="btn btn-success btn-lg form-control" type="submit" value="{{ title }}">
     </form>
 {% endblock %}

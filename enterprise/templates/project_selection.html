@@ -1,17 +1,56 @@
 {% extends "project_base.html" %}
-{% load i18n %}
+{% load i18n staticfiles %}
+
+{% block extra_js %}
+    <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
+    <script>
+    $(document).ready(function(){
+        var csrf_token = $.cookie('csrftoken');
+
+        $("#thumbsUp").click(function(){
+            $.post("{% url 'enterprise.project.selection' project_id%}",{user:"{{ user }}",thumbsUp:true, csrfmiddlewaretoken:csrf_token},
+                    function(data){
+                        console.log(data);
+            })
+        })
+
+        $("#thumbsDown").click(function(){
+            $.post("{% url 'enterprise.project.selection' project_id%}",{user:"{{ user }}",thumbsUp:false, csrfmiddlewaretoken:csrf_token},
+                    function(data){
+                        console.log(data);
+            })
+        })
+    });
+    </script>
+{% endblock %}
 
 {% block project_main %}
-    <table class="table table-hover table-bordered">
+<table class="table table-hover table-bordered">
     <thead>
         <th>{% trans "User" %}</th>
         <th>{% trans "Passed" %}</th>
+        <th>{% trans "Date" %}</th>
     </thead>
     {% for p in selections %}
-        <tr>
+        {% if p.user.username == user.username %}
+            <tr style="background-color: green">
+        {% else %}
+            <tr>
+        {% endif %}
             <td>{{ p.user.username }}</td>
             <td>{{ p.passed }}</td>
+            <td>{{ p.date }}</td>
         </tr>
+
     {% endfor %}
 </table>
+
+<div>
+    <a id="thumbsUp" class="btn btn-primary" href="#">
+        <i class="fa fa-thumbs-o-up fa-2x pull-left"></i> {% trans "Thumbs Up" %}
+    </a>
+    <a id="thumbsDown" class="btn btn-primary" href="#">
+        <i class="fa fa-thumbs-o-down fa-2x pull-left"></i>{% trans "Thumbs Down" %}
+    </a>
+</div>
 {% endblock %}

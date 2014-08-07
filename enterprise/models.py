@@ -17,7 +17,7 @@ class Project(models.Model):
     structure_type = models.CharField(verbose_name=_('structure_type'), max_length=32, blank=True, null=True)
     start_date = models.DateField(verbose_name=_('start_date'), blank=True, null=True)
     end_date = models.DateField(verbose_name=_('end_date'), blank=True, null=True)
-    description = models.CharField(verbose_name=_("description"),max_length=1024,blank=True, null=True)
+    description = models.CharField(verbose_name=_("description"), max_length=1024, blank=True, null=True)
 
     #company info
     construct_company = models.CharField(verbose_name=_('construct_company'), max_length=256, blank=True, null=True)
@@ -136,10 +136,11 @@ class ProgressMonitor(models.Model):
 
 
 class Selection(models.Model):
-    project = models.ForeignKey(Project)
-    grade = models.SmallIntegerField(verbose_name=_("Grade"))
-    passed = models.BooleanField(verbose_name=_('passed'), default=False)
     user = models.ForeignKey(User)
+    project = models.ForeignKey(Project)
+    grade = models.SmallIntegerField(verbose_name=_("Grade"), blank=True, null=True)
+    passed = models.BooleanField(verbose_name=_('passed'), default=False)
+    date = models.DateTimeField(verbose_name=_('Date'), default=datetime.utcnow(), blank=True, null=True)
 
     class Meta:
         verbose_name = _("selection")

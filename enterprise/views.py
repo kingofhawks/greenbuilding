@@ -101,7 +101,8 @@ def delete_project(request, template="create_project.html"):
 def project_detail(request, project_id):
     print request.user.is_authenticated()
     print 'session*************'
-    print request.session
+    print request.session.keys()
+    print request.session['_auth_user_id']
     project = get_object_or_404(Project, pk=project_id)
     print project
     return render(request, 'project_detail.html', {'project': project, 'project_id': project_id})
@@ -479,9 +480,26 @@ def project_monitor(request, project_id):
 
 @login_required
 def project_selection(request, project_id):
-    selections = Selection.objects.filter(project_id=project_id)
-    print selections
-    return render(request, 'project_selection.html', {'selections': selections, 'project_id': project_id})
+    if request.method == "POST":
+        print request.POST.get('user')
+        thumbs_up = request.POST.get('thumbsUp')
+        user_id = request.session['_auth_user_id']
+        print user_id
+        selection = Selection()
+        from django.contrib.auth.models import User
+        user = get_object_or_404(User, pk=request.user.pk)
+        selection.user = user
+        project = get_object_or_404(Project, pk=project_id)
+        selection.project = project
+        if thumbs_up == 'true':
+            selection.passed = True
+        selection.save()
+
+        return HttpResponse(json.dumps('OK'), content_type="application/json")
+    else:
+        selections = Selection.objects.filter(project_id=project_id)
+        print selections
+        return render(request, 'project_selection.html', {'selections': selections, 'project_id': project_id})
 
 
 @login_required
