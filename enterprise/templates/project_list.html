@@ -16,6 +16,7 @@
     <script>vex.defaultOptions.className = 'vex-theme-os';</script>
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script src="{% static 'datatables/media/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'chartjs/Chart.js' %}"></script>
     <script>
     $(document).ready(function(){
         //show table
@@ -95,6 +96,27 @@
             });
         });
 
+        var ctx = $("#myChart1").get(0).getContext("2d");
+        var data2 = {
+    labels: ["申报创建", "应用评审", "总结报告", "影像资料", "评价表", "考评评选"],
+    datasets: [
+        {
+            label: "My Second dataset",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [100, 100, 100, 0, 0, 0]
+        }
+    ]
+};
+            var myLineChart = new Chart(ctx).Line(data2, {responsive:true});
+
+        var ctx = $("#myChart2").get(0).getContext("2d");
+        var myLineChart2 = new Chart(ctx).Line(data2, {responsive:true});
+
     });
 
     </script>
@@ -120,13 +142,10 @@
             <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.name }}</a></td>
             <td>{{ p.location }}</td>
             <td>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                    <a href="{% url 'enterprise.project.progress' p.id %}" class="detail">{% trans "Detail" %}</a>
-                  </div>
-                </div>
+                <canvas id="myChart{{ p.id }}"  width="100" height="30"></canvas>
             </td>
         </tr>
     {% endfor %}
 </table>
+
 {% endblock %}
