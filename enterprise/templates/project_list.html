@@ -96,26 +96,40 @@
             });
         });
 
-        var ctx = $("#myChart1").get(0).getContext("2d");
         var data2 = {
-    labels: ["申报创建", "应用评审", "总结报告", "影像资料", "评价表", "考评评选"],
-    datasets: [
-        {
-            label: "My Second dataset",
-            fillColor: "rgba(151,187,205,0.2)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [100, 100, 100, 0, 0, 0]
-        }
-    ]
-};
-            var myLineChart = new Chart(ctx).Line(data2, {responsive:true});
+            labels: ["申报创建", "应用评审", "总结报告", "影像资料", "评价表", "考评评选"],
+            datasets: [
+                {
+                    label: "My Second dataset",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [100, 100, 100, 0, 0, 0]
+                }
+            ]
+        };
 
-        var ctx = $("#myChart2").get(0).getContext("2d");
-        var myLineChart2 = new Chart(ctx).Line(data2, {responsive:true});
+{#        console.log(document.querySelector("#myChart1"));#}
+{#        console.log($("#myChart1").get(0));#}
+{#        var ctx = $("#myChart1").get(0).getContext("2d");#}
+{#        var myLineChart = new Chart(ctx).Line(data2, {responsive:true});#}
+{#        var test = "#myChart2"#}
+{#        var ctx2 = document.querySelector(test).getContext("2d");#}
+{#        var myLineChart2 = new Chart(ctx2).Line(data2, {responsive:true});#}
+{#                var ctx3 = $("#myChart3").get(0).getContext("2d");#}
+{#        var myLineChart3 = new Chart(ctx3).Line(data2, {responsive:true});#}
+
+        var charts = document.querySelectorAll('.progress-chart');
+        var canvas = Array.prototype.slice.call(charts);
+        canvas.forEach(function (chart) {
+{#            console.log(chart);#}
+            console.log(chart.id);
+            var ctx = document.querySelector("#"+chart.id).getContext("2d");
+            var myLineChart = new Chart(ctx).Line(data2, {responsive:true});
+        });
 
     });
 
@@ -142,7 +156,7 @@
             <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.name }}</a></td>
             <td>{{ p.location }}</td>
             <td>
-                <canvas id="myChart{{ p.id }}"  width="100" height="30"></canvas>
+                <canvas id="myChart{{ p.id }}" class="progress-chart" width="100" height="30"></canvas>
             </td>
         </tr>
     {% endfor %}
