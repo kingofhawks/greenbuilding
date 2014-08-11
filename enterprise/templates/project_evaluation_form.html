@@ -85,6 +85,7 @@
     <h3 class="panel-title">{% trans "Element Evaluation Form" %}</h3>
   </div>
   <div class="panel-body">
+    <a href="{% url 'enterprise.project.element.add' project_id %}" >{% trans "Element Evaluation Form" %}</a>
     <a target="_main" href="{% url 'enterprise.project.print.element' project_id %}" >{% trans "Print" %}</a>
   </div>
 </div>
@@ -94,6 +95,7 @@
     <h3 class="panel-title">{% trans "Batch Evaluation Form" %}</h3>
   </div>
   <div class="panel-body">
+    <a href="{% url 'enterprise.project.batch.add' project_id %}" >{% trans "Batch Evaluation Form" %}</a>
     <a target="_main" href="{% url 'enterprise.project.print.batch' project_id %}" >{% trans "Print" %}</a>
   </div>
 </div>
@@ -103,6 +105,7 @@
     <h3 class="panel-title">{% trans "Stage Evaluation Form" %}</h3>
   </div>
   <div class="panel-body">
+    <a href="{% url 'enterprise.project.stage.add' project_id %}" >{% trans "Stage Evaluation Form" %}</a>
     <a target="_main" href="{% url 'enterprise.project.print.stage' project_id %}" > {% trans "Print" %}</a>
   </div>
 </div>
@@ -112,6 +115,7 @@
     <h3 class="panel-title">{% trans "Unit Evaluation Form" %}</h3>
   </div>
   <div class="panel-body">
+    <a href="{% url 'enterprise.project.unit.add' project_id %}" >{% trans "Unit Evaluation Form" %}</a>
     <a target="_main" href="{% url 'enterprise.project.print.unit' project_id %}" >{% trans "Print" %}</a>
   </div>
 </div>

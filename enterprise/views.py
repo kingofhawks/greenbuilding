@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response, get_list_or_404
 from models import (Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor,
-                    Notification, Picture, ElementEvaluationForm)
+                    Notification, Picture, ElementEvaluationForm, BatchEvaluationForm, StageEvaluationForm,
+                    UnitEvaluationForm)
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
-from forms import ProjectForm, SubmissionForm, ReviewForm
+from forms import (ProjectForm, SubmissionForm, ReviewForm, ElementEvaluationFormForm, BatchEvaluationFormForm,
+                    StageEvaluationFormForm, UnitEvaluationFormForm)
 from django.utils.translation import ugettext as _
 import json
 from django.http import HttpResponse, Http404
@@ -373,31 +375,31 @@ def element_evaluation_pdf(request, project_id):
     print project
     form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
     print form
-    return render(request, 'element_evaluation_pdf.html', {'form': form, 'project_id': project_id})
+    return render(request, 'element_evaluation_pdf.html', {'form': form, 'project': project,  'project_id': project_id})
 
 
 def batch_evaluation_pdf(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
-    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    form = get_object_or_404(BatchEvaluationForm, project_id=project_id)
     print form
-    return render(request, 'batch_evaluation_pdf.html', {'form': form, 'project_id': project_id})
+    return render(request, 'batch_evaluation_pdf.html', {'form': form,  'project': project, 'project_id': project_id})
 
 
 def stage_evaluation_pdf(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
-    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    form = get_object_or_404(StageEvaluationForm, project_id=project_id)
     print form
-    return render(request, 'stage_evaluation_pdf.html', {'form': form, 'project_id': project_id})
+    return render(request, 'stage_evaluation_pdf.html', {'form': form,  'project': project, 'project_id': project_id})
 
 
 def unit_evaluation_pdf(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
-    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    form = get_object_or_404(UnitEvaluationForm, project_id=project_id)
     print form
-    return render(request, 'unit_evaluation_pdf.html', {'form': form, 'project_id': project_id})
+    return render(request, 'unit_evaluation_pdf.html', {'form': form,  'project': project, 'project_id': project_id})
 
 
 def project_evaluation_form(request, project_id):
@@ -415,53 +417,85 @@ def project_evaluation_form(request, project_id):
 def element_evaluation_print(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
-    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
-    print form
 
     #generate PDF
     pdf_url = reverse('enterprise.project.pdf.element', args=[str(project_id)])
     html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/element/', project_id)
 
-    return render(request, 'element_evaluation_print.html', {'form': form, 'project_id': project_id})
+    return render(request, 'element_evaluation_print.html', {'project_id': project_id})
+
+
+def create_element_evaluation_form(request, project_id, template="create_project.html"):
+    form = ElementEvaluationFormForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_project = form.save()
+        print new_project
+        return redirect('enterprise.project.form', project_id=project_id)
+    context = {"form": form, "title": _("Create Element Evaluation Form")}
+    return render(request, template, context)
 
 
 def batch_evaluation_print(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
-    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
-    print form
 
     #generate PDF
     pdf_url = reverse('enterprise.project.pdf.batch', args=[str(project_id)])
     html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/batch/', project_id)
 
-    return render(request, 'batch_evaluation_print.html', {'form': form, 'project_id': project_id})
+    return render(request, 'batch_evaluation_print.html', {'project_id': project_id})
+
+
+def create_batch_evaluation_form(request, project_id, template="create_project.html"):
+    form = BatchEvaluationFormForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_project = form.save()
+        print new_project
+        return redirect('enterprise.project.form', project_id=project_id)
+    context = {"form": form, "title": _("Create Batch Evaluation Form")}
+    return render(request, template, context)
 
 
 def stage_evaluation_print(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
-    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
-    print form
 
     #generate PDF
     pdf_url = reverse('enterprise.project.pdf.stage', args=[str(project_id)])
     html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/stage/', project_id)
 
-    return render(request, 'stage_evaluation_print.html', {'form': form, 'project_id': project_id})
+    return render(request, 'stage_evaluation_print.html', {'project_id': project_id})
+
+
+def create_stage_evaluation_form(request, project_id, template="create_project.html"):
+    form = StageEvaluationFormForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_project = form.save()
+        print new_project
+        return redirect('enterprise.project.form', project_id=project_id)
+    context = {"form": form, "title": _("Create Stage Evaluation Form")}
+    return render(request, template, context)
 
 
 def unit_evaluation_print(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
-    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
-    print form
 
     #generate PDF
     pdf_url = reverse('enterprise.project.pdf.unit', args=[str(project_id)])
     html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/unit/', project_id)
 
-    return render(request, 'unit_evaluation_print.html', {'form': form, 'project_id': project_id})
+    return render(request, 'unit_evaluation_print.html', { 'project_id': project_id})
+
+
+def create_unit_evaluation_form(request, project_id, template="create_project.html"):
+    form = UnitEvaluationFormForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_project = form.save()
+        print new_project
+        return redirect('enterprise.project.form', project_id=project_id)
+    context = {"form": form, "title": _("Create Unit Evaluation Form")}
+    return render(request, template, context)
 
 
 @login_required

@@ -125,8 +125,8 @@
         <label>{% trans "Approved" %}</label><p id="approved">{{ submission.approved |approve_state}}<br></p>
 {#        <a href="#" id="preview" class="btn btn-primary">{% trans "Preview" %}</a>#}
         <span id="preview_pdf">
-            <a target="_blank" href="{{ MEDIA_URL }}/submission/{{ submission.id }}.pdf" class="btn btn-primary">{% trans "Preview" %}</a>
-            <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>
+            <a target="_blank" href="{{ MEDIA_URL }}/submission/{{ submission.id }}.pdf" class="btn btn-primary">{% trans "Print" %}</a>
+{#            <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>#}
         </span>
         <a href="#" id="approve" class="btn btn-primary">{% trans "Approve" %}</a>
         <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>

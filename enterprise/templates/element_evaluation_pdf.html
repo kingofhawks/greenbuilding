@@ -20,25 +20,25 @@
     <table class="table table-bordered">
         <tr>
             <td rowspan="2" colspan="3">工程名称</td>
-            <td rowspan="2" colspan="6"></td>
+            <td rowspan="2" colspan="6">{{ project.name }}</td>
             <td colspan="2">编号</td>
             <td colspan="4"></td>
         </tr>
         <tr>
             <td colspan="2">填表日期</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.date }}</td>
         </tr>
         <tr>
             <td colspan="3">施工单位</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ project.construct_company }}</td>
             <td colspan="2">施工阶段</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.construction_phase }}</td>
         </tr>
         <tr>
             <td colspan="3">评价指标</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.evaluation_indicator }}</td>
             <td colspan="2">施工部位</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.construction_part }}</td>
         </tr>
         <tr>
             <td rowspan="4" colspan="1">控制项</td>
@@ -102,7 +102,7 @@
         </tr>
         <tr style="height:100px">
             <td>评价结果</td>
-            <td colspan="14"></td>
+            <td colspan="14">{{ form.evaluation_result }}</td>
         </tr>
         <tr>
             <td rowspan="2" colspan="1">签字栏</td>

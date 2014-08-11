@@ -6,14 +6,14 @@
 <ul class="nav nav-pills">
     <li><a href="{% url "enterprise.project.detail" project_id%}">{% trans "Project Summary"%}</a></li>
     <li><a href="{% url "enterprise.project.submission" project_id%}">{% trans "Submission"%}</a></li>
-    <li  class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="{% url "enterprise.project.monitor" project_id%}">{% trans "Process Control"%}</a>
-        <ul class="dropdown-menu">
-            <li><a href="{% url "enterprise.project.evaluation" project_id%}">{% trans "Self Evaluation"%}</a></li>
-            <li class="divider"></li>
-            <li><a href="{% url "enterprise.project.monitor" project_id%}">{% trans "Process Monitor" %}</a></li>
-          </ul>
-    </li>
+{#    <li  class="dropdown">#}
+{#        <a class="dropdown-toggle" data-toggle="dropdown" href="{% url "enterprise.project.monitor" project_id%}">{% trans "Process Control"%}</a>#}
+{#        <ul class="dropdown-menu">#}
+{#            <li><a href="{% url "enterprise.project.evaluation" project_id%}">{% trans "Self Evaluation"%}</a></li>#}
+{#            <li class="divider"></li>#}
+{#            <li><a href="{% url "enterprise.project.monitor" project_id%}">{% trans "Process Monitor" %}</a></li>#}
+{#          </ul>#}
+{#    </li>#}
     <li><a href="{% url "enterprise.project.review" project_id%}">{% trans "Application Review"%}</a></li>
     <li><a href="{% url "enterprise.project.selection" project_id%}">{% trans "Selection"%}</a></li>
 </ul>

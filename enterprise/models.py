@@ -251,6 +251,75 @@ class ElementEvaluationForm(models.Model):
         return 'ElementEvaluationForm:{}'.format(self.project.name)
 
 
+class BatchEvaluationForm(models.Model):
+    project = models.ForeignKey(Project)
+    number = models.CharField(verbose_name=_('Number'), max_length=128, blank=True, null=True)
+    date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
+    evaluation_phase = models.CharField(verbose_name=_('evaluation_phase'), max_length=64, blank=True, null=True)
+
+    env_evaluation_score = models.FloatField(verbose_name=_('env_evaluation_score'), blank=True, null=True)
+    env_real_score = models.FloatField(verbose_name=_('env_real_score'), blank=True, null=True)
+    materials_evaluation_score = models.FloatField(verbose_name=_('materials_evaluation_score'), blank=True, null=True)
+    materials_real_score = models.FloatField(verbose_name=_('materials_real_score'), blank=True, null=True)
+    water_evaluation_score = models.FloatField(verbose_name=_('water_evaluation_score'), blank=True, null=True)
+    water_real_score = models.FloatField(verbose_name=_('water_real_score'), blank=True, null=True)
+    power_evaluation_score = models.FloatField(verbose_name=_('power_evaluation_score'), blank=True, null=True)
+    power_real_score = models.FloatField(verbose_name=_('power_real_score'), blank=True, null=True)
+    land_evaluation_score = models.FloatField(verbose_name=_('land_evaluation_score'), blank=True, null=True)
+    land_real_score = models.FloatField(verbose_name=_('land_real_score'), blank=True, null=True)
+    total_evaluation_score = models.FloatField(verbose_name=_('total_evaluation_score'), blank=True, null=True)
+    total_real_score = models.FloatField(verbose_name=_('total_real_score'), blank=True, null=True)
+
+    evaluation_result = models.CharField(verbose_name=_('Evaluation Result'), max_length=2048, blank=True, null=True)
+    #development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
+    #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
+    #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
+
+
+    def __str__(self):
+        return 'BatchEvaluationForm:{}'.format(self.project.name)
+
+
+class StageEvaluationForm(models.Model):
+    project = models.ForeignKey(Project)
+    number = models.CharField(verbose_name=_('Number'), max_length=128, blank=True, null=True)
+    date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
+    evaluation_phase = models.CharField(verbose_name=_('evaluation_phase'), max_length=64, blank=True, null=True)
+
+    evaluation_result = models.CharField(verbose_name=_('Evaluation Result'), max_length=2048, blank=True, null=True)
+    #development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
+    #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
+    #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
+
+
+    def __str__(self):
+        return 'StageEvaluationForm:{}'.format(self.project.name)
+
+
+class UnitEvaluationForm(models.Model):
+    project = models.ForeignKey(Project)
+    number = models.CharField(verbose_name=_('Number'), max_length=128, blank=True, null=True)
+    date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
+
+    foundation_stage_score = models.FloatField(verbose_name=_('foundation_stage_score'), blank=True, null=True)
+    foundation_real_score = models.FloatField(verbose_name=_('foundation_real_score'), blank=True, null=True)
+    architecture_stage_score = models.FloatField(verbose_name=_('architecture_stage_score'), blank=True, null=True)
+    architecture_real_score = models.FloatField(verbose_name=_('architecture_real_score'), blank=True, null=True)
+    install_stage_score = models.FloatField(verbose_name=_('install_stage_score'), blank=True, null=True)
+    install_real_score = models.FloatField(verbose_name=_('install_real_score'), blank=True, null=True)
+    total_evaluation_score = models.FloatField(verbose_name=_('total_evaluation_score'), blank=True, null=True)
+    total_real_score = models.FloatField(verbose_name=_('total_real_score'), blank=True, null=True)
+
+    evaluation_result = models.CharField(verbose_name=_('Evaluation Result'), max_length=2048, blank=True, null=True)
+    #development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
+    #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
+    #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
+
+
+    def __str__(self):
+        return 'UnitEvaluationForm:{}'.format(self.project.name)
+
+
 
 
 

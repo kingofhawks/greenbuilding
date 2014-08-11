@@ -1,6 +1,7 @@
 from django.contrib import admin
 from models import (Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor,
-                    Notification, Picture, ControlItem, GeneralItem, ExcellentItem, ElementEvaluationForm)
+                    Notification, Picture, ControlItem, GeneralItem, ExcellentItem,
+                    ElementEvaluationForm, BatchEvaluationForm, StageEvaluationForm, UnitEvaluationForm)
 from django.utils.translation import ugettext as _
 
 
@@ -34,4 +35,7 @@ admin.site.register(ControlItem)
 admin.site.register(GeneralItem)
 admin.site.register(ExcellentItem)
 admin.site.register(ElementEvaluationForm)
+admin.site.register(BatchEvaluationForm)
+admin.site.register(StageEvaluationForm)
+admin.site.register(UnitEvaluationForm)
 
