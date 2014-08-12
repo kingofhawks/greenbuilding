@@ -3,6 +3,7 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'slick.js/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'magnific-popup/dist/magnific-popup.css' %}">
 {% endblock %}
 
 {% block extra_js %}
@@ -11,6 +12,7 @@
     <script src="{% static 'jquery-file-upload/js/vendor/jquery.ui.widget.js' %}"></script>
     <script src="{% static 'jquery-file-upload/js/jquery.iframe-transport.js' %}"></script>
     <script src="{% static 'jquery-file-upload/js/jquery.fileupload.js' %}"></script>
+    <script src="{% static 'magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
 
     <script>
         function csrfSafeMethod(method) {
@@ -19,13 +21,17 @@
     }
 
         $(document).ready(function(){
+            $('.test-popup-link').magnificPopup({
+  type: 'image'
+	// other options
+});
             var csrf_token = $.cookie('csrftoken');
 
            $(".your-class").slick({
-                dots: true,
-               autoplay:true,
+{#                dots: true,#}
+{#               autoplay:true,#}
 {#               autoplaySpeed:300,#}
-               speed:500
+{#               speed:500#}
 {#               arrows:true,#}
 {#                 prevArrow:$(".slick-prev"),#}
 {#               nextArrow:$(".slick-next")#}
@@ -34,28 +40,37 @@
 {#              slidesToScroll: 1#}
         });
 
-                    $('#fileupload').fileupload({
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            maxNumberOfFiles:2,
             crossDomain: false,
             beforeSend: function(xhr, settings) {
                 if (!csrfSafeMethod(settings.type)) {
                     xhr.setRequestHeader("X-CSRFToken", csrf_token);
                 }
             },
-            dataType: 'json',
             done: function (e, data) {
-                console.log(data);
+{#                console.log(data);#}
 {#                $.each(data.result.files, function (index, file) {#}
 {#                    $('<p/>').text(file.name).appendTo(document.body);#}
 {#                });#}
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
-                console.log(progress);
+{#                console.log(progress);#}
                 $('#progress .progress-bar').css(
                     'width',
                     progress + '%'
                 );
             }
+        });
+
+        $('.popup-gallery').magnificPopup({
+          delegate: 'a', // child items selector, by clicking on it popup will open
+          type: 'image',
+          gallery:{enabled:true}
+          // other options
         });
 
 
@@ -74,7 +89,7 @@
     <label>{% trans "Grade" %}</label><p>{{ review.grade }}<br></p>
     <label>{% trans "Approved" %}</label><p id="approved">{{ review.approved |approve_state}}<br></p>
     <label>{% trans "Achievement" %}</label>
-<div>
+</div>
 <div>
     <video id="example_video_1"
       controls preload="auto" width="640" height="200"
@@ -90,7 +105,8 @@
 
 <div>
     <div>
-        <input id="fileupload" type="file" name="files" data-url="{% url 'enterprise.review.photo' review.id%}" multiple>
+        <input id="fileupload" type="file" name="files"  accept="image/png,image/gif,image/jpg,image/jpeg"
+               data-url="{% url 'enterprise.review.photo' review.id%}" multiple>
     </div>
     <!-- The global progress bar -->
     <div id="progress" class="progress">
@@ -98,14 +114,19 @@
     </div>
 </div>
 
-<div class="your-class slider">
-{% for picture in pictures %}
-     <div ><img src="/media/{{ picture.file }}"></div>
-{% endfor %}
+{#<div class="your-class slider">#}
+{#{% for picture in pictures %}#}
+{#     <div ><img src="/media/{{ picture.file }}"></div>#}
+{#{% endfor %}#}
+{#</div>#}
 
+<div class="popup-gallery">
+{% for picture in pictures %}
+    <a href="/media/{{ picture.file }}">
+        <img src="/media/{{ picture.file }}" alt="{{ picture.file }}"  style="width: 20%; height: 20%"/>
+    </a>
+{% endfor %}
 </div>
 
 {% endif %}
-</div>
-</div>
 {% endblock %}
