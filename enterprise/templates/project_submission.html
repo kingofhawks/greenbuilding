@@ -123,6 +123,7 @@
         <label>{% trans "Project" %}</label><p>{{ submission.project.name }}<br></p>
         <label>{% trans "Grade" %}</label><p>{{ submission.grade }}<br></p>
         <label>{% trans "Approved" %}</label><p id="approved">{{ submission.approved |approve_state}}<br></p>
+        <a href="{% url 'enterprise.submission.update'  submission.id%}" class="btn btn-primary">{% trans "Modify" %}</a>
 {#        <a href="#" id="preview" class="btn btn-primary">{% trans "Preview" %}</a>#}
         <span id="preview_pdf">
             <a target="_blank" href="{{ MEDIA_URL }}/submission/{{ submission.id }}.pdf" class="btn btn-primary">{% trans "Print" %}</a>

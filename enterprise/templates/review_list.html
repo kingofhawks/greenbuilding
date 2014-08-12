@@ -59,6 +59,13 @@
         })
         });
     } );
+
+        $("#modify").click(function(){
+            //a trick to pass JS variable to django url template tag
+            var url = "{% url 'enterprise.review.update' pk=99999 %}";
+            url = url.replace(/99999/,selected[0]);
+            window.location.href = url;
+        });
     });
     </script>
 {% endblock %}
@@ -66,8 +73,8 @@
 {% block toolbar %}
 <div class="btn-group">
   <a href="{% url "enterprise.review.add" %}" class="btn btn-default">{% trans "Create" %}</a>
-  <a href="{% url "login" %}" class="btn btn-default">{% trans "Modify" %}</a>
-  <a href="{% url "login" %}" class="btn btn-default">{% trans "Delete" %}</a>
+  <a id="modify" class="btn btn-default">{% trans "Modify" %}</a>
+  <a id="delete" class="btn btn-default">{% trans "Delete" %}</a>
   <a href="#" class="btn btn-default" id="submit">{% trans "Submit" %}</a>
 </div>
 {% endblock %}

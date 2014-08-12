@@ -6,7 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
 from forms import (ProjectForm, SubmissionForm, ReviewForm, ElementEvaluationFormForm, BatchEvaluationFormForm,
-                    StageEvaluationFormForm, UnitEvaluationFormForm)
+                   StageEvaluationFormForm, UnitEvaluationFormForm)
 from django.utils.translation import ugettext as _
 import json
 from django.http import HttpResponse, Http404
@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.messages import info, warning
 from tasks import html2pdf
 from django.core.urlresolvers import reverse
+from django.utils.safestring import mark_safe
 
 
 class ProjectList(ListView):
@@ -26,6 +27,13 @@ class ProjectUpdate(UpdateView):
     model = Project
     template_name = 'create_project.html'
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(ProjectUpdate, self).get_context_data(**kwargs)
+        # Add extra context variable
+        context['title'] = _('Modify Project')
+        return context
+
 
 class SubmissionList(ListView):
     model = Submission
@@ -33,10 +41,34 @@ class SubmissionList(ListView):
     context_object_name = 'projects'
 
 
+class SubmissionUpdate(UpdateView):
+    model = Submission
+    template_name = 'create_project.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(SubmissionUpdate, self).get_context_data(**kwargs)
+        # Add extra context variable
+        context['title'] = _('Modify Submission')
+        return context
+
+
 class ApplicationReviewList(ListView):
     model = ApplicationReview
     template_name = 'review_list.html'
     context_object_name = 'projects'
+
+
+class ApplicationReviewUpdate(UpdateView):
+    model = ApplicationReview
+    template_name = 'create_project.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(ApplicationReviewUpdate, self).get_context_data(**kwargs)
+        # Add extra context variable
+        context['title'] = _('Modify ApplicationReview')
+        return context
 
 
 class SelfEvaluationList(ListView):
@@ -123,7 +155,13 @@ def project_submission(request, project_id):
         submission = get_object_or_404(Submission, project_id=project_id)
         print submission
     except Http404:
-        warning(request, _("Submission is not submitted yet."))
+        url = reverse('enterprise.submission.add')
+        #unicode to gb2312
+        msg = (_("Submission is not submitted yet.") + "<a target='_blank' href='{}'>".format(url)
+               + _('New Submission')+"</a>").encode('gb2312')
+        print msg
+        #mark_safe will show raw HTML, rather than escape HTML tags
+        warning(request, mark_safe(_("Submission is not submitted yet.")+"<a target='_blank' href={}> Create </a>".format(url)))
     return render(request, 'project_submission.html', {'submission': submission, 'project_id': project_id})
 
 
@@ -216,7 +254,8 @@ def project_review(request, project_id):
         review = get_object_or_404(ApplicationReview, project_id=project_id)
         print review
     except Http404:
-        warning(request, _('Review is not submitted yet.'))
+        url = reverse('enterprise.review.add')
+        warning(request, mark_safe(_("Review is not submitted yet.")+"<a target='_blank' href={}> Create </a>".format(url)))
         review = ApplicationReview(id=99999)#hack an empty review
     return render(request, 'project_review.html', {'review': review, 'project_id': project_id})
 

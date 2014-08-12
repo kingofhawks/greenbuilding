@@ -31,6 +31,9 @@ class Project(models.Model):
     def __str__(self):
         return 'Project:{}'.format(self.name)
 
+    def get_absolute_url(self):
+        return reverse('enterprise.project.detail', args=[str(self.id)])
+
     def get_progress(self):
         return "3/5"
 

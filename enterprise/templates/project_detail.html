@@ -508,6 +508,7 @@ $d-chartHeight : 400px;
         <label>{% trans "Project" %}</label>{{ project.name }}<br>
         <label>{% trans "Company" %}</label>{{ project.construct_company }}<br>
         <label>{% trans "Location" %}</label>{{ project.location }}<br>
+        <a href="{% url 'enterprise.project.update'  project.id%}" class="btn btn-primary">{% trans "Modify" %}</a>
     </div>
 <div class="charts--container">
      <div id="lineChart">

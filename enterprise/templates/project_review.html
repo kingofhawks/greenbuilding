@@ -74,6 +74,7 @@
     <label>{% trans "Approved" %}</label><p id="approved">{{ review.approved |approve_state}}<br></p>
 <div>
 <div>
+    <a href="{% url 'enterprise.review.update'  review.id%}" class="btn btn-primary">{% trans "Modify" %}</a>
     <a target="_blank" href="{{ MEDIA_URL }}/review/{{ review.id }}.pdf" class="btn btn-primary">{% trans "Print" %}</a>
     <button id="approve" class="btn btn-primary ladda-button" data-style="expand-right" data-size="s" data-color="blue"><span class="ladda-label">{% trans "Approve" %}</span></button>
     <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>
