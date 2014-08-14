@@ -572,14 +572,16 @@ def project_monitor(request, project_id):
 
 @login_required
 def project_selection(request, project_id):
+    from django.contrib.auth.models import User
+    user = get_object_or_404(User, pk=request.user.pk)
+
     if request.method == "POST":
         print request.POST.get('user')
         thumbs_up = request.POST.get('thumbsUp')
         user_id = request.session['_auth_user_id']
         print user_id
         selection = Selection()
-        from django.contrib.auth.models import User
-        user = get_object_or_404(User, pk=request.user.pk)
+
         selection.user = user
         project = get_object_or_404(Project, pk=project_id)
         selection.project = project
@@ -591,6 +593,8 @@ def project_selection(request, project_id):
     else:
         selections = Selection.objects.filter(project_id=project_id)
         print selections
+        print user.has_perm('enterprise.approve_submission')
+        print user.has_perm('enterprise.add_submission')
         return render(request, 'project_selection.html', {'selections': selections, 'project_id': project_id})
 
 

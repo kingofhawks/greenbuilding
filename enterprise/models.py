@@ -64,6 +64,10 @@ class Submission(models.Model):
     class Meta:
         verbose_name = _("submission")
         ordering = ['date']
+        permissions = (
+            ("approve_submission", "Can approve submissions"),
+            ("deny_submission", "Can deny submissions"),
+        )
 
     def __str__(self):
         return 'Submission:{}'.format(self.project.name)

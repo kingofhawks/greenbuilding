@@ -129,9 +129,14 @@
             <a target="_blank" href="{{ MEDIA_URL }}/submission/{{ submission.id }}.pdf" class="btn btn-primary">{% trans "Print" %}</a>
 {#            <a href="javascript:download_pdf()" class="btn btn-primary">{% trans "Download PDF" %}</a>#}
         </span>
-        <a href="#" id="approve" class="btn btn-primary">{% trans "Approve" %}</a>
-        <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>
+        {% if perms.enterprise.approve_submission %}
+            <a href="#" id="approve" class="btn btn-primary">{% trans "Approve" %}</a>
+        {% endif %}
+        {% if perms.enterprise.deny_submission %}
+            <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>
+        {% endif %}
     {% else %}
     {% endif %}
+
     </div>
 {% endblock %}
