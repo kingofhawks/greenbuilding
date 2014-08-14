@@ -13,18 +13,37 @@
     <script src="{% static 'jquery-file-upload/js/jquery.iframe-transport.js' %}"></script>
     <script src="{% static 'jquery-file-upload/js/jquery.fileupload.js' %}"></script>
     <script src="{% static 'magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'handlebars/handlebars.min.js' %}"></script>
+
+    <script id="pictures_template" type="text/x-handlebars-template">
+    {% verbatim %}
+          {{#each [] }}
+            <a href="{{ this }}">
+                <img src="{{ this }}" style="width: 20%; height: 20%"/>
+            </a>
+          {{/each}}
+    {% endverbatim %}
+    </script>
 
     <script>
         function csrfSafeMethod(method) {
-        // these HTTP methods do not require CSRF protection
-        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-    }
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+         }
+
+        function loadPhotos(){
+            console.log("load photos");
+            $.get('{% url "enterprise.project.achievement.pictures" 1 %}',function(data){
+                console.log(data);
+                var source   = $("#pictures_template").html();
+                var template = Handlebars.compile(source);
+                var html    = template(data);
+{#                console.log(html);#}
+                $('#popup-gallery').html(html);
+            })
+        }
 
         $(document).ready(function(){
-            $('.test-popup-link').magnificPopup({
-  type: 'image'
-	// other options
-});
             var csrf_token = $.cookie('csrftoken');
 
            $(".your-class").slick({
@@ -55,6 +74,8 @@
 {#                $.each(data.result.files, function (index, file) {#}
 {#                    $('<p/>').text(file.name).appendTo(document.body);#}
 {#                });#}
+                console.log("done");
+                loadPhotos();
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -66,13 +87,14 @@
             }
         });
 
-        $('.popup-gallery').magnificPopup({
+        $('#popup-gallery').magnificPopup({
           delegate: 'a', // child items selector, by clicking on it popup will open
           type: 'image',
           gallery:{enabled:true}
           // other options
         });
 
+        loadPhotos();
 
         });
     </script>
@@ -120,12 +142,15 @@
 {#{% endfor %}#}
 {#</div>#}
 
-<div class="popup-gallery">
-{% for picture in pictures %}
-    <a href="/media/{{ picture.file }}">
-        <img src="/media/{{ picture.file }}" alt="{{ picture.file }}"  style="width: 20%; height: 20%"/>
-    </a>
-{% endfor %}
+{#<div class="popup-gallery">#}
+{#{% for picture in pictures %}#}
+{#    <a href="/media/{{ picture.file }}">#}
+{#        <img src="/media/{{ picture.file }}" alt="{{ picture.file }}"  style="width: 20%; height: 20%"/>#}
+{#    </a>#}
+{#{% endfor %}#}
+{#</div>#}
+
+<div id="popup-gallery">
 </div>
 
 {% endif %}

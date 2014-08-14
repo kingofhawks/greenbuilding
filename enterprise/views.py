@@ -409,6 +409,25 @@ def project_achievement(request, project_id):
     return render(request, 'project_achievement.html', {'review': review, 'project_id': project_id, 'pictures': pictures})
 
 
+def project_achievement_pictures(request, project_id):
+    pictures = None
+    try:
+        pictures = get_list_or_404(Picture, review_id=project_id)
+        print pictures
+    except Http404:
+        pass
+
+    result = []
+    if pictures is not None:
+        for picture in pictures:
+            #print picture
+            #print picture.file
+            #print picture.file.url
+            result.append(picture.file.url)
+
+    return HttpResponse(json.dumps(result), content_type="application/json")
+
+
 def element_evaluation_pdf(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
