@@ -15,6 +15,9 @@ from django.contrib.messages import info, warning
 from tasks import html2pdf
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
+from django.core import serializers
+#json.dumps do not work with DateTime object type,need to use DjangoJSONEncoder
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 class ProjectList(ListView):
@@ -589,7 +592,11 @@ def project_selection(request, project_id):
             selection.passed = True
         selection.save()
 
-        return HttpResponse(json.dumps('OK'), content_type="application/json")
+        query_set = Selection.objects.filter(pk=selection.id)
+        data = serializers.serialize("json", query_set)
+        print data
+        return HttpResponse(data, content_type="application/json")
+        #return HttpResponse(json.dumps(selection), content_type="application/json")
     else:
         selections = Selection.objects.filter(project_id=project_id)
         print selections
@@ -612,8 +619,7 @@ def pm10_data(request, project_id):
     for pm10 in query_set:
         pm10_list.append({'date': pm10.date.date(), 'value': pm10.value})
 
-    #json.dumps do not work with DateTime object type,need to use DjangoJSONEncoder
-    from django.core.serializers.json import DjangoJSONEncoder
+
     return HttpResponse(json.dumps(pm10_list, cls=DjangoJSONEncoder), content_type="application/json")
 
 
@@ -624,7 +630,6 @@ def project_noise(request, project_id):
 
 
 def notification_data(request):
-    from django.core import serializers
     query_set = Notification.objects.filter(processed=False)
     data = serializers.serialize("json", query_set)
 

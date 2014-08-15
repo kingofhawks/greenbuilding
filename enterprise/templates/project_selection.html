@@ -3,22 +3,58 @@
 
 {% block extra_js %}
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
+    <script src="{% static 'handlebars/handlebars.min.js' %}"></script>
+    <script id="row-template" type="text/x-handlebars-template">
+    {% verbatim %}
+        <tr style="background-color: green">
+            <td>{{ user }}</td>
+            <td>{{ passed }}</td>
+            <td>{{ date }}</td>
+        </tr>
+    {% endverbatim %}
+    </script>
     <script>
+
     $(document).ready(function(){
         var csrf_token = $.cookie('csrftoken');
 
-        $("#thumbsUp").click(function(){
-            $.post("{% url 'enterprise.project.selection' project_id%}",{user:"{{ user }}",thumbsUp:true, csrfmiddlewaretoken:csrf_token},
+    function selection(passed){
+                    $.post("{% url 'enterprise.project.selection' project_id%}",{user:"{{ user }}",thumbsUp:passed, csrfmiddlewaretoken:csrf_token},
                     function(data){
                         console.log(data);
+{#                        console.log(data[0]['fields']['date']);#}
+                        console.log(data[0]['fields']['passed']);
+                        var source   = $("#row-template").html();
+                        var template = Handlebars.compile(source);
+                        var context = {user: "{{ user }}", passed: data[0]['fields']['passed'], date: data[0]['fields']['date']}
+                        var html    = template(context);
+                        console.log(html);
+                        $('.table > tbody:last').append(html);
             })
+    }
+
+        $("#thumbsUp").click(function(){
+            selection(true);
+{#            $.post("{% url 'enterprise.project.selection' project_id%}",{user:"{{ user }}",thumbsUp:true, csrfmiddlewaretoken:csrf_token},#}
+{#                    function(data){#}
+{#                        console.log(data);#}
+{#                        console.log(data[0]['fields']['date']);#}
+{#                        console.log(data[0]['fields']['passed']);#}
+{#                        var source   = $("#row-template").html();#}
+{#                        var template = Handlebars.compile(source);#}
+{#                        var context = {user: "{{ user }}", passed: data[0]['fields']['passed'], date: data[0]['fields']['date']}#}
+{#                        var html    = template(context);#}
+{#                        console.log(html);#}
+{#                        $('.table > tbody:last').append(html);#}
+{#            })#}
         })
 
         $("#thumbsDown").click(function(){
-            $.post("{% url 'enterprise.project.selection' project_id%}",{user:"{{ user }}",thumbsUp:false, csrfmiddlewaretoken:csrf_token},
-                    function(data){
-                        console.log(data);
-            })
+            selection(false);
+{#            $.post("{% url 'enterprise.project.selection' project_id%}",{user:"{{ user }}",thumbsUp:false, csrfmiddlewaretoken:csrf_token},#}
+{#                    function(data){#}
+{#                        console.log(data);#}
+{#            })#}
         })
     });
     </script>
@@ -31,18 +67,19 @@
         <th>{% trans "Passed" %}</th>
         <th>{% trans "Date" %}</th>
     </thead>
-    {% for p in selections %}
-        {% if p.user.username == user.username %}
-            <tr style="background-color: green">
-        {% else %}
-            <tr>
-        {% endif %}
-            <td>{{ p.user.username }}</td>
-            <td>{{ p.passed }}</td>
-            <td>{{ p.date }}</td>
-        </tr>
-
-    {% endfor %}
+    <tbody>
+        {% for p in selections %}
+            {% if p.user.username == user.username %}
+                <tr style="background-color: green">
+            {% else %}
+                <tr>
+            {% endif %}
+                <td>{{ p.user.username }}</td>
+                <td>{{ p.passed }}</td>
+                <td>{{ p.date }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
 </table>
 
 <div>
@@ -53,4 +90,5 @@
         <i class="fa fa-thumbs-o-down fa-2x pull-left"></i>{% trans "Thumbs Down" %}
     </a>
 </div>
+
 {% endblock %}

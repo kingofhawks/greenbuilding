@@ -4,6 +4,29 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'slick.js/slick/slick.css' %}">
     <link rel="stylesheet" href="{% static 'magnific-popup/dist/magnific-popup.css' %}">
+    <style>
+    figure {
+        position: relative;
+        display: inline-block;
+    }
+
+    figcaption {
+        display: none;
+        position: absolute;
+        left:100px;
+        bottom: 20px;
+        right: 0;
+{#        background-color: rgba(0,0,0,.15);#}
+    }
+
+    figure:hover img {
+        opacity: .7;
+    }
+
+    figure:hover figcaption {
+        display: block;
+    }
+    </style>
 {% endblock %}
 
 {% block extra_js %}
@@ -21,6 +44,17 @@
             <a href="{{ this }}">
                 <img src="{{ this }}" style="width: 20%; height: 20%"/>
             </a>
+          {{/each}}
+    {% endverbatim %}
+    </script>
+
+    <script id="pictures_template2" type="text/x-handlebars-template">
+    {% verbatim %}
+          {{#each [] }}
+            <figure>
+                <img src="{{ this }}" style="width: 20%; height: 20%"/>
+                <figcaption><a class="btn btn-primary" id="test"><i class="fa fa-youtube-play"></i>删除</a></figcaption>
+            </figure>
           {{/each}}
     {% endverbatim %}
     </script>
@@ -75,7 +109,7 @@
 {#                    $('<p/>').text(file.name).appendTo(document.body);#}
 {#                });#}
                 console.log("done");
-                loadPhotos();
+{#                loadPhotos();#}
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -84,6 +118,10 @@
                     'width',
                     progress + '%'
                 );
+            },
+            stop: function(e,data){
+                console.log("upload finished");
+                loadPhotos();
             }
         });
 
@@ -95,6 +133,10 @@
         });
 
         loadPhotos();
+
+           $("#test").click(function(){
+               console.log("clicked");
+           })
 
         });
     </script>
@@ -152,6 +194,11 @@
 
 <div id="popup-gallery">
 </div>
+
+{#<figure>#}
+{#    <img src="http://127.0.0.1:8000/media/pictures/ryzg_1.jpg" style="width: 20%; height: 20%"/>#}
+{#    <figcaption><a class="btn btn-primary" id="test"><i class="fa fa-youtube-play"></i>{% trans "Remove" %}</a></figcaption>#}
+{#</figure>#}
 
 {% endif %}
 {% endblock %}
