@@ -147,13 +147,13 @@ class Selection(models.Model):
     project = models.ForeignKey(Project)
     grade = models.SmallIntegerField(verbose_name=_("Grade"), blank=True, null=True)
     passed = models.BooleanField(verbose_name=_('passed'), default=False)
-    date = models.DateTimeField(verbose_name=_('Date'), default=datetime.utcnow(), blank=True, null=True)
+    date = models.DateTimeField(verbose_name=_('Date'), blank=True, null=True)
 
     class Meta:
         verbose_name = _("selection")
 
     def __str__(self):
-        return 'Selection:{}'.format(self.project.name)
+        return 'Selection:{}:{}'.format(self.project.name, self.user.username)
 
 
 class PM10(models.Model):

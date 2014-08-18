@@ -18,6 +18,7 @@ from django.utils.safestring import mark_safe
 from django.core import serializers
 #json.dumps do not work with DateTime object type,need to use DjangoJSONEncoder
 from django.core.serializers.json import DjangoJSONEncoder
+from datetime import datetime
 
 
 class ProjectList(ListView):
@@ -583,13 +584,19 @@ def project_selection(request, project_id):
         thumbs_up = request.POST.get('thumbsUp')
         user_id = request.session['_auth_user_id']
         print user_id
-        selection = Selection()
 
-        selection.user = user
-        project = get_object_or_404(Project, pk=project_id)
-        selection.project = project
+        selection = get_object_or_404(Selection, user_id=user_id, project_id=project_id)
+        if selection is None:
+            selection = Selection()
+            selection.user = user
+            project = get_object_or_404(Project, pk=project_id)
+            selection.project = project
+
         if thumbs_up == 'true':
             selection.passed = True
+        else:
+            selection.passed = False
+        selection.date = datetime.utcnow()
         selection.save()
 
         query_set = Selection.objects.filter(pk=selection.id)
