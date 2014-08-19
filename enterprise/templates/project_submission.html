@@ -2,11 +2,13 @@
 {% load i18n staticfiles project_filters%}
 
 {% block extra_css %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
     <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
 {% endblock %}
 
 {% block extra_js %}
+    {{ block.super }}
     <script src="{% static 'jspdf/dist/jspdf.min.js' %}"></script>
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script src="{% static 'vex/js/vex.combined.min.js' %}"></script>

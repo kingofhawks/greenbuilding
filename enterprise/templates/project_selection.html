@@ -2,6 +2,7 @@
 {% load i18n staticfiles project_filters%}
 
 {% block extra_js %}
+    {{ block.super }}
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script src="{% static 'handlebars/handlebars.min.js' %}"></script>
     <script src="{% static 'chartjs/Chart.js' %}"></script>

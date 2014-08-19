@@ -2,6 +2,7 @@
 {% load i18n staticfiles project_filters%}
 
 {% block extra_css %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
     <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
 {#    <link rel="stylesheet" href="{% static 'ladda/dist/ladda.min.css' %}">#}
@@ -9,6 +10,7 @@
 {% endblock %}
 
 {% block extra_js %}
+    {{ block.super }}
     <script src="{% static 'ladda/dist/spin.min.js' %}"></script>
     <script src="{% static 'ladda/dist/ladda.min.js' %}"></script>
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
