@@ -2,6 +2,7 @@
 {% load i18n staticfiles%}
 
 {% block extra_css %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'messenger/build/css/messenger.css' %}">
     <link rel="stylesheet" href="{% static 'messenger/build/css/messenger-theme-future.css' %}">
 <style>
@@ -12,6 +13,7 @@
 {% endblock %}
 
 {% block extra_js %}
+    {{ block.super }}
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script src="{% static 'messenger/build/js/messenger.min.js' %}"></script>
     <script src="{% static 'messenger/build/js/messenger-theme-future.js' %}"></script>

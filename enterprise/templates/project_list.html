@@ -2,6 +2,7 @@
 {% load i18n staticfiles project_filters %}
 
 {% block extra_css %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'hint.css/hint.min.css' %}">
     <link rel="stylesheet" href="{% static 'jquery/jquery.qtip.min.css' %}">
     <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
@@ -10,6 +11,7 @@
 {% endblock %}
 
 {% block extra_js %}
+    {{ block.super }}
     <script src="{% static 'peity/jquery.peity.min.js' %}"></script>
     <script src="{% static 'jquery/jquery.qtip.min.js' %}"></script>
     <script src="{% static 'vex/js/vex.combined.min.js' %}"></script>
