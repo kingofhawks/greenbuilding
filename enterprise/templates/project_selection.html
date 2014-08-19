@@ -4,6 +4,7 @@
 {% block extra_js %}
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script src="{% static 'handlebars/handlebars.min.js' %}"></script>
+    <script src="{% static 'chartjs/Chart.js' %}"></script>
     <script id="row-template" type="text/x-handlebars-template">
     {% verbatim %}
         <tr style="background-color: green">
@@ -14,6 +15,9 @@
     {% endverbatim %}
     </script>
     <script>
+    "use strict"
+    var thumbsUp = 0;
+    var thumbsDown = 0;
 
     $(document).ready(function(){
         var csrf_token = $.cookie('csrftoken');
@@ -21,15 +25,25 @@
     function selection(passed){
                     $.post("{% url 'enterprise.project.selection' project_id%}",{user:"{{ user }}",thumbsUp:passed, csrfmiddlewaretoken:csrf_token},
                     function(data){
-                        console.log(data);
+{#                        console.log(data);#}
 {#                        console.log(data[0]['fields']['date']);#}
-                        console.log(data[0]['fields']['passed']);
+                        var passed = data[0]['fields']['passed'];
+                        console.log(passed);
+                        console.log(typeof(passed));
                         var source   = $("#row-template").html();
                         var template = Handlebars.compile(source);
-                        var context = {user: "{{ user }}", passed: data[0]['fields']['passed'], date: data[0]['fields']['date']}
+                        var context = {user: "{{ user }}", passed: passed, date: data[0]['fields']['date']}
                         var html    = template(context);
-                        console.log(html);
+{#                        console.log(html);#}
                         $('.table > tbody:last').append(html);
+                        if (passed){
+                            thumbsUp += 1;
+                            pieChart.segments[1].value = thumbsUp;
+                        } else{
+                            thumbsDown += 1;
+                            pieChart.segments[0].value = thumbsDown;
+                        }
+                        pieChart.update();
             })
     }
 
@@ -56,11 +70,33 @@
 {#                        console.log(data);#}
 {#            })#}
         })
+
+        var data = [
+            {
+                value: thumbsDown,
+                color:"#FF4136",
+                highlight: "#FF5A5E",
+                label: "反对"
+            },
+            {
+                value: thumbsUp,
+                color: "#2ECC40",
+                highlight: "#46BFBD",
+                label: "赞成"
+            }
+        ];
+        var ctx = document.querySelector("#selectionChart").getContext("2d");
+        var pieChart = new Chart(ctx).Pie(data, {responsive:true});
+{#        console.log(selected);#}
     });
     </script>
 {% endblock %}
 
 {% block project_main %}
+    <div>
+        {% trans "Status" %}:{{ status }}
+        <canvas id="selectionChart" width="100" height="30"></canvas>
+    </div>
 <table class="table table-hover table-bordered">
     <thead>
         <th>{% trans "User" %}</th>
@@ -76,7 +112,17 @@
             {% endif %}
                 <td>{{ p.user.username }}</td>
                 <td>{{ p.passed }}</td>
-                <td>{{ p.date }}</td>
+            {% if p.passed %}
+                <script>
+                    thumbsUp++;
+                </script>
+            {% else %}
+                <script>
+                    thumbsDown++;
+                </script>
+            {% endif %}
+
+                <td>{{ p.date |date:"Y年m月j日G:i"}}</td>
             </tr>
         {% endfor %}
     </tbody>

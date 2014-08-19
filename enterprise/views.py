@@ -574,10 +574,20 @@ def project_monitor(request, project_id):
     return render(request, 'project_monitor.html', {'monitor': monitor, 'project_id': project_id})
 
 
+def get_selection_status(project_id):
+        selections = get_list_or_404(Selection, project_id=project_id)
+        if selections is not None:
+            for selection in selections:
+                pass
+
+        return "Test"
+
+
 @login_required
 def project_selection(request, project_id):
     from django.contrib.auth.models import User
     user = get_object_or_404(User, pk=request.user.pk)
+    project = get_object_or_404(Project, pk=project_id)
 
     if request.method == "POST":
         print request.POST.get('user')
@@ -585,11 +595,11 @@ def project_selection(request, project_id):
         user_id = request.session['_auth_user_id']
         print user_id
 
-        selection = get_object_or_404(Selection, user_id=user_id, project_id=project_id)
-        if selection is None:
+        try:
+            selection = get_object_or_404(Selection, user_id=user_id, project_id=project_id)
+        except Http404:
             selection = Selection()
             selection.user = user
-            project = get_object_or_404(Project, pk=project_id)
             selection.project = project
 
         if thumbs_up == 'true':
@@ -609,7 +619,11 @@ def project_selection(request, project_id):
         print selections
         print user.has_perm('enterprise.approve_submission')
         print user.has_perm('enterprise.add_submission')
-        return render(request, 'project_selection.html', {'selections': selections, 'project_id': project_id})
+        return render(request, 'project_selection.html',
+                      {'selections': selections, 'project': project, 'project_id': project_id, 'status': get_selection_status(project_id)})
+
+
+
 
 
 @login_required
