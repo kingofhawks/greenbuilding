@@ -1,5 +1,5 @@
 {% extends "list_base.html" %}
-{% load i18n staticfiles%}
+{% load i18n staticfiles project_filters %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'hint.css/hint.min.css' %}">
@@ -123,6 +123,8 @@
 {#        var myLineChart3 = new Chart(ctx3).Line(data2, {responsive:true});#}
 
         var charts = document.querySelectorAll('.progress-chart');
+{#        console.log(typeof(charts));#}
+{#        console.log(charts);#}
         var canvas = Array.prototype.slice.call(charts);
         canvas.forEach(function (chart) {
 {#            console.log(chart);#}
@@ -148,13 +150,13 @@
 <table id="table" class="display table table-bordered">
     <thead>
         <th>{% trans "Project" %}</th>
-        <th>{% trans "Location" %}</th>
+        <th>{% trans "Vote Result" %}</th>
         <th>{% trans "Progress" %}</th>
     </thead>
     {% for p in projects %}
         <tr data-row-key="{{ p.id }}">
             <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.name }}</a></td>
-            <td>{{ p.location }}</td>
+            <td>{{ p.id |vote_result }}</td>
             <td>
                 <canvas id="myChart{{ p.id }}" class="progress-chart" width="100" height="30"></canvas>
             </td>

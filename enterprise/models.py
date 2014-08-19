@@ -37,6 +37,7 @@ class Project(models.Model):
     def get_progress(self):
         return "3/5"
 
+
 GRADE_CHOICES = (
         (_('green_building'), _('green_building')),
         (_('green_building_demo'), _('green_building_demo')),
@@ -176,7 +177,7 @@ class Notification(models.Model):
     date = models.DateTimeField(verbose_name=_('Date'), blank=True, null=True, default=datetime.utcnow())
 
     class Meta:
-        verbose_name = _('notification')
+        verbose_name = _('Notification')
 
     def __str__(self):
         return 'Notification:{} type:{}'.format(self.label, self.type)

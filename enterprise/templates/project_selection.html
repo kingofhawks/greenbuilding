@@ -1,5 +1,5 @@
 {% extends "project_base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles project_filters%}
 
 {% block extra_js %}
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
@@ -18,6 +18,7 @@
     "use strict"
     var thumbsUp = 0;
     var thumbsDown = 0;
+    var notYetVoted = 0;
 
     $(document).ready(function(){
         var csrf_token = $.cookie('csrftoken');
@@ -83,6 +84,12 @@
                 color: "#2ECC40",
                 highlight: "#46BFBD",
                 label: "赞成"
+            },
+            {
+                value: notYetVoted,
+                color: "#FFDC00",
+                highlight: "#FFC870",
+                label: "未投票"
             }
         ];
         var ctx = document.querySelector("#selectionChart").getContext("2d");
@@ -94,13 +101,13 @@
 
 {% block project_main %}
     <div>
-        {% trans "Status" %}:{{ status }}
+        {% trans "Vote Result" %}:{{ project_id|vote_result }}
         <canvas id="selectionChart" width="100" height="30"></canvas>
     </div>
 <table class="table table-hover table-bordered">
     <thead>
         <th>{% trans "User" %}</th>
-        <th>{% trans "Passed" %}</th>
+        <th>{% trans "Vote Status" %}</th>
         <th>{% trans "Date" %}</th>
     </thead>
     <tbody>
@@ -111,14 +118,18 @@
                 <tr>
             {% endif %}
                 <td>{{ p.user.username }}</td>
-                <td>{{ p.passed }}</td>
+                <td>{{ p.passed |vote_state:p.date}}</td>
             {% if p.passed %}
                 <script>
                     thumbsUp++;
                 </script>
-            {% else %}
+            {% elif p.date%}
                 <script>
                     thumbsDown++;
+                </script>
+            {% else %}
+                <script>
+                    notYetVoted++;
                 </script>
             {% endif %}
 

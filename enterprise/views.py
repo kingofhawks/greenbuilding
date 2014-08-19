@@ -574,15 +574,6 @@ def project_monitor(request, project_id):
     return render(request, 'project_monitor.html', {'monitor': monitor, 'project_id': project_id})
 
 
-def get_selection_status(project_id):
-        selections = get_list_or_404(Selection, project_id=project_id)
-        if selections is not None:
-            for selection in selections:
-                pass
-
-        return "Test"
-
-
 @login_required
 def project_selection(request, project_id):
     from django.contrib.auth.models import User
@@ -620,7 +611,7 @@ def project_selection(request, project_id):
         print user.has_perm('enterprise.approve_submission')
         print user.has_perm('enterprise.add_submission')
         return render(request, 'project_selection.html',
-                      {'selections': selections, 'project': project, 'project_id': project_id, 'status': get_selection_status(project_id)})
+                      {'selections': selections, 'project': project, 'project_id': project_id})
 
 
 
@@ -639,7 +630,6 @@ def pm10_data(request, project_id):
 
     for pm10 in query_set:
         pm10_list.append({'date': pm10.date.date(), 'value': pm10.value})
-
 
     return HttpResponse(json.dumps(pm10_list, cls=DjangoJSONEncoder), content_type="application/json")
 
