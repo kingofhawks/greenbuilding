@@ -146,10 +146,67 @@ def project_detail(request, project_id):
     return render(request, 'project_detail.html', {'project': project, 'project_id': project_id})
 
 
+#Deprecated
 def project_progress(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
     return render(request, 'project_progress.html', {'project': project, 'project_id': project_id})
+
+
+def submission_progress(submissions, project_id):
+    for submission in submissions:
+        if submission.project.id == project_id:
+            if submission.approved:
+                return 100
+            else:
+                return 50
+
+    return 0
+
+
+def review_progress(reviews, project_id):
+    result = {'review': 0, 'report': 0, 'achievement': 0, 'forms': 0}
+    for review in reviews:
+        if review.project.id == project_id:
+            if review.approved:
+                result['review'] = 100
+            else:
+                result['review'] = 50
+
+            if review.comprehensive_benefit is not None:
+                result['report'] = 100
+
+            if review.achievement is not None:
+                result['achievement'] = 100
+
+    return result
+
+
+def vote_progress(project):
+    from django.utils import timezone
+    if project.finish_vote_date is None:
+        return 0
+    elif project.finish_vote_date > timezone.make_aware(datetime.utcnow(), timezone.get_default_timezone()):
+        return 0
+    else:
+        return 100
+
+
+def project_progress_data(request):
+    result = {}
+    projects = get_list_or_404(Project)
+    print projects
+    submissions = get_list_or_404(Submission)
+    reviews = get_list_or_404(ApplicationReview)
+
+    for project in projects:
+        project_id = project.id
+        review = review_progress(reviews, project_id);
+        result[project.id] = {'submission': submission_progress(submissions, project_id),
+                              'review': review['review'], 'report': review['report'],
+                              'achievement': review['achievement'], 'forms': review['forms'], 'vote': vote_progress(project)}
+
+    return HttpResponse(json.dumps(result), content_type="application/json")
 
 
 @login_required
@@ -612,9 +669,6 @@ def project_selection(request, project_id):
         print user.has_perm('enterprise.add_submission')
         return render(request, 'project_selection.html',
                       {'selections': selections, 'project': project, 'project_id': project_id})
-
-
-
 
 
 @login_required

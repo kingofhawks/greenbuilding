@@ -102,17 +102,21 @@
             labels: ["申报创建", "应用评审", "总结报告", "影像资料", "评价表", "考评评选"],
             datasets: [
                 {
-                    label: "My Second dataset",
+                    label: "Project Progress Chart",
                     fillColor: "rgba(151,187,205,0.2)",
                     strokeColor: "rgba(151,187,205,1)",
                     pointColor: "rgba(151,187,205,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [100, 100, 100, 0, 0, 0]
+{#                    data: [100, 100, 100, 0, 0, 0]#}
                 }
             ]
         };
+
+{#        var data3 = Object.create(data2);#}
+{#        data3.datasets[0].data=[100, 50, 100, 0, 0, 0]#}
+{#        console.log(data3);#}
 
 {#        console.log(document.querySelector("#myChart1"));#}
 {#        console.log($("#myChart1").get(0));#}
@@ -128,11 +132,19 @@
 {#        console.log(typeof(charts));#}
 {#        console.log(charts);#}
         var canvas = Array.prototype.slice.call(charts);
-        canvas.forEach(function (chart) {
-{#            console.log(chart);#}
-            console.log(chart.id);
-            var ctx = document.querySelector("#"+chart.id).getContext("2d");
-            var myLineChart = new Chart(ctx).Line(data2, {responsive:true});
+
+
+        $.get('{% url "enterprise.project.progress.data" %}', function (data){
+            console.log(data);
+            canvas.forEach(function (chart) {
+                console.log(chart.id.substring(7));
+                console.log(data[chart.id.substring(7)]);
+                var eachData = data[chart.id.substring(7)];
+                var data3 = Object.create(data2);
+                data3.datasets[0].data=[eachData.submission, eachData.review, eachData.report, eachData.achievement, eachData.forms, eachData.vote]
+                var ctx = document.querySelector("#"+chart.id).getContext("2d");
+                var myLineChart = new Chart(ctx).Line(data3, {responsive:true});
+            });
         });
 
     });

@@ -24,6 +24,9 @@ class Project(models.Model):
     postal_address = models.CharField(verbose_name=_('postal_address'), max_length=256, blank=True, null=True)
     zipcode = models.CharField(verbose_name=_('zipcode'), max_length=6, blank=True, null=True)
 
+    #vote info
+    finish_vote_date = models.DateTimeField(verbose_name=_('Finish Vote Date'), blank=True, null=True)
+
     class Meta:
         verbose_name = _("project")
         ordering = ['name']

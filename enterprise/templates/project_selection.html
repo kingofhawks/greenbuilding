@@ -102,7 +102,8 @@
 
 {% block project_main %}
     <div>
-        {% trans "Vote Result" %}:{{ project_id|vote_result }}
+        {% trans "Vote Result" %}:{{ project_id|vote_result }}<br>
+        <span>{% trans "Finish Vote Date" %}:{{ project.finish_vote_date |date:"Y年m月j日" }}</span>
         <canvas id="selectionChart" width="100" height="30"></canvas>
     </div>
 <table class="table table-hover table-bordered">
