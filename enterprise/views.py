@@ -19,12 +19,26 @@ from django.core import serializers
 #json.dumps do not work with DateTime object type,need to use DjangoJSONEncoder
 from django.core.serializers.json import DjangoJSONEncoder
 from datetime import datetime
+from django.contrib.auth.models import User
 
 
 class ProjectList(ListView):
     model = Project
     template_name = 'project_list.html'
     context_object_name = 'projects'
+
+
+class CompanyProjectList(ListView):
+    model = Project
+    template_name = 'project_list.html'
+    context_object_name = 'projects'
+
+    def get_queryset(self):
+        #print self.args
+        #print self.kwargs
+        #print self.request
+        self.user = get_object_or_404(User, pk=self.kwargs['pk'])
+        return Project.objects.filter(user=self.user)
 
 
 class ProjectUpdate(UpdateView):

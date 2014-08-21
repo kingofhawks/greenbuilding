@@ -4,6 +4,7 @@ import views
 urlpatterns = patterns('',
     # Examples:
     url(r'^projects$', views.ProjectList.as_view(), name='enterprise.projects'),
+    url(r'^company/(?P<pk>\d+)/$', views.CompanyProjectList.as_view(), name='enterprise.company'),
     url(r'^submissions$', views.SubmissionList.as_view(), name='enterprise.submissions'),
     url(r'^reviews$', views.ApplicationReviewList.as_view(), name='enterprise.reviews'),
     url(r'^evaluations', views.SelfEvaluationList.as_view(), name='enterprise.evaluations'),

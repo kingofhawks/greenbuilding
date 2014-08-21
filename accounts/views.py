@@ -5,6 +5,7 @@ from django.views.generic import ListView
 from models import UserProfile
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.messages import info, error
+from django.http import Http404
 
 
 class CompanyList(ListView):
@@ -68,14 +69,22 @@ def logout(request):
 
 
 def profile(request, template='accounts/account_profile.html'):
-    p = get_object_or_404(UserProfile, user_id=request.user.pk)
+    try:
+        p = get_object_or_404(UserProfile, user_id=request.user.pk)
+    except Http404:
+        p = UserProfile(user=request.user)
+        p.save()
+
     #load form initial value from models
-    form = ProfileForm(request.POST or None, initial={'company': p.company})
+    form = ProfileForm(request.POST or None, initial={'company': p.company, 'location': p.location, 'contact': p.contact, 'phone': p.phone})
     #print p
     #print p.company
     if request.method == "POST" and form.is_valid():
         company = form.cleaned_data.get("company")
         p.company = company
+        p.location = form.cleaned_data.get("location")
+        p.contact = form.cleaned_data.get("contact")
+        p.phone = form.cleaned_data.get("phone")
         p.save()
         info(request, _("Profile updated"))
 

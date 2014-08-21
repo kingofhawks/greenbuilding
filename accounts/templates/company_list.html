@@ -1,5 +1,5 @@
 {% extends "list_base.html" %}
-{% load i18n %}
+{% load i18n staticfiles %}
 
 {% block left_panel %}
 <ul class="nav nav-pills nav-stacked">
@@ -8,13 +8,19 @@
 {% endblock %}
 
 {% block list %}
-<table class="table table-hover table-bordered">
+<table class="table table-hover">
     <thead>
         <th>{% trans "Company" %}</th>
+        <th>{% trans "Location" %}</th>
+        <th>{% trans "contact" %}</th>
+        <th>{% trans "phone" %}</th>
     </thead>
     {% for p in companies %}
         <tr>
-            <td>{{ p.company }}</td>
+            <td><a href="{% url  'enterprise.company' p.user.id%}">{{ p.company }}</a></td>
+            <td>{{ p.location }}</td>
+            <td>{{ p.contact }}</td>
+            <td>{{ p.phone }}</td>
         </tr>
     {% endfor %}
 </table>
