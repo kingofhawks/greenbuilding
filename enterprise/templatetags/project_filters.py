@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext as _
 from django import template
-from enterprise.models import Selection
+from enterprise.models import Selection, NOTIFICATION_TYPE_CHOICES
 register = template.Library()
 
 @register.filter(name='approve_state')
@@ -41,3 +41,11 @@ def vote_result(value):
         status = _('Thumbs Down')
 
     return status
+
+
+@register.filter(name='notification_type')
+def notification_type(value):
+    for choice in NOTIFICATION_TYPE_CHOICES:
+        if choice[0] == value:
+            return choice[1];
+    return ''

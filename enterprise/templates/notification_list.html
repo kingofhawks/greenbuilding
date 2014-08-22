@@ -1,26 +1,18 @@
 {% extends "list_base.html" %}
-{% load i18n %}
-
-{% block toolbar %}
-<div class="btn-group">
-  <a href="{% url "enterprise.project.add" %}" class="btn btn-default">{% trans "Create" %}</a>
-  <a href="{% url "login" %}" class="btn btn-default">{% trans "Modify" %}</a>
-  <a href="{% url "login" %}" class="btn btn-default">{% trans "Delete" %}</a>
-</div>
-{% endblock %}
+{% load i18n project_filters %}
 
 {% block list %}
 <table class="table table-hover table-bordered">
     <thead>
-        <th>{% trans "label" %}</th>
+        <th>{% trans "Project" %}</th>
         <th>{% trans "type" %}</th>
-        <th>{% trans "project_url" %}</th>
+        <th>{% trans "Date" %}</th>
     </thead>
     {% for p in notifications %}
         <tr>
-            <td>{{ p.label }}</td>
-            <td>{{ p.type }}</td>
-            <td><a href="{{ p.project_url }}">{{ p.project_url }}</a></td>
+            <td><a href="{{ p.project_url }}">{{ p.label }}</a></td>
+            <td>{{ p.type |notification_type}}</td>
+            <td>{{ p.date }}</td>
         </tr>
     {% endfor %}
 </table>

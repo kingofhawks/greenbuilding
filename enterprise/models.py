@@ -172,9 +172,15 @@ class PM10(models.Model):
         return 'PM10:{}'.format(self.value)
 
 
+NOTIFICATION_TYPE_CHOICES = (
+        (1, _('Submission')),
+        (2, _('Application Review')),
+)
+
+
 class Notification(models.Model):
     label = models.CharField(verbose_name=_('label'), max_length=256)
-    type = models.SmallIntegerField(verbose_name=_('type'))
+    type = models.SmallIntegerField(verbose_name=_('type'), choices=NOTIFICATION_TYPE_CHOICES)
     project_url = models.CharField(verbose_name=_('project_url'), max_length=128)
     processed = models.BooleanField(verbose_name=_('processed'), default=False)
     date = models.DateTimeField(verbose_name=_('Date'), blank=True, null=True, default=datetime.utcnow())
