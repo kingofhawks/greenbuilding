@@ -139,14 +139,13 @@ def create_project(request, template="create_project.html"):
     return render(request, template, context)
 
 
-def delete_project(request, template="create_project.html"):
-    form = ProjectForm(request.POST or None)
-    if request.method == "POST" and form.is_valid():
-        new_project = form.save()
-        print new_project
-        return redirect('enterprise.projects')
-    context = {"form": form, "title": _("Create Project")}
-    return render(request, template, context)
+def delete_project(request, pk):
+    try:
+        project = get_object_or_404(Project, pk=pk)
+        project.delete()
+    except Http404:
+        pass
+    return HttpResponse(json.dumps('OK'), content_type="application/json")
 
 
 @login_required

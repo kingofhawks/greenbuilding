@@ -88,12 +88,15 @@
                 if (value === false) {
                   return console.log('Cancelled');
                 }
-            var csrf_token = $.cookie('csrftoken');
-            $.post("{% url 'enterprise.project.delete'%}",{project_id:"{{ submission.id }}", csrfmiddlewaretoken:csrf_token},
-                    function(data){
-                console.log(data);
-            })
-                return console.log('Username', data.code, 'Password', data.amount);
+                var csrf_token = $.cookie('csrftoken');
+                var url = "{% url 'enterprise.project.delete' pk=99999 %}";
+                url = url.replace(/99999/, selected[0]);
+                $.post(url,{project_id:"{{ submission.id }}", csrfmiddlewaretoken:csrf_token},
+                        function(data){
+                    console.log(data);
+                })
+{#                return console.log('Username', data.code, 'Password', data.amount);#}
+                return true;
               }
             });
         });

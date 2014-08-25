@@ -2,7 +2,12 @@
 {% load i18n staticfiles%}
 {% block header %}
     <link rel="stylesheet" href="{% static 'nprogress/nprogress.css' %}">
+    <link rel="stylesheet" href="{% static 'messenger/build/css/messenger.css' %}">
+    <link rel="stylesheet" href="{% static 'messenger/build/css/messenger-theme-future.css' %}">
+
     <script src="{% static 'nprogress/nprogress.js' %}"></script>
+    <script src="{% static 'messenger/build/js/messenger.min.js' %}"></script>
+    <script src="{% static 'messenger/build/js/messenger-theme-future.js' %}"></script>
     <script>
     $(document).ready(function(){
         $( "form" ).submit(function( event ) {
@@ -11,6 +16,18 @@
             NProgress.set(0.3);
             NProgress.start();
         });
+        var msg = "{{ msg }}";
+        console.log(typeof(msg));
+        console.log(msg);
+
+        if (msg){
+            Messenger().post({
+              message: msg,
+              type: "error",
+              showCloseButton:true
+            })
+        }
+
     });
     </script>
 <nav class="navbar navbar-default" role="navigation">
@@ -28,11 +45,11 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-      </form>
+{#      <form class="navbar-form navbar-left" role="search">#}
+{#        <div class="form-group">#}
+{#          <input type="text" class="form-control" placeholder="Search">#}
+{#        </div>#}
+{#      </form>#}
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{% url "signup" %}">{% trans "Sign Up" %}</a></li>
       </ul>
@@ -46,6 +63,6 @@
 {% else %}
     {{ block.super }}
     {% url "signup" as signup_url %}
-    {% endif %}
+{% endif %}
 
 {% endblock %}

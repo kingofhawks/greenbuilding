@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-18 10:37+0800\n"
+"POT-Creation-Date: 2014-08-25 15:46+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,67 +17,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\forms.py:14 .\forms.py:26 .\forms.py:58
+#: .\forms.py:15 .\forms.py:42 .\forms.py:70
 msgid "Username"
 msgstr "用户名"
 
-#: .\forms.py:15 .\templates\email\account_approve.html:6
+#: .\forms.py:16 .\templates\email\account_approve.html:6
 #: .\templates\email\account_approve.txt:6
 msgid "Email"
 msgstr "电子邮件"
 
-#: .\forms.py:17
+#: .\forms.py:18
 msgid "Create password"
 msgstr "密码"
 
-#: .\forms.py:19
+#: .\forms.py:20
 msgid "Repeat password"
 msgstr "确认密码"
 
-#: .\forms.py:27
+#: .\forms.py:43
 msgid "Password"
 msgstr "密码"
 
-#: .\forms.py:40
+#: .\forms.py:58
 msgid "Invalid username/email and password"
-msgstr ""
+msgstr "用户名或密码错误"
 
-#: .\forms.py:42
+#: .\forms.py:60
 msgid "Your account is inactive"
-msgstr ""
+msgstr "帐号尚未激活"
 
-#: .\forms.py:67
+#: .\forms.py:79
 msgid "Invalid username/email"
 msgstr ""
 
-#: .\views.py:10 .\templates\accounts\includes\user_panel.html:20
-#: .\templates\accounts\includes\user_panel_nav.html:14
-msgid "Log in"
+#: .\models.py:46 .\templates\company_list.html:13
+msgid "Company"
 msgstr ""
 
-#: .\views.py:25 .\templates\accounts\includes\user_panel.html:23
-#: .\templates\accounts\includes\user_panel_nav.html:16
-msgid "Sign up"
+#: .\models.py:47
+msgid "location"
+msgstr ""
+
+#: .\models.py:48 .\templates\company_list.html:15
+msgid "contact"
+msgstr ""
+
+#: .\models.py:49 .\templates\company_list.html:16
+msgid "phone"
+msgstr ""
+
+#: .\templates\accounts\account_login.html:37
+msgid "Sign Up"
 msgstr "注册"
 
-#: .\templates\accounts\account_login.html:7
+#: .\templates\accounts\account_login.html:45
 msgid ""
 "You're already logged in. If you'd like to log in as a different user, "
 "you'll need to log out first."
-msgstr ""
-
-#: .\templates\accounts\account_login.html:11
-#, python-format
-msgid ""
-"If you don't have an account you can <a href=\"%(signup_url)s?next=%(next)s"
-"\">sign up</a> for one now."
-msgstr ""
-
-#: .\templates\accounts\account_login.html:14
-#, python-format
-msgid ""
-"<p>You can also <a href=\"%(password_reset_url)s?next=%(profile_update_url)s"
-"\">reset your password</a> if you've forgotten it.</p>"
 msgstr ""
 
 #: .\templates\accounts\account_password_reset.html:6
@@ -86,24 +82,29 @@ msgid ""
 "you need to click, in order to log in and change your password."
 msgstr ""
 
-#: .\templates\accounts\account_profile.html:18
-#: .\templates\accounts\includes\user_panel.html:11
-msgid "Update profile"
-msgstr ""
+#: .\templates\accounts\account_profile.html:7
+#, fuzzy
+#| msgid "Username"
+msgid "User"
+msgstr "用户名"
 
-#: .\templates\accounts\account_signup.html:7
+#: .\templates\accounts\account_signup.html:26
+msgid "Log In"
+msgstr "登录"
+
+#: .\templates\accounts\account_signup.html:36
 msgid ""
 "You're already logged in. If you'd like to create a new account, you'll need "
 "to log out first."
 msgstr ""
 
-#: .\templates\accounts\account_signup.html:11
+#: .\templates\accounts\account_signup.html:40
 msgid ""
 "After signing up, your account will be reviewed for approval. You'll receive "
 "an email when your account is activated."
 msgstr ""
 
-#: .\templates\accounts\account_signup.html:13
+#: .\templates\accounts\account_signup.html:42
 msgid ""
 "After signing up, you'll receive an email with a link you need to click, in "
 "order to activate your account."
@@ -113,17 +114,47 @@ msgstr ""
 msgid "Logged in as: "
 msgstr ""
 
+#: .\templates\accounts\includes\user_panel.html:11
+msgid "Update profile"
+msgstr ""
+
 #: .\templates\accounts\includes\user_panel.html:17
 #: .\templates\accounts\includes\user_panel_nav.html:11
 msgid "Log out"
 msgstr ""
 
+#: .\templates\accounts\includes\user_panel.html:20
+#: .\templates\accounts\includes\user_panel_nav.html:14 .\views.py:33
+msgid "Log in"
+msgstr "登录"
+
 #: .\templates\accounts\includes\user_panel.html:21
 msgid "or"
 msgstr ""
 
+#: .\templates\accounts\includes\user_panel.html:23
+#: .\templates\accounts\includes\user_panel_nav.html:16 .\views.py:62
+msgid "Sign up"
+msgstr "注册"
+
+#: .\templates\accounts_base.html:50
+msgid "Powered by"
+msgstr ""
+
+#: .\templates\accounts_base.html:52
+msgid "and"
+msgstr ""
+
 #: .\templates\admin\profile_inline.html:10
 msgid "Profile information"
+msgstr ""
+
+#: .\templates\company_list.html:6
+msgid "Enterprise Info"
+msgstr ""
+
+#: .\templates\company_list.html:14
+msgid "Location"
 msgstr ""
 
 #: .\templates\email\account_approve.html:3
@@ -190,3 +221,11 @@ msgstr ""
 #: .\templates\email\signup_verify_subject.txt:2
 msgid "Activate your account"
 msgstr ""
+
+#: .\views.py:89
+msgid "Profile updated"
+msgstr ""
+
+#: .\views.py:91
+msgid "Update Profile"
+msgstr "修改设置"

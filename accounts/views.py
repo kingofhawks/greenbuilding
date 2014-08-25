@@ -6,6 +6,7 @@ from models import UserProfile
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.messages import info, error
 from django.http import Http404
+from django import forms
 
 
 class CompanyList(ListView):
@@ -20,17 +21,23 @@ def login(request, template="accounts/account_login.html"):
     Login form.
     """
     form = LoginForm(request.POST or None)
+    msg = ''
     if request.method == "POST" and form.is_valid():
-        authenticated_user = form.save()
-        if authenticated_user is not None:
-            if authenticated_user.is_active:
-                auth_login(request, authenticated_user)
-                # Redirect to a success page.
-                return redirect('core.dashboard')
-            else:
-                return redirect('core.dashboard')
+        try:
+            authenticated_user = form.save()
+            if authenticated_user is not None:
+                if authenticated_user.is_active:
+                    auth_login(request, authenticated_user)
+                    # Redirect to a success page.
+                    return redirect('core.dashboard')
+                else:
+                    return redirect('core.dashboard')
+        except forms.ValidationError as e:
+            print e
+            print e.message
+            msg = e
 
-    context = {"form": form, "title": _("Log in")}
+    context = {"form": form, "title": _("Log in"), 'msg': msg}
     return render(request, template, context)
 
 

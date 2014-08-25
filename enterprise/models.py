@@ -189,7 +189,7 @@ class Notification(models.Model):
         verbose_name = _('Notification')
 
     def __str__(self):
-        return 'Notification:{} type:{}'.format(self.label, self.type)
+        return 'Notification:{} type:{}'.format(self.id, self.type)
 
 
 class Picture(models.Model):
@@ -265,7 +265,7 @@ class ElementEvaluationForm(models.Model):
 
 
     def __str__(self):
-        return 'ElementEvaluationForm:{}'.format(self.project.name)
+        return 'ElementEvaluationForm:{}'.format(self.project.id)
 
 
 class BatchEvaluationForm(models.Model):
@@ -294,7 +294,7 @@ class BatchEvaluationForm(models.Model):
 
 
     def __str__(self):
-        return 'BatchEvaluationForm:{}'.format(self.project.name)
+        return 'BatchEvaluationForm:{}'.format(self.project.id)
 
 
 class StageEvaluationForm(models.Model):
@@ -310,7 +310,7 @@ class StageEvaluationForm(models.Model):
 
 
     def __str__(self):
-        return 'StageEvaluationForm:{}'.format(self.project.name)
+        return 'StageEvaluationForm:{}'.format(self.project.id)
 
 
 class UnitEvaluationForm(models.Model):
@@ -334,7 +334,7 @@ class UnitEvaluationForm(models.Model):
 
 
     def __str__(self):
-        return 'UnitEvaluationForm:{}'.format(self.project.name)
+        return 'UnitEvaluationForm:{}'.format(self.project.id)
 
 
 

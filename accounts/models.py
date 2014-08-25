@@ -43,7 +43,7 @@ from django.utils import timezone
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    company = models.CharField(verbose_name=_('company'), max_length=255, blank=False)
+    company = models.CharField(verbose_name=_('Company'), max_length=255, blank=False)
     location = models.CharField(verbose_name=_("location"), max_length=256, blank=True, null=True)
     contact = models.CharField(verbose_name=_('contact'), max_length=32, blank=True, null=True)
     phone = models.CharField(verbose_name=_('phone'), max_length=32, blank=True, null=True)
