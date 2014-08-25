@@ -32,7 +32,7 @@ class Project(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return 'Project:{}'.format(self.name)
+        return 'Project:{}'.format(self.id)
 
     def get_absolute_url(self):
         return reverse('enterprise.project.detail', args=[str(self.id)])
@@ -74,7 +74,7 @@ class Submission(models.Model):
         )
 
     def __str__(self):
-        return 'Submission:{}'.format(self.project.name)
+        return 'Submission:{}'.format(self.project.id)
 
     def get_absolute_url(self):
         return reverse('enterprise.project.submission', args=[str(self.project.id)])
@@ -116,7 +116,7 @@ class ApplicationReview(models.Model):
         ordering = ['date']
 
     def __str__(self):
-        return 'ApplicationReview:{}'.format(self.project.name)
+        return 'ApplicationReview:{}'.format(self.project.id)
 
     def get_absolute_url(self):
         return reverse('enterprise.project.review', args=[str(self.project.id)])
