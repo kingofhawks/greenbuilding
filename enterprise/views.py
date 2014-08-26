@@ -438,11 +438,12 @@ def review_summary(request, project_id):
     print project_id
     field_id = request.POST.get('field_id')
     field_content = request.POST.get('field_content')
-    #print 'field_id:{} field_content:{}'.format(field_id,field_content)
+    print 'field_id:{} field_content:{}'.format(field_id, field_content)
     from django.db import connection
     cursor = connection.cursor()
 
-    cursor.execute("UPDATE enterprise_ApplicationReview SET {}".format(field_id)+" = %s WHERE id = %s", [field_content, project_id])
+    cursor.execute("UPDATE enterprise_ApplicationReview SET {}".format(field_id)+" = %s WHERE project_id = %s",
+                   [field_content, project_id])
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
@@ -454,12 +455,23 @@ def review_photo(request, project_id):
         review = get_object_or_404(ApplicationReview, pk=project_id)
         print review
     except Http404:
-        warning(request, _('Review is not submitted yet.'))
         review = ApplicationReview(id=99999)#hack an empty review
 
     print request.FILES
     picture = Picture(review=review, file=request.FILES['files'])
     picture.save()
+
+    return HttpResponse(json.dumps('OK'), content_type="application/json")
+
+
+def delete_review_photo(request, pk):
+    picture = None
+    try:
+        picture = get_object_or_404(Picture, pk=pk)
+        print picture
+        picture.delete()
+    except Http404:
+        pass
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
@@ -497,7 +509,7 @@ def project_achievement_pictures(request, project_id):
             #print picture
             #print picture.file
             #print picture.file.url
-            result.append(picture.file.url)
+            result.append({'url': picture.file.url, 'pk': picture.id})
 
     return HttpResponse(json.dumps(result), content_type="application/json")
 

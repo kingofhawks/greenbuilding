@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-25 16:09+0800\n"
+"POT-Creation-Date: 2014-08-26 09:09+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -517,7 +517,7 @@ msgstr "单位工程绿色施工评价汇总表"
 
 #: .\templates\project_list.html:86
 msgid "Are you sure to delete this project?"
-msgstr "你确定要删除次项目？"
+msgstr "你确定要删除此项目？"
 
 #: .\templates\project_list.html:160 .\templates\review_list.html:77
 #: .\templates\submission_list.html:101
@@ -540,7 +540,7 @@ msgstr "进度"
 #: .\templates\project_list.html:175 .\templates\review_list.html:94
 #: .\templates\submission_list.html:120
 msgid "Detail"
-msgstr ""
+msgstr "详细信息"
 
 #: .\templates\project_monitor.html:6
 #, fuzzy
@@ -613,9 +613,9 @@ msgstr "请选择应用评审"
 msgid "ApplicationReview committed successfully"
 msgstr "申报评审提交成功"
 
-#: .\templates\review_list.html:80 .\templates\submission_list.html:104
-msgid "Submit"
-msgstr "申报创建列表"
+#: .\templates\review_list.html:80
+msgid "Submit ApplicationReview"
+msgstr "提交应用评审"
 
 #: .\templates\self_evaluation_list.html:6
 msgid "Self Evaluation"
@@ -632,6 +632,10 @@ msgstr "申报创建提交成功"
 #: .\templates\submission_list.html:70
 msgid "Are you sure to delete this submission?"
 msgstr "你确认要删除此申报创建？"
+
+#: .\templates\submission_list.html:104
+msgid "Submit Submission"
+msgstr "提交申报创建"
 
 #: .\templatetags\project_filters.py:20 .\templatetags\project_filters.py:26
 msgid "Not yet voted"
@@ -677,8 +681,8 @@ msgstr "申报创建审核通过"
 msgid "Submission denied"
 msgstr "申报创建被退回"
 
-#: .\views.py:332 .\views.py:421 .\views.py:432 .\views.py:457 .\views.py:473
-#: .\views.py:543
+#: .\views.py:332 .\views.py:421 .\views.py:432 .\views.py:458 .\views.py:474
+#: .\views.py:544
 msgid "Review is not submitted yet."
 msgstr "该项目申报评审尚未提交"
 
@@ -698,25 +702,28 @@ msgstr "应用评审审核通过"
 msgid "ApplicatonReview denied"
 msgstr "应用评审被退回"
 
-#: .\views.py:481
+#: .\views.py:482
 msgid "Pictures is not uploaded yet."
 msgstr "该项目图片资料尚未上传"
 
-#: .\views.py:566
+#: .\views.py:567
 msgid "Create Element Evaluation Form"
 msgstr "绿色施工要素评价表"
 
-#: .\views.py:587
+#: .\views.py:588
 msgid "Create Batch Evaluation Form"
 msgstr "绿色施工批次评价汇总表"
 
-#: .\views.py:608
+#: .\views.py:609
 msgid "Create Stage Evaluation Form"
 msgstr "绿色施工阶段评价汇总表"
 
-#: .\views.py:629
+#: .\views.py:630
 msgid "Create Unit Evaluation Form"
 msgstr "单位工程绿色施工评价汇总表"
+
+#~ msgid "Submit"
+#~ msgstr "申报创建列表"
 
 #, fuzzy
 #~| msgid "Vote Status"
