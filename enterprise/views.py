@@ -438,7 +438,7 @@ def review_summary(request, project_id):
     print project_id
     field_id = request.POST.get('field_id')
     field_content = request.POST.get('field_content')
-    print 'field_id:{} field_content:{}'.format(field_id, field_content)
+    #print 'field_id:{} field_content:{}'.format(field_id, field_content)
     from django.db import connection
     cursor = connection.cursor()
 
