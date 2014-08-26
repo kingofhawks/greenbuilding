@@ -25,7 +25,11 @@
 
     //Best to attach onclick event in jQuery ready() function like this
     $(document).ready(function(){
-        var l = Ladda.create( document.querySelector( '#approve' ) );
+        var l;
+        if (document.querySelector( '#approve')){
+            l = Ladda.create( document.querySelector( '#approve'));
+        }
+
         var csrf_token = $.cookie('csrftoken');
 
         $("#approve").click(function(){

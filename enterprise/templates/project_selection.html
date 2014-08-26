@@ -23,6 +23,19 @@
 
     $(document).ready(function(){
         var csrf_token = $.cookie('csrftoken');
+        //show date as string with django date filter format
+        var finishVoteDate = "{{ project.finish_vote_date |date:"Y-m-jTH:m:s"}}"
+        console.log(finishVoteDate);
+        var finishDateMills = Date.parse(finishVoteDate);
+        console.log(finishDateMills);
+        if (isNaN(finishDateMills)){
+            $("#result").hide();
+            $("#vote").hide();
+        } else if (finishDateMills>Date.now()){
+            $("#vote").show();
+        } else{
+            $("#vote").hide();
+        }
 
     function selection(passed){
                     $.post("{% url 'enterprise.project.selection' project_id%}",{user:"{{ user }}",thumbsUp:passed, csrfmiddlewaretoken:csrf_token},
@@ -101,11 +114,21 @@
 {% endblock %}
 
 {% block project_main %}
-    <div>
-        {% trans "Vote Result" %}:{{ project_id|vote_result }}<br>
+    {% trans "Vote Result" %}:{{ project_id|vote_result }}<br>
+
+    <div id="result">
         <span>{% trans "Finish Vote Date" %}:{{ project.finish_vote_date |date:"Y年m月j日" }}</span>
         <canvas id="selectionChart" width="100" height="30"></canvas>
     </div>
+    <div id="vote">
+        <a id="thumbsUp" class="btn btn-primary" href="#">
+            <i class="fa fa-thumbs-o-up fa-2x pull-left"></i> {% trans "Thumbs Up" %}
+        </a>
+        <a id="thumbsDown" class="btn btn-primary" href="#">
+            <i class="fa fa-thumbs-o-down fa-2x pull-left"></i>{% trans "Thumbs Down" %}
+        </a>
+    </div>
+
 <table class="table table-hover table-bordered">
     <thead>
         <th>{% trans "User" %}</th>
@@ -141,13 +164,6 @@
     </tbody>
 </table>
 
-<div>
-    <a id="thumbsUp" class="btn btn-primary" href="#">
-        <i class="fa fa-thumbs-o-up fa-2x pull-left"></i> {% trans "Thumbs Up" %}
-    </a>
-    <a id="thumbsDown" class="btn btn-primary" href="#">
-        <i class="fa fa-thumbs-o-down fa-2x pull-left"></i>{% trans "Thumbs Down" %}
-    </a>
-</div>
+
 
 {% endblock %}
