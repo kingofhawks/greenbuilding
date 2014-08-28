@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
     <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
     <link rel="stylesheet" href="{% static 'datatables/media/css/jquery.dataTables.css' %}">
+    <link rel="stylesheet" href="{% static "rickshaw/rickshaw.min.css" %}">
 {% endblock %}
 
 {% block extra_js %}
@@ -19,6 +20,8 @@
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script src="{% static 'datatables/media/js/jquery.dataTables.js' %}"></script>
     <script src="{% static 'chartjs/Chart.js' %}"></script>
+    <script type="text/javascript" src="{% static "d3/d3.min.js" %}"></script>
+    <script src="{% static "rickshaw/rickshaw.min.js" %}"></script>
     <script>
     $(document).ready(function(){
         //show table
@@ -140,17 +143,59 @@
         $.get('{% url "enterprise.project.progress.data" %}', function (data){
             console.log(data);
             canvas.forEach(function (chart) {
-                console.log(chart.id.substring(7));
+                var project_id = chart.id.substring(7);
+                console.log(project_id);
                 console.log(data[chart.id.substring(7)]);
                 var eachData = data[chart.id.substring(7)];
                 var data3 = Object.create(data2);
-                data3.datasets[0].data=[eachData.submission, eachData.review, eachData.report, eachData.achievement, eachData.forms, eachData.vote]
-                var ctx = document.querySelector("#"+chart.id).getContext("2d");
-                var myLineChart = new Chart(ctx).Line(data3, {responsive:true});
-            });
-        });
+                //chart.js show abnormal when embedded in table td
+{#                data3.datasets[0].data=[eachData.submission, eachData.review, eachData.report, eachData.achievement, eachData.forms, eachData.vote]#}
+{#                var ctx = document.querySelector("#"+chart.id).getContext("2d");#}
+{#                var myLineChart = new Chart(ctx).Line(data3, {responsive:true});#}
 
-    });
+                var graph = new Rickshaw.Graph( {
+                  element: document.querySelector("#"+chart.id),
+                  series: [
+                    {
+                      color: 'steelblue',
+                      data: [ { x: 0, y: eachData.submission}, { x: 1, y: eachData.review }, { x: 2, y: eachData.report },
+                          { x: 3, y: eachData.achievement }, { x: 4, y: eachData.forms }, { x: 5, y: eachData.vote } ]
+                    }
+                  ],
+                    width:400,
+                    height:50,
+                    renderer: 'line',
+                    interpolation: 'linear'
+                } );
+
+            var format = function(n) {
+                var map = {
+                    0: '申报创建',
+                    1: '应用评审',
+                    2: '总结报告',
+                    3: '影像资料',
+                    4: '评价表',
+                    5: '考评评选'
+                };
+                return map[n];
+            }
+
+            var x_ticks = new Rickshaw.Graph.Axis.X( {
+                graph: graph,
+                orientation: 'bottom',
+                element: document.getElementById('x_axis'+project_id),
+                pixelsPerTick: 100,
+                tickFormat: format
+            } );
+
+            graph.render();
+
+            var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+                graph: graph
+            });
+        });//end forEach
+        });//end $.get()
+    });//end ready()
 
     </script>
 {% endblock %}
@@ -168,17 +213,36 @@
     <thead>
         <th>{% trans "Project" %}</th>
         <th>{% trans "Vote Result" %}</th>
-        <th>{% trans "Progress" %}</th>
+        <th style="width:200px">{% trans "Progress" %}</th>
     </thead>
     {% for p in projects %}
         <tr data-row-key="{{ p.id }}">
             <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.name }}</a></td>
             <td>{{ p.id |vote_result }}</td>
             <td>
-                <canvas id="myChart{{ p.id }}" class="progress-chart" width="100" height="30"></canvas>
+{#                <canvas id="myChart{{ p.id }}" class="progress-chart" width="100" height="30"></canvas>#}
+{#                <div id="myChart{{ p.id }}" class="progress-chart"></div>#}
+        <div id="chart_container" style="width:450px">
+                    <div id="myChart{{ p.id }}" class="progress-chart" ></div>
+                    <div id="x_axis{{ p.id }}"></div>
+            <div id="legend"></div>
+        </div>
+{#                <div id="chart_container">#}
+{#                    <div id="y_axis"></div>#}
+{#                    <div id="chart"></div>#}
+{#                    <div id="x_axis"></div>#}
+{#                </div>#}
             </td>
         </tr>
     {% endfor %}
 </table>
+
+
+{#<div id="chart_container">#}
+{#	<div id="y_axis"></div>#}
+{#	<div id="chart"></div>#}
+{#	<div id="x_axis"></div>#}
+{#</div>#}
+
 
 {% endblock %}

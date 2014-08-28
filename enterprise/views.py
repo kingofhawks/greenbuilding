@@ -200,7 +200,7 @@ def vote_progress(project):
     if project.finish_vote_date is None:
         return 0
     elif project.finish_vote_date > timezone.make_aware(datetime.utcnow(), timezone.get_default_timezone()):
-        return 0
+        return 50
     else:
         return 100
 
