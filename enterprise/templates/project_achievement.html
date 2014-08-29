@@ -2,6 +2,7 @@
 {% load i18n staticfiles project_filters%}
 
 {% block extra_css %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'slick.js/slick/slick.css' %}">
     <link rel="stylesheet" href="{% static 'magnific-popup/dist/magnific-popup.css' %}">
     <style>
@@ -30,6 +31,7 @@
 {% endblock %}
 
 {% block extra_js %}
+    {{ block.super }}
     <script src="{% static 'slick.js/slick/slick.min.js' %}"></script>
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
     <script src="{% static 'jquery-file-upload/js/vendor/jquery.ui.widget.js' %}"></script>
@@ -44,7 +46,7 @@
             <a href="{{ this.url }}">
                 <img src="{{ this.url }}" style="width: 20%; height: 20%"/>
             </a>
-            <button class="btn btn-primary remove-pictures" id="{{ this.pk }}"><i class="fa fa-youtube-play"></i>删除</button>
+            <button class="btn btn-primary remove-pictures" id="{{ this.pk }}"><i class="fa fa-times fa"></i>删除</button>
           {{/each}}
     {% endverbatim %}
     </script>
