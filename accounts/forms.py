@@ -9,6 +9,8 @@ from django.utils.http import int_to_base36
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.forms import ModelForm
 from models import UserProfile
+from django.shortcuts import get_object_or_404
+from django.http import Http404
 
 
 class SignupForm(forms.Form):
@@ -27,12 +29,23 @@ class SignupForm(forms.Form):
         that if profile pages are enabled, we still have something to
         use as the profile's slug.
         """
-        username, email, password = (self.cleaned_data['username'],
+        username, email, password1, password2 = (self.cleaned_data['username'],
                                      self.cleaned_data['email'],
-                                     self.cleaned_data['password1'])
+                                     self.cleaned_data['password1'],
+                                     self.cleaned_data['password2'])
+        if password1 != password2:
+            raise forms.ValidationError(_("Password not match"))
 
-        new_user = User.objects.create_user(username, email, password,)
-        return new_user
+        try:
+            existing_user = get_object_or_404(User, username=username)
+            if existing_user:
+                raise forms.ValidationError(_("Username already exists"))
+        except Http404:
+            pass
+
+        new_user = User.objects.create_user(username, email, password1)
+        user = authenticate(username=username, password=password1)
+        return user
 
 
 class LoginForm( forms.Form):

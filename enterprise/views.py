@@ -130,7 +130,8 @@ def new_list(request, template="submission_list.html"):
 
 
 def create_project(request, template="create_project.html"):
-    form = ProjectForm(request.POST or None)
+    user = get_object_or_404(User, pk=request.user.pk)
+    form = ProjectForm(request.POST or None, initial={'user': user})
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
@@ -230,12 +231,14 @@ def project_submission(request, project_id):
         print submission
     except Http404:
         url = reverse('enterprise.submission.add')
+        url += '?project_id='+project_id
         #unicode to gb2312
         msg = (_("Submission is not submitted yet.") + "<a target='_blank' href='{}'>".format(url)
                + _('New Submission')+"</a>").encode('gb2312')
         print msg
         #mark_safe will show raw HTML, rather than escape HTML tags
         warning(request, mark_safe(_("Submission is not submitted yet.")+"<a target='_blank' href={}> Create </a>".format(url)))
+        #warning(request, mark_safe(msg))
     return render(request, 'project_submission.html', {'submission': submission, 'project_id': project_id})
 
 
@@ -252,7 +255,14 @@ def project_submission_pdf(request, project_id):
 
 
 def create_submission(request, template="create_project.html"):
+    project_id = request.GET.get('project_id')
+    print 'create submission for project:{}'.format(project_id)
+
     form = SubmissionForm(request.POST or None)
+    if project_id is not None:
+        project = get_object_or_404(Project, pk=project_id)
+        form = SubmissionForm(request.POST or None, initial={'project': project})
+
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
@@ -329,6 +339,7 @@ def project_review(request, project_id):
         print review
     except Http404:
         url = reverse('enterprise.review.add')
+        url += '?project_id='+project_id
         warning(request, mark_safe(_("Review is not submitted yet.")+"<a target='_blank' href={}> Create </a>".format(url)))
         review = ApplicationReview(id=99999)#hack an empty review
     return render(request, 'project_review.html', {'review': review, 'project_id': project_id})
@@ -341,15 +352,21 @@ def project_review_pdf(request, project_id):
 
 
 def create_review(request, template="create_project.html"):
-    #form = ReviewForm(request.POST or None)
+    project_id = request.GET.get('project_id')
+    print 'create application review for project:{}'.format(project_id)
+    project = None
+
+    if project_id is not None:
+        project = get_object_or_404(Project, pk=project_id)
+
     if request.method == "POST":
         #Must pass request.FILES to ModelForm so it can handle file upload
-        form = ReviewForm(request.POST, request.FILES)
+        form = ReviewForm(request.POST, request.FILES, initial={'project': project})
         new_project = form.save()
         print new_project
         return redirect('enterprise.reviews')
     else:
-        form = ReviewForm()
+        form = ReviewForm(initial={'project': project})
     context = {"form": form, "title": _("Create ApplicationReview")}
     return render(request, template, context)
 
@@ -658,7 +675,6 @@ def project_monitor(request, project_id):
 
 @login_required
 def project_selection(request, project_id):
-    from django.contrib.auth.models import User
     user = get_object_or_404(User, pk=request.user.pk)
     project = get_object_or_404(Project, pk=project_id)
 

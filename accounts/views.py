@@ -48,7 +48,14 @@ def signup(request, template="accounts/account_signup.html"):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
-            new_user = form.save()
+            try:
+                new_user = form.save()
+                info(request, _("Successfully signed up"))
+                #from django.contrib.auth import authenticate
+                auth_login(request, new_user)
+                return redirect('core.dashboard')
+            except forms.ValidationError as e:
+                error(request, e.message)
             #if not new_user.is_active:
             #    if settings.ACCOUNTS_APPROVAL_REQUIRED:
             #        send_approve_mail(request, new_user)

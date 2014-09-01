@@ -7,7 +7,9 @@ from models import (Project, Submission, ApplicationReview, ElementEvaluationFor
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        #fields = ['name', 'description', 'user']
+        #fields = ['name', 'description', 'location', 'area', 'cost', 'structure_type', 'start_date', 'end_date',
+        #          'construct_company', 'postal_address', 'zipcode']
+        #exclude = ['user']
 
 
 class SubmissionForm(ModelForm):
