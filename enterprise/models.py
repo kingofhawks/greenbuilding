@@ -31,8 +31,11 @@ class Project(models.Model):
         verbose_name = _("project")
         ordering = ['name']
 
-    def __str__(self):
-        return 'Project:{}'.format(self.id)
+    #def __str__(self):
+    #    return 'Project:{}'.format(self.name)
+
+    def __unicode__(self):
+        return u'Project:{}'.format(self.name)
 
     def get_absolute_url(self):
         return reverse('enterprise.project.detail', args=[str(self.id)])
@@ -74,7 +77,7 @@ class Submission(models.Model):
         )
 
     def __str__(self):
-        return 'Submission:{}'.format(self.project.id)
+        return 'Submission:{}'.format(self.project)
 
     def get_absolute_url(self):
         return reverse('enterprise.project.submission', args=[str(self.project.id)])
@@ -116,7 +119,7 @@ class ApplicationReview(models.Model):
         ordering = ['date']
 
     def __str__(self):
-        return 'ApplicationReview:{}'.format(self.project.id)
+        return 'ApplicationReview:{}'.format(self.project)
 
     def get_absolute_url(self):
         return reverse('enterprise.project.review', args=[str(self.project.id)])
