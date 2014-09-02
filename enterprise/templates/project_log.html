@@ -1,0 +1,21 @@
+{% extends "project_base.html" %}
+{% load i18n staticfiles project_filters%}
+
+
+{% block project_main %}
+<table class="table table-hover table-bordered">
+    <thead>
+        <th>{% trans "Date" %}</th>
+        <th>{% trans "Message" %}</th>
+    </thead>
+    <tbody>
+        {% for p in logs %}
+            <tr>
+                <td>{{ p.time }}</td>
+                <td>{{ p.message}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

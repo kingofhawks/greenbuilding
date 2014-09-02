@@ -55,7 +55,8 @@
                   return console.log('Cancelled');
                 }
 
-                $.post("{% url 'enterprise.review.deny'  review.id%}",{ csrfmiddlewaretoken:csrf_token},
+                $.post("{% url 'enterprise.review.deny'  review.id%}",
+                        { reason:value, csrfmiddlewaretoken:csrf_token},
                         function(data){
                             $("#approved").text("{% trans 'Deny' %}")
                 })

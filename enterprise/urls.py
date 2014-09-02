@@ -62,6 +62,7 @@ urlpatterns = patterns('',
     url(r'^projects/(?P<project_id>\d+)/pm10/$', views.project_pm10, name='enterprise.project.pm10'),
     url(r'^projects/(?P<project_id>\d+)/pm10/data/$', views.pm10_data, name='enterprise.project.pm10_data'),
     url(r'^projects/(?P<project_id>\d+)/noise/$', views.project_noise, name='enterprise.project.noise'),
+    url(r'^projects/(?P<project_id>\d+)/log/$', views.project_log, name='enterprise.project.log'),
 )
 
 

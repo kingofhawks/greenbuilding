@@ -20,6 +20,7 @@ from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 from datetime import datetime
 from django.contrib.auth.models import User
+from dao import create_log
 
 
 class ProjectList(ListView):
@@ -232,13 +233,11 @@ def project_submission(request, project_id):
     except Http404:
         url = reverse('enterprise.submission.add')
         url += '?project_id='+project_id
-        #unicode to gb2312
-        msg = (_("Submission is not submitted yet.") + "<a target='_blank' href='{}'>".format(url)
-               + _('New Submission')+"</a>").encode('gb2312')
+        #Must convert string to unicode here!
+        msg = _("Submission is not submitted yet.") + u"<a target='_blank' href='{}'>".format(url) + _('New Submission')+u"</a>"
         print msg
         #mark_safe will show raw HTML, rather than escape HTML tags
-        warning(request, mark_safe(_("Submission is not submitted yet.")+"<a target='_blank' href={}> Create </a>".format(url)))
-        #warning(request, mark_safe(msg))
+        warning(request, mark_safe(msg))
     return render(request, 'project_submission.html', {'submission': submission, 'project_id': project_id})
 
 
@@ -264,8 +263,14 @@ def create_submission(request, template="create_project.html"):
         form = SubmissionForm(request.POST or None, initial={'project': project})
 
     if request.method == "POST" and form.is_valid():
-        new_project = form.save()
-        print new_project
+        new_submission = form.save()
+        print new_submission
+        event = {
+            'time':  datetime.now(),
+            'project_id': int(project_id),
+            'message': _('Create Submission')
+        }
+        create_log(event)
         return redirect('enterprise.submissions')
     context = {"form": form, "title": _("Create Submission")}
     return render(request, template, context)
@@ -285,6 +290,13 @@ def submission_commit(request):
     except Http404:
         n = Notification(label=project, type=1, project_url=submission.get_absolute_url());
         n.save();
+
+        event = {
+            'time':  datetime.now(),
+            'project_id': int(project_id),
+            'message': _('Submission is committed now')
+        }
+        create_log(event)
 
     return HttpResponse(json.dumps(messages), content_type="application/json")
 
@@ -306,6 +318,12 @@ def submission_approve(request):
     except Http404:
         pass
     info(request, _("Submission approved"))
+    event = {
+        'time':  datetime.now(),
+        'project_id': int(submission.project.id),
+        'message': _('Submission approved')
+    }
+    create_log(event)
 
     #generate PDF
     html2pdf(request.build_absolute_uri(submission.get_pdf_url()), 'E:/workspace/greenbuilding/media/submission/', project_id)
@@ -315,10 +333,11 @@ def submission_approve(request):
 
 def submission_deny(request):
     project_id = request.POST.get('project_id')
+    reason = request.POST.get('reason')
     print project_id
     submission = get_object_or_404(Submission, pk=project_id)
     submission.approved = False
-    submission.save();
+    submission.save()
 
     try:
         notification = get_object_or_404(Notification, label=submission.project.name, type=1)
@@ -327,6 +346,12 @@ def submission_deny(request):
         pass
 
     info(request, _("Submission denied"))
+    event = {
+        'time':  datetime.now(),
+        'project_id': int(submission.project.id),
+        'message': _("Submission denied")+u':{}'.format(reason)
+    }
+    create_log(event)
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
@@ -340,7 +365,9 @@ def project_review(request, project_id):
     except Http404:
         url = reverse('enterprise.review.add')
         url += '?project_id='+project_id
-        warning(request, mark_safe(_("Review is not submitted yet.")+"<a target='_blank' href={}> Create </a>".format(url)))
+        msg = _("Review is not submitted yet.") + u"<a target='_blank' href='{}'>".format(url) \
+              +_('Create ApplicationReview')+u"</a>"
+        warning(request, mark_safe(msg))
         review = ApplicationReview(id=99999)#hack an empty review
     return render(request, 'project_review.html', {'review': review, 'project_id': project_id})
 
@@ -364,6 +391,13 @@ def create_review(request, template="create_project.html"):
         form = ReviewForm(request.POST, request.FILES, initial={'project': project})
         new_project = form.save()
         print new_project
+
+        event = {
+            'time':  datetime.now(),
+            'project_id': int(project_id),
+            'message': _('Create ApplicationReview')
+        }
+        create_log(event)
         return redirect('enterprise.reviews')
     else:
         form = ReviewForm(initial={'project': project})
@@ -385,6 +419,12 @@ def review_commit(request):
     except Http404:
         n = Notification(label=project, type=2, project_url=review.get_absolute_url());
         n.save();
+        event = {
+            'time':  datetime.now(),
+            'project_id': int(review.project.id),
+            'message': _("ApplicationReview is committed now")
+        }
+        create_log(event)
 
     return HttpResponse(json.dumps(messages), content_type="application/json")
 
@@ -405,6 +445,12 @@ def review_approve(request, project_id):
     except Http404:
         pass
     info(request, _("ApplicatonReview approved"))
+    event = {
+        'time':  datetime.now(),
+        'project_id': int(review.project.id),
+        'message': _("ApplicatonReview approved")
+    }
+    create_log(event)
 
     #generate PDF
     html2pdf(request.build_absolute_uri(review.get_pdf_url()), 'E:/workspace/greenbuilding/media/review/', project_id)
@@ -414,6 +460,7 @@ def review_approve(request, project_id):
 
 def review_deny(request, project_id):
     #project_id = request.POST.get('project_id')
+    reason = request.POST.get('reason')
     print project_id
     review = get_object_or_404(ApplicationReview, pk=project_id)
     review.approved = False
@@ -425,6 +472,13 @@ def review_deny(request, project_id):
     except Http404:
         pass
     info(request, _("ApplicatonReview denied"))
+
+    event = {
+        'time':  datetime.now(),
+        'project_id': int(review.project.id),
+        'message': _("ApplicatonReview denied")+u':{}'.format(reason)
+    }
+    create_log(event)
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
@@ -759,6 +813,7 @@ def project_selection(request, project_id):
         thumbs_up = request.POST.get('thumbsUp')
         user_id = request.session['_auth_user_id']
         print user_id
+        vote_status = _('Thumbs Up')
 
         try:
             selection = get_object_or_404(Selection, user_id=user_id, project_id=project_id)
@@ -771,8 +826,16 @@ def project_selection(request, project_id):
             selection.passed = True
         else:
             selection.passed = False
+            vote_status = _('Thumbs Down')
         selection.date = datetime.utcnow()
         selection.save()
+
+        event = {
+            'time':  datetime.now(),
+            'project_id': int(project_id),
+            'message': u'{} '.format(user.username)+_('Expert has voted')+u':{}'.format(vote_status)
+        }
+        create_log(event)
 
         query_set = Selection.objects.filter(pk=selection.id)
         data = serializers.serialize("json", query_set)
@@ -786,6 +849,14 @@ def project_selection(request, project_id):
         print user.has_perm('enterprise.add_submission')
         return render(request, 'project_selection.html',
                       {'selections': selections, 'project': project, 'project_id': project_id})
+
+
+def project_log(request, project_id):
+    from dao import *
+    logs = find_logs(project_id)
+
+    return render(request, 'project_log.html',
+                  {'logs': logs, 'project_id': project_id})
 
 
 @login_required
