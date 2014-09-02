@@ -364,88 +364,76 @@ msgid "evaluation_phase"
 msgstr "评价阶段"
 
 #: .\models.py:282
-#, fuzzy
-#| msgid "evaluation_indicator"
 msgid "env_evaluation_score"
-msgstr "评价指标"
+msgstr "环境保护评价得分"
 
 #: .\models.py:283
 msgid "env_real_score"
-msgstr ""
+msgstr "环境保护实得分"
 
 #: .\models.py:284
-#, fuzzy
-#| msgid "self_evaluation"
 msgid "materials_evaluation_score"
-msgstr "企业自评"
+msgstr "节材与材料资源利用评价得分"
 
 #: .\models.py:285
 msgid "materials_real_score"
-msgstr ""
+msgstr "节材与材料资源利用实得分"
 
 #: .\models.py:286
-#, fuzzy
-#| msgid "evaluation_indicator"
 msgid "water_evaluation_score"
-msgstr "评价指标"
+msgstr "节水与水资源利用评价得分"
 
 #: .\models.py:287
 msgid "water_real_score"
-msgstr ""
+msgstr "节水与水资源利用实得分"
 
 #: .\models.py:288
-#, fuzzy
-#| msgid "evaluation_indicator"
 msgid "power_evaluation_score"
-msgstr "评价指标"
+msgstr "节能与能源利用评价得分"
 
 #: .\models.py:289
 msgid "power_real_score"
-msgstr ""
+msgstr "节能与能源利用实得分"
 
 #: .\models.py:290
-#, fuzzy
-#| msgid "evaluation_indicator"
 msgid "land_evaluation_score"
-msgstr "评价指标"
+msgstr "节地与施工用地保护评价得分"
 
 #: .\models.py:291
 msgid "land_real_score"
-msgstr ""
+msgstr "节地与施工用地保护实得分"
 
 #: .\models.py:292 .\models.py:336
-#, fuzzy
-#| msgid "evaluation_indicator"
 msgid "total_evaluation_score"
-msgstr "评价指标"
+msgstr "合计"
 
 #: .\models.py:293 .\models.py:337
 msgid "total_real_score"
-msgstr ""
+msgstr "合计实得分"
 
 #: .\models.py:330
 msgid "foundation_stage_score"
-msgstr ""
+msgstr "地基与基础阶段得分"
 
 #: .\models.py:331
 msgid "foundation_real_score"
-msgstr ""
+msgstr "地基与基础实得分"
 
 #: .\models.py:332
 msgid "architecture_stage_score"
-msgstr ""
+msgstr "结构工程阶段得分"
 
 #: .\models.py:333
 msgid "architecture_real_score"
-msgstr ""
+msgstr "结构工程实得分"
 
 #: .\models.py:334
 msgid "install_stage_score"
-msgstr ""
+msgstr "装饰装修与机电安装阶段得分"
 
 #: .\models.py:335
 msgid "install_real_score"
-msgstr ""
+msgstr "装饰装修与机电安装实得分"
 
 #: .\templates\enterprise_base.html:6
 msgid "Project List"
@@ -564,7 +552,7 @@ msgstr "详细信息"
 
 #: .\templates\project_log.html:16
 msgid "Message"
-msgstr ""
+msgstr "消息"
 
 #: .\templates\project_monitor.html:6
 #, fuzzy
@@ -728,8 +716,6 @@ msgid "ApplicationReview already committed."
 msgstr "应用评审已经提交"
 
 #: .\views.py:425
-#, fuzzy
-#| msgid "ApplicationReview already committed."
 msgid "ApplicationReview is committed now"
 msgstr "应用评审已经提交"
 
@@ -750,40 +736,32 @@ msgid "Create Element Evaluation Form"
 msgstr "绿色施工要素评价表"
 
 #: .\views.py:688
-#, fuzzy
-#| msgid "Element Evaluation Form"
 msgid "Modify ElementEvaluationForm"
-msgstr "绿色施工要素评价表"
+msgstr "修改绿色施工要素评价表"
 
 #: .\views.py:709
 msgid "Create Batch Evaluation Form"
 msgstr "绿色施工批次评价汇总表"
 
 #: .\views.py:721
-#, fuzzy
-#| msgid "Batch Evaluation Form"
 msgid "Modify BatchEvaluationForm"
-msgstr "绿色施工批次评价汇总表"
+msgstr "修改绿色施工批次评价汇总表"
 
 #: .\views.py:742
 msgid "Create Stage Evaluation Form"
 msgstr "绿色施工阶段评价汇总表"
 
 #: .\views.py:754
-#, fuzzy
-#| msgid "Stage Evaluation Form"
 msgid "Modify StageEvaluationForm"
-msgstr "绿色施工阶段评价汇总表"
+msgstr "修改绿色施工阶段评价汇总表"
 
 #: .\views.py:776
 msgid "Create Unit Evaluation Form"
 msgstr "单位工程绿色施工评价汇总表"
 
 #: .\views.py:788
-#, fuzzy
-#| msgid "Unit Evaluation Form"
 msgid "Modify UnitEvaluationForm"
-msgstr "单位工程绿色施工评价汇总表"
+msgstr "修改单位工程绿色施工评价汇总表"
 
 #: .\views.py:836
 msgid "Expert has voted"
