@@ -25,7 +25,11 @@
     <script>
     $(document).ready(function(){
         //show table
-        var table = $('#table').DataTable();
+        var table = $('#table').DataTable({
+                language: {
+                    "url": "//cdn.datatables.net/plug-ins/725b2a2115b/i18n/Chinese.json"
+                }
+        });
         var selected = [];
 
         $('#table tbody').on( 'click', 'tr', function () {

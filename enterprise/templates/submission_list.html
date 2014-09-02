@@ -1,5 +1,5 @@
  {% extends "list_base.html" %}
-{% load i18n staticfiles%}
+{% load i18n staticfiles project_filters %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -119,7 +119,7 @@
                 {# Each "submission" is a Submission model object. #}
                 <td><a href="{%  url 'enterprise.project.detail' p.project.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.project.name }}</a></td>
                 <td>{{ p.grade}}</td>
-                <td>{{ p.approved}}</td>
+                <td>{{ p.approved |approve_state }}</td>
                 <td>{{ p.date }}</td>
             </tr>
         {% endfor %}

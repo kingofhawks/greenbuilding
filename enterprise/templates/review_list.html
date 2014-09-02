@@ -1,5 +1,5 @@
 {% extends "list_base.html" %}
-{% load i18n staticfiles%}
+{% load i18n staticfiles project_filters %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -17,7 +17,11 @@
     <script src="{% static 'lodash/dist/lodash.min.js' %}"></script>
     <script>
     $(document).ready(function(){
-       var table = $('#table').DataTable();
+        var table = $('#table').DataTable({
+                language: {
+                    "url": "//cdn.datatables.net/plug-ins/725b2a2115b/i18n/Chinese.json"
+                }
+        });
        var selected = [];
 
     $('#table tbody').on( 'click', 'tr', function () {
@@ -87,14 +91,14 @@
         <th>{% trans "Project" %}</th>
         <th>{% trans "Grade" %}</th>
         <th>{% trans "Approved" %}</th>
-        <th>{% trans "Location" %}</th>
+        <th>{% trans "Date" %}</th>
     </thead>
     {% for p in projects %}
         <tr data-row-key="{{ p.id }}">
             <td><a href="{%  url 'enterprise.project.detail' p.project.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.project.name }}</a></td>
             <td>{{ p.grade }}</td>
-            <td>{{ p.approved}}</td>
-            <td>{{ p.location }}</td>
+            <td>{{ p.approved |approve_state}}</td>
+            <td>{{ p.date }}</td>
         </tr>
     {% endfor %}
 </table>

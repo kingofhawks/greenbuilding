@@ -572,7 +572,33 @@ def project_evaluation_form(request, project_id):
         warning(request, _('Review is not submitted yet.'))
         review = ApplicationReview(id=99999)#hack an empty review
 
-    return render(request, 'project_evaluation_form.html', {'review': review, 'project_id': project_id})
+    element = None
+    try:
+        element = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    batch = None
+    try:
+        batch = get_object_or_404(BatchEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    stage = None
+    try:
+        stage = get_object_or_404(StageEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    unit = None
+    try:
+        unit = get_object_or_404(UnitEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    return render(request, 'project_evaluation_form.html',
+                  {'review': review, 'project_id': project_id,
+                   'element': element, 'batch': batch, 'stage': stage, 'unit': unit})
 
 
 def element_evaluation_print(request, project_id):
@@ -587,13 +613,26 @@ def element_evaluation_print(request, project_id):
 
 
 def create_element_evaluation_form(request, project_id, template="create_project.html"):
-    form = ElementEvaluationFormForm(request.POST or None)
+    project = get_object_or_404(Project, pk=project_id)
+    form = ElementEvaluationFormForm(request.POST or None, initial={'project': project})
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
         return redirect('enterprise.project.form', project_id=project_id)
     context = {"form": form, "title": _("Create Element Evaluation Form")}
     return render(request, template, context)
+
+
+class ElementEvaluationFormUpdate(UpdateView):
+    model = ElementEvaluationForm
+    template_name = 'create_project.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(ElementEvaluationFormUpdate, self).get_context_data(**kwargs)
+        # Add extra context variable
+        context['title'] = _('Modify ElementEvaluationForm')
+        return context
 
 
 def batch_evaluation_print(request, project_id):
@@ -617,6 +656,18 @@ def create_batch_evaluation_form(request, project_id, template="create_project.h
     return render(request, template, context)
 
 
+class BatchEvaluationFormUpdate(UpdateView):
+    model = BatchEvaluationForm
+    template_name = 'create_project.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(BatchEvaluationFormUpdate, self).get_context_data(**kwargs)
+        # Add extra context variable
+        context['title'] = _('Modify BatchEvaluationForm')
+        return context
+
+
 def stage_evaluation_print(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
@@ -638,6 +689,18 @@ def create_stage_evaluation_form(request, project_id, template="create_project.h
     return render(request, template, context)
 
 
+class StageEvaluationFormUpdate(UpdateView):
+    model = StageEvaluationForm
+    template_name = 'create_project.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(StageEvaluationFormUpdate, self).get_context_data(**kwargs)
+        # Add extra context variable
+        context['title'] = _('Modify StageEvaluationForm')
+        return context
+
+
 def unit_evaluation_print(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
@@ -650,13 +713,26 @@ def unit_evaluation_print(request, project_id):
 
 
 def create_unit_evaluation_form(request, project_id, template="create_project.html"):
-    form = UnitEvaluationFormForm(request.POST or None)
+    project = get_object_or_404(Project,pk=project_id)
+    form = UnitEvaluationFormForm(request.POST or None, initial={'project': project})
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
         return redirect('enterprise.project.form', project_id=project_id)
     context = {"form": form, "title": _("Create Unit Evaluation Form")}
     return render(request, template, context)
+
+
+class UnitEvaluationFormUpdate(UpdateView):
+    model = UnitEvaluationForm
+    template_name = 'create_project.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(UnitEvaluationFormUpdate, self).get_context_data(**kwargs)
+        # Add extra context variable
+        context['title'] = _('Modify UnitEvaluationForm')
+        return context
 
 
 @login_required

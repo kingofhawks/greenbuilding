@@ -250,29 +250,31 @@ class ExcellentItem(BaseItem):
 
 
 class ElementEvaluationForm(models.Model):
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, verbose_name=_('project'))
     number = models.CharField(verbose_name=_('Number'), max_length=128, blank=True, null=True)
     date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
     construction_phase = models.CharField(verbose_name=_('construction_phase'), max_length=64, blank=True, null=True)
     evaluation_indicator = models.CharField(verbose_name=_('evaluation_indicator'), max_length=64, blank=True, null=True)
     construction_part = models.CharField(verbose_name=_('construction_part'), max_length=64, blank=True, null=True)
 
-    control_items = models.ManyToManyField(ControlItem)
-    general_items = models.ManyToManyField(GeneralItem)
-    excellent_items = models.ManyToManyField(ExcellentItem)
+    control_items = models.ManyToManyField(ControlItem, verbose_name=_('Control Items'))
+    general_items = models.ManyToManyField(GeneralItem, verbose_name=_('General Items'))
+    excellent_items = models.ManyToManyField(ExcellentItem, verbose_name=_('Excellent Items'))
 
     evaluation_result = models.CharField(verbose_name=_('Evaluation Result'), max_length=2048, blank=True, null=True)
     development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
     supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
 
-
     def __str__(self):
         return 'ElementEvaluationForm:{}'.format(self.project.id)
 
+    def get_absolute_url(self):
+        return reverse('enterprise.project.form', args=[str(self.project.id)])
+
 
 class BatchEvaluationForm(models.Model):
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, verbose_name=_('project'))
     number = models.CharField(verbose_name=_('Number'), max_length=128, blank=True, null=True)
     date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
     evaluation_phase = models.CharField(verbose_name=_('evaluation_phase'), max_length=64, blank=True, null=True)
@@ -295,13 +297,15 @@ class BatchEvaluationForm(models.Model):
     #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
 
-
     def __str__(self):
         return 'BatchEvaluationForm:{}'.format(self.project.id)
 
+    def get_absolute_url(self):
+        return reverse('enterprise.project.form', args=[str(self.project.id)])
+
 
 class StageEvaluationForm(models.Model):
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, verbose_name=_('project'))
     number = models.CharField(verbose_name=_('Number'), max_length=128, blank=True, null=True)
     date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
     evaluation_phase = models.CharField(verbose_name=_('evaluation_phase'), max_length=64, blank=True, null=True)
@@ -311,13 +315,15 @@ class StageEvaluationForm(models.Model):
     #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
 
-
     def __str__(self):
         return 'StageEvaluationForm:{}'.format(self.project.id)
 
+    def get_absolute_url(self):
+        return reverse('enterprise.project.form', args=[str(self.project.id)])
+
 
 class UnitEvaluationForm(models.Model):
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, verbose_name=_('project'))
     number = models.CharField(verbose_name=_('Number'), max_length=128, blank=True, null=True)
     date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
 
@@ -335,12 +341,8 @@ class UnitEvaluationForm(models.Model):
     #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
 
-
     def __str__(self):
         return 'UnitEvaluationForm:{}'.format(self.project.id)
 
-
-
-
-
-
+    def get_absolute_url(self):
+        return reverse('enterprise.project.form', args=[str(self.project.id)])

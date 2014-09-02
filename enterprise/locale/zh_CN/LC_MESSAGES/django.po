@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-01 15:39+0800\n"
+"POT-Creation-Date: 2014-09-02 11:21+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,367 +69,380 @@ msgstr "邮编"
 msgid "Finish Vote Date"
 msgstr "截止投票时间"
 
-#: .\models.py:31
+#: .\models.py:31 .\models.py:253 .\models.py:277 .\models.py:308
+#: .\models.py:326
 msgid "project"
 msgstr "项目名称"
 
-#: .\models.py:45
+#: .\models.py:48
 msgid "green_building"
 msgstr "江苏省绿色施工工程"
 
-#: .\models.py:46
+#: .\models.py:49
 msgid "green_building_demo"
 msgstr "江苏省绿色施工示范工程"
 
-#: .\models.py:51 .\models.py:89 .\models.py:152
+#: .\models.py:54 .\models.py:92 .\models.py:155
 #: .\templates\project_achievement.html:164
 #: .\templates\project_evaluation.html:7 .\templates\project_review.html:78
-#: .\templates\project_submission.html:126 .\templates\review_list.html:88
+#: .\templates\project_submission.html:126 .\templates\review_list.html:92
 #: .\templates\submission_list.html:112
 msgid "Grade"
 msgstr "申报等级"
 
-#: .\models.py:53 .\models.py:90 .\models.py:142 .\models.py:154
-#: .\models.py:166 .\models.py:186 .\models.py:252 .\models.py:274
-#: .\models.py:303 .\models.py:319 .\templates\notification_list.html:9
+#: .\models.py:56 .\models.py:93 .\models.py:145 .\models.py:157
+#: .\models.py:169 .\models.py:189 .\models.py:255 .\models.py:279
+#: .\models.py:310 .\models.py:328 .\templates\notification_list.html:12
 #: .\templates\project_monitor.html:15 .\templates\project_selection.html:136
-#: .\templates\submission_list.html:114
+#: .\templates\review_list.html:94 .\templates\submission_list.html:114
 msgid "Date"
 msgstr "日期"
 
-#: .\models.py:54
+#: .\models.py:57
 msgid "person_in_charge"
 msgstr "项目负责人"
 
-#: .\models.py:55
+#: .\models.py:58
 msgid "phone1"
 msgstr "联系电话"
 
-#: .\models.py:56
+#: .\models.py:59
 msgid "technical_in_charge"
 msgstr "项目技术负责人"
 
-#: .\models.py:57
+#: .\models.py:60
 msgid "phone2"
 msgstr "联系电话"
 
-#: .\models.py:58
+#: .\models.py:61
 msgid "company_technical_in_charge"
 msgstr "企业技术负责人"
 
-#: .\models.py:59
+#: .\models.py:62
 msgid "phone3"
 msgstr "联系电话"
 
-#: .\models.py:60 .\models.py:94
+#: .\models.py:63 .\models.py:97
 msgid "content"
 msgstr "绿色施工内容"
 
-#: .\models.py:61
+#: .\models.py:64
 msgid "measures"
 msgstr "开展绿色施工采取的技术保障措施和方法"
 
-#: .\models.py:62
+#: .\models.py:65
 msgid "schedule"
 msgstr "工程进度计划"
 
-#: .\models.py:63
+#: .\models.py:66
 msgid "benefits"
 msgstr "预期经济效益和社会效益"
 
-#: .\models.py:64 .\models.py:95
+#: .\models.py:67 .\models.py:98
 msgid "company_opinion"
 msgstr "施工单位意见"
 
-#: .\models.py:65 .\models.py:96
+#: .\models.py:68 .\models.py:99
 msgid "management_opinion"
 msgstr "工程所在地省辖市主管部门和建筑(行)业协会意见"
 
-#: .\models.py:66 .\models.py:97
+#: .\models.py:69 .\models.py:100
 msgid "approved"
 msgstr "审核状态"
 
-#: .\models.py:69
+#: .\models.py:72
 msgid "submission"
 msgstr "申报创建"
 
-#: .\models.py:91 .\templates\project_achievement.html:166
+#: .\models.py:94 .\templates\project_achievement.html:166
 #: .\templates\review_left_panel.html:5
 msgid "Achievement"
 msgstr "绿色施工成果汇报影像资料"
 
-#: .\models.py:92
+#: .\models.py:95
 msgid "contact"
 msgstr "联系人"
 
-#: .\models.py:93
+#: .\models.py:96
 msgid "phone"
 msgstr "联系人手机"
 
-#: .\models.py:100 .\templates\project_presentation.html:69
+#: .\models.py:103 .\templates\project_presentation.html:69
 msgid "Project General"
 msgstr "项目概况"
 
-#: .\models.py:101 .\templates\project_presentation.html:73
+#: .\models.py:104 .\templates\project_presentation.html:73
 msgid "Project Characteristic"
 msgstr "工程绿色施工特点"
 
-#: .\models.py:102 .\templates\project_presentation.html:77
+#: .\models.py:105 .\templates\project_presentation.html:77
 msgid "Construct Management"
 msgstr "施工管理"
 
-#: .\models.py:103 .\templates\project_presentation.html:81
+#: .\models.py:106 .\templates\project_presentation.html:81
 msgid "Environment Protection Measure"
 msgstr "环境保护措施"
 
-#: .\models.py:104 .\templates\project_presentation.html:86
+#: .\models.py:107 .\templates\project_presentation.html:86
 msgid "Economize on raw materials"
 msgstr "节材与材料资源利用措施"
 
-#: .\models.py:105 .\templates\project_presentation.html:90
+#: .\models.py:108 .\templates\project_presentation.html:90
 msgid "Economize on water"
 msgstr "节水与水资源利用措施"
 
-#: .\models.py:106 .\templates\project_presentation.html:94
+#: .\models.py:109 .\templates\project_presentation.html:94
 msgid "Economize on power"
 msgstr "节能与能源利用措施"
 
-#: .\models.py:107 .\templates\project_presentation.html:98
+#: .\models.py:110 .\templates\project_presentation.html:98
 msgid "Economize on land"
 msgstr "节地与施工用地措施"
 
-#: .\models.py:108 .\templates\project_presentation.html:104
+#: .\models.py:111 .\templates\project_presentation.html:104
 msgid "New Technology"
 msgstr "发展绿色施工的新技术"
 
-#: .\models.py:109 .\templates\project_presentation.html:108
+#: .\models.py:112 .\templates\project_presentation.html:108
 msgid "New Equipment"
 msgstr "新设备"
 
-#: .\models.py:110 .\templates\project_presentation.html:112
+#: .\models.py:113 .\templates\project_presentation.html:112
 msgid "New Materials and  Craft"
 msgstr "新材料与新工艺"
 
-#: .\models.py:111 .\templates\project_presentation.html:117
+#: .\models.py:114 .\templates\project_presentation.html:117
 msgid "Industrialization of construction industry"
 msgstr "建筑工业化应用情况"
 
-#: .\models.py:112 .\templates\project_presentation.html:121
+#: .\models.py:115 .\templates\project_presentation.html:121
 msgid "Comprehensive Benefit"
 msgstr "综合效益分析"
 
-#: .\models.py:115
+#: .\models.py:118
 msgid "application_review"
 msgstr "应用评审"
 
-#: .\models.py:130
+#: .\models.py:133
 msgid "completion_date"
 msgstr ""
 
-#: .\models.py:131
+#: .\models.py:134
 msgid "awards"
 msgstr ""
 
-#: .\models.py:134
+#: .\models.py:137
 msgid "self_evaluation"
 msgstr "企业自评"
 
-#: .\models.py:143
+#: .\models.py:146
 msgid "pm10_threshold"
 msgstr "PM10告警阈值"
 
-#: .\models.py:146
+#: .\models.py:149
 #, fuzzy
 #| msgid "Process Monitor"
 msgid "progress_monitor"
 msgstr "过程监督"
 
-#: .\models.py:153
+#: .\models.py:156
 msgid "passed"
 msgstr "通过"
 
-#: .\models.py:157
+#: .\models.py:160
 msgid "selection"
 msgstr "考评评选"
 
-#: .\models.py:165
+#: .\models.py:168
 msgid "Value"
 msgstr ""
 
-#: .\models.py:169
+#: .\models.py:172
 msgid "pm10"
 msgstr ""
 
-#: .\models.py:176 .\templates\project_base.html:8
+#: .\models.py:179 .\templates\project_base.html:8
 msgid "Submission"
 msgstr "申报创建"
 
-#: .\models.py:177 .\templates\project_base.html:17
+#: .\models.py:180 .\templates\project_base.html:17
 #: .\templates\review_left_panel.html:3
 msgid "Application Review"
 msgstr "应用评审"
 
-#: .\models.py:182
+#: .\models.py:185
 msgid "label"
 msgstr "代办事项名称"
 
-#: .\models.py:183 .\templates\notification_list.html:8
+#: .\models.py:186 .\templates\notification_list.html:11
 msgid "type"
 msgstr "代办类型"
 
-#: .\models.py:184
+#: .\models.py:187
 #, fuzzy
 #| msgid "project"
 msgid "project_url"
 msgstr "项目名称"
 
-#: .\models.py:185
+#: .\models.py:188
 #, fuzzy
 #| msgid "passed"
 msgid "processed"
 msgstr "通过"
 
-#: .\models.py:189
+#: .\models.py:192
 msgid "Notification"
 msgstr "通知"
 
-#: .\models.py:224 .\models.py:232
+#: .\models.py:227 .\models.py:235
 msgid "Number and Request"
 msgstr "标准编号及标准要求"
 
-#: .\models.py:225
+#: .\models.py:228
 msgid "Conclusion"
 msgstr "评价结论"
 
-#: .\models.py:233
+#: .\models.py:236
 msgid "Count Standard"
 msgstr "计分标准"
 
-#: .\models.py:234
+#: .\models.py:237
 msgid "Deserved Score"
 msgstr "应得分"
 
-#: .\models.py:235
+#: .\models.py:238
 msgid "Actual Score"
 msgstr "实得分"
 
-#: .\models.py:251 .\models.py:273 .\models.py:302 .\models.py:318
+#: .\models.py:254 .\models.py:278 .\models.py:309 .\models.py:327
 msgid "Number"
-msgstr ""
+msgstr "编号"
 
-#: .\models.py:253
+#: .\models.py:256
 msgid "construction_phase"
 msgstr "施工阶段"
 
-#: .\models.py:254
+#: .\models.py:257
 msgid "evaluation_indicator"
 msgstr "评价指标"
 
-#: .\models.py:255
+#: .\models.py:258
 msgid "construction_part"
 msgstr "施工部位"
 
-#: .\models.py:261 .\models.py:290 .\models.py:306 .\models.py:330
+#: .\models.py:260
+msgid "Control Items"
+msgstr "控制项"
+
+#: .\models.py:261
+msgid "General Items"
+msgstr "一般项"
+
+#: .\models.py:262
+msgid "Excellent Items"
+msgstr "优选项"
+
+#: .\models.py:264 .\models.py:295 .\models.py:313 .\models.py:339
 msgid "Evaluation Result"
 msgstr "评价结果"
 
-#: .\models.py:262
+#: .\models.py:265
 msgid "development_unit_sign"
 msgstr "建设单位"
 
-#: .\models.py:263
+#: .\models.py:266
 msgid "supervision_unit_sign"
 msgstr "监理单位"
 
-#: .\models.py:264
+#: .\models.py:267
 msgid "construction_unit_sign"
 msgstr "施工单位"
 
-#: .\models.py:275 .\models.py:304
+#: .\models.py:280 .\models.py:311
 msgid "evaluation_phase"
 msgstr "评价阶段"
 
-#: .\models.py:277
+#: .\models.py:282
 #, fuzzy
 #| msgid "evaluation_indicator"
 msgid "env_evaluation_score"
 msgstr "评价指标"
 
-#: .\models.py:278
+#: .\models.py:283
 msgid "env_real_score"
 msgstr ""
 
-#: .\models.py:279
+#: .\models.py:284
 #, fuzzy
 #| msgid "self_evaluation"
 msgid "materials_evaluation_score"
 msgstr "企业自评"
 
-#: .\models.py:280
+#: .\models.py:285
 msgid "materials_real_score"
 msgstr ""
 
-#: .\models.py:281
+#: .\models.py:286
 #, fuzzy
 #| msgid "evaluation_indicator"
 msgid "water_evaluation_score"
 msgstr "评价指标"
 
-#: .\models.py:282
+#: .\models.py:287
 msgid "water_real_score"
 msgstr ""
 
-#: .\models.py:283
+#: .\models.py:288
 #, fuzzy
 #| msgid "evaluation_indicator"
 msgid "power_evaluation_score"
 msgstr "评价指标"
 
-#: .\models.py:284
+#: .\models.py:289
 msgid "power_real_score"
 msgstr ""
 
-#: .\models.py:285
+#: .\models.py:290
 #, fuzzy
 #| msgid "evaluation_indicator"
 msgid "land_evaluation_score"
 msgstr "评价指标"
 
-#: .\models.py:286
+#: .\models.py:291
 msgid "land_real_score"
 msgstr ""
 
-#: .\models.py:287 .\models.py:327
+#: .\models.py:292 .\models.py:336
 #, fuzzy
 #| msgid "evaluation_indicator"
 msgid "total_evaluation_score"
 msgstr "评价指标"
 
-#: .\models.py:288 .\models.py:328
+#: .\models.py:293 .\models.py:337
 msgid "total_real_score"
 msgstr ""
 
-#: .\models.py:321
+#: .\models.py:330
 msgid "foundation_stage_score"
 msgstr ""
 
-#: .\models.py:322
+#: .\models.py:331
 msgid "foundation_real_score"
 msgstr ""
 
-#: .\models.py:323
+#: .\models.py:332
 msgid "architecture_stage_score"
 msgstr ""
 
-#: .\models.py:324
+#: .\models.py:333
 msgid "architecture_real_score"
 msgstr ""
 
-#: .\models.py:325
+#: .\models.py:334
 msgid "install_stage_score"
 msgstr ""
 
-#: .\models.py:326
+#: .\models.py:335
 msgid "install_real_score"
 msgstr ""
 
@@ -445,12 +458,12 @@ msgstr "申报创建列表"
 msgid "Review List"
 msgstr "申报评审列表"
 
-#: .\templates\notification_list.html:7
+#: .\templates\notification_list.html:10
 #: .\templates\project_achievement.html:163
 #: .\templates\project_detail.html:511 .\templates\project_evaluation.html:6
-#: .\templates\project_list.html:214 .\templates\project_monitor.html:14
+#: .\templates\project_list.html:218 .\templates\project_monitor.html:14
 #: .\templates\project_review.html:77 .\templates\project_submission.html:125
-#: .\templates\review_list.html:87 .\templates\self_evaluation_list.html:13
+#: .\templates\review_list.html:91 .\templates\self_evaluation_list.html:13
 #: .\templates\submission_list.html:111
 msgid "Project"
 msgstr "项目"
@@ -458,7 +471,7 @@ msgstr "项目"
 #: .\templates\project_achievement.html:165 .\templates\project_review.html:43
 #: .\templates\project_review.html.py:79
 #: .\templates\project_submission.html:78
-#: .\templates\project_submission.html:127 .\templates\review_list.html:89
+#: .\templates\project_submission.html:127 .\templates\review_list.html:93
 #: .\templates\submission_list.html:113 .\templatetags\project_filters.py:10
 msgid "Approved"
 msgstr "审核通过"
@@ -475,67 +488,71 @@ msgstr "考评评选"
 msgid "Company"
 msgstr "企业名称"
 
-#: .\templates\project_detail.html:513 .\templates\review_list.html:90
+#: .\templates\project_detail.html:513
 msgid "Location"
 msgstr "地点"
 
-#: .\templates\project_detail.html:514 .\templates\project_list.html:206
+#: .\templates\project_detail.html:514 .\templates\project_list.html:210
 #: .\templates\project_review.html:82 .\templates\project_submission.html:128
-#: .\templates\review_list.html:78 .\templates\submission_list.html:102
+#: .\templates\review_list.html:82 .\templates\submission_list.html:102
 msgid "Modify"
 msgstr "修改"
 
-#: .\templates\project_evaluation_form.html:86
-#: .\templates\project_evaluation_form.html:89
+#: .\templates\project_evaluation_form.html:15
+#: .\templates\project_evaluation_form.html:19
+#: .\templates\project_evaluation_form.html:21
 msgid "Element Evaluation Form"
 msgstr "绿色施工要素评价表"
 
-#: .\templates\project_evaluation_form.html:90
-#: .\templates\project_evaluation_form.html:100
-#: .\templates\project_evaluation_form.html:110
-#: .\templates\project_evaluation_form.html:120
+#: .\templates\project_evaluation_form.html:23
+#: .\templates\project_evaluation_form.html:37
+#: .\templates\project_evaluation_form.html:51
+#: .\templates\project_evaluation_form.html:65
 #: .\templates\project_review.html:83 .\templates\project_submission.html:131
 msgid "Print"
 msgstr "打印"
 
-#: .\templates\project_evaluation_form.html:96
-#: .\templates\project_evaluation_form.html:99
+#: .\templates\project_evaluation_form.html:29
+#: .\templates\project_evaluation_form.html:33
+#: .\templates\project_evaluation_form.html:35
 msgid "Batch Evaluation Form"
 msgstr "绿色施工批次评价汇总表"
 
-#: .\templates\project_evaluation_form.html:106
-#: .\templates\project_evaluation_form.html:109
+#: .\templates\project_evaluation_form.html:43
+#: .\templates\project_evaluation_form.html:47
+#: .\templates\project_evaluation_form.html:49
 msgid "Stage Evaluation Form"
 msgstr "绿色施工阶段评价汇总表"
 
-#: .\templates\project_evaluation_form.html:116
-#: .\templates\project_evaluation_form.html:119
+#: .\templates\project_evaluation_form.html:57
+#: .\templates\project_evaluation_form.html:61
+#: .\templates\project_evaluation_form.html:63
 msgid "Unit Evaluation Form"
 msgstr "单位工程绿色施工评价汇总表"
 
-#: .\templates\project_list.html:89
+#: .\templates\project_list.html:93
 msgid "Are you sure to delete this project?"
 msgstr "你确定要删除此项目？"
 
-#: .\templates\project_list.html:205 .\templates\review_list.html:77
+#: .\templates\project_list.html:209 .\templates\review_list.html:81
 #: .\templates\submission_list.html:101
 msgid "Create"
 msgstr "新增"
 
-#: .\templates\project_list.html:207 .\templates\review_list.html:79
+#: .\templates\project_list.html:211 .\templates\review_list.html:83
 #: .\templates\submission_list.html:103
 msgid "Delete"
 msgstr "删除"
 
-#: .\templates\project_list.html:215 .\templates\project_selection.html:117
+#: .\templates\project_list.html:219 .\templates\project_selection.html:117
 msgid "Vote Result"
 msgstr "考评结果"
 
-#: .\templates\project_list.html:216 .\templates\project_progress.html:21
+#: .\templates\project_list.html:220 .\templates\project_progress.html:21
 msgid "Progress"
 msgstr "进度"
 
-#: .\templates\project_list.html:220 .\templates\review_list.html:94
+#: .\templates\project_list.html:224 .\templates\review_list.html:98
 #: .\templates\submission_list.html:120
 msgid "Detail"
 msgstr "详细信息"
@@ -603,15 +620,15 @@ msgstr "总结报告"
 msgid "Evaluation Forms"
 msgstr "绿色施工评价表"
 
-#: .\templates\review_list.html:38
+#: .\templates\review_list.html:42
 msgid "Please select review."
 msgstr "请选择应用评审"
 
-#: .\templates\review_list.html:49
+#: .\templates\review_list.html:53
 msgid "ApplicationReview committed successfully"
 msgstr "申报评审提交成功"
 
-#: .\templates\review_list.html:80
+#: .\templates\review_list.html:84
 msgid "Submit ApplicationReview"
 msgstr "提交应用评审"
 
@@ -659,68 +676,92 @@ msgstr "修改应用评审"
 msgid "Create Project"
 msgstr "新增"
 
-#: .\views.py:235 .\views.py:239
+#: .\views.py:236 .\views.py:240
 msgid "Submission is not submitted yet."
 msgstr "该项目申报创建尚未提交"
 
-#: .\views.py:236
+#: .\views.py:237
 msgid "New Submission"
 msgstr "申报创建"
 
-#: .\views.py:261
+#: .\views.py:270
 msgid "Create Submission"
 msgstr "申报创建"
 
-#: .\views.py:275
+#: .\views.py:284
 msgid "Submission already committed."
 msgstr "申报创建已经提交"
 
-#: .\views.py:299
+#: .\views.py:308
 msgid "Submission approved"
 msgstr "申报创建审核通过"
 
-#: .\views.py:320
+#: .\views.py:329
 msgid "Submission denied"
 msgstr "申报创建被退回"
 
-#: .\views.py:333 .\views.py:422 .\views.py:433 .\views.py:486 .\views.py:556
+#: .\views.py:343 .\views.py:438 .\views.py:449 .\views.py:502 .\views.py:572
 msgid "Review is not submitted yet."
 msgstr "该项目申报评审尚未提交"
 
-#: .\views.py:354
+#: .\views.py:370
 msgid "Create ApplicationReview"
 msgstr "应用评审"
 
-#: .\views.py:368
+#: .\views.py:384
 msgid "ApplicationReview already committed."
 msgstr "应用评审已经提交"
 
-#: .\views.py:391
+#: .\views.py:407
 msgid "ApplicatonReview approved"
 msgstr "应用评审审核通过"
 
-#: .\views.py:411
+#: .\views.py:427
 msgid "ApplicatonReview denied"
 msgstr "应用评审被退回"
 
-#: .\views.py:494
+#: .\views.py:510
 msgid "Pictures is not uploaded yet."
 msgstr "该项目图片资料尚未上传"
 
-#: .\views.py:579
+#: .\views.py:622
 msgid "Create Element Evaluation Form"
 msgstr "绿色施工要素评价表"
 
-#: .\views.py:600
+#: .\views.py:634
+#, fuzzy
+#| msgid "Element Evaluation Form"
+msgid "Modify ElementEvaluationForm"
+msgstr "绿色施工要素评价表"
+
+#: .\views.py:655
 msgid "Create Batch Evaluation Form"
 msgstr "绿色施工批次评价汇总表"
 
-#: .\views.py:621
+#: .\views.py:667
+#, fuzzy
+#| msgid "Batch Evaluation Form"
+msgid "Modify BatchEvaluationForm"
+msgstr "绿色施工批次评价汇总表"
+
+#: .\views.py:688
 msgid "Create Stage Evaluation Form"
 msgstr "绿色施工阶段评价汇总表"
 
-#: .\views.py:642
+#: .\views.py:700
+#, fuzzy
+#| msgid "Stage Evaluation Form"
+msgid "Modify StageEvaluationForm"
+msgstr "绿色施工阶段评价汇总表"
+
+#: .\views.py:722
 msgid "Create Unit Evaluation Form"
+msgstr "单位工程绿色施工评价汇总表"
+
+#: .\views.py:734
+#, fuzzy
+#| msgid "Unit Evaluation Form"
+msgid "Modify UnitEvaluationForm"
 msgstr "单位工程绿色施工评价汇总表"
 
 #~ msgid "Submit"
@@ -747,9 +788,6 @@ msgstr "单位工程绿色施工评价汇总表"
 
 #~ msgid "grade"
 #~ msgstr "申报等级"
-
-#~ msgid "general"
-#~ msgstr "工程概况"
 
 #~ msgid "characteristic"
 #~ msgstr "工程绿色施工特点"

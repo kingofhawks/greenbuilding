@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-26 09:52+0800\n"
+"POT-Creation-Date: 2014-09-02 11:22+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,41 +17,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\templates\core_base.html:39
+#: .\templates\core_base.html:71
+msgid "GreenBuilding"
+msgstr "无锡市建筑工程绿色施工监管平台"
+
+#: .\templates\core_base.html:77
 msgid "Enterprise Info"
 msgstr "企业库"
 
-#: .\templates\core_base.html:40
-msgid "Projects"
+#: .\templates\core_base.html:78
+#, fuzzy
+#| msgid "Projects"
+msgid "Project List"
 msgstr "项目库"
 
-#: .\templates\core_base.html:41
-msgid "Self Evaluation"
-msgstr "企业自评"
+#: .\templates\core_base.html:79
+msgid "Submission List"
+msgstr ""
 
-#: .\templates\core_base.html:42
-msgid "Process Monitor"
-msgstr "过程监督"
+#: .\templates\core_base.html:80
+msgid "Review List"
+msgstr ""
 
-#: .\templates\core_base.html:43
-msgid "Selection"
-msgstr "考评评选"
+#: .\templates\core_base.html:90
+msgid "Notification"
+msgstr ""
 
-#: .\templates\core_base.html:54
+#: .\templates\core_base.html:95
 msgid "Settings"
 msgstr "设置"
 
-#: .\templates\core_base.html:56
+#: .\templates\core_base.html:97
 msgid "Sign Out"
 msgstr "退出"
 
-#: .\templates\core_base.html:107
+#: .\templates\core_base.html:148
 msgid "Powered by"
 msgstr ""
 
-#: .\templates\core_base.html:109
+#: .\templates\core_base.html:150
 msgid "and"
 msgstr ""
+
+#~ msgid "Self Evaluation"
+#~ msgstr "企业自评"
+
+#~ msgid "Process Monitor"
+#~ msgstr "过程监督"
+
+#~ msgid "Selection"
+#~ msgstr "考评评选"
 
 #~ msgid "Project Application"
 #~ msgstr "项目申报"
