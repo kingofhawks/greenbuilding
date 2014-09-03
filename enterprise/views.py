@@ -169,6 +169,8 @@ def project_progress(request, project_id):
 
 
 def submission_progress(submissions, project_id):
+    if submissions is None:
+        return 0
     for submission in submissions:
         if submission.project.id == project_id:
             if submission.approved:
@@ -181,6 +183,8 @@ def submission_progress(submissions, project_id):
 
 def review_progress(reviews, project_id):
     result = {'review': 0, 'report': 0, 'achievement': 0, 'forms': 0}
+    if reviews is None:
+        return result
     for review in reviews:
         if review.project.id == project_id:
             if review.approved:
@@ -191,7 +195,7 @@ def review_progress(reviews, project_id):
             if review.comprehensive_benefit is not None:
                 result['report'] = 100
 
-            if review.achievement is not None:
+            if review.achievement:
                 result['achievement'] = 100
 
     return result
@@ -211,12 +215,12 @@ def project_progress_data(request):
     result = {}
     projects = get_list_or_404(Project)
     print projects
-    submissions = get_list_or_404(Submission)
-    reviews = get_list_or_404(ApplicationReview)
+    submissions = Submission.objects.all()
+    reviews = ApplicationReview.objects.all()
 
     for project in projects:
         project_id = project.id
-        review = review_progress(reviews, project_id);
+        review = review_progress(reviews, project_id)
         result[project.id] = {'submission': submission_progress(submissions, project_id),
                               'review': review['review'], 'report': review['report'],
                               'achievement': review['achievement'], 'forms': review['forms'], 'vote': vote_progress(project)}
@@ -265,6 +269,8 @@ def create_submission(request, template="create_project.html"):
     if request.method == "POST" and form.is_valid():
         new_submission = form.save()
         print new_submission
+        if project_id is None:
+            project_id = new_submission.project.id
         event = {
             'time':  datetime.now(),
             'project_id': int(project_id),
@@ -389,8 +395,10 @@ def create_review(request, template="create_project.html"):
     if request.method == "POST":
         #Must pass request.FILES to ModelForm so it can handle file upload
         form = ReviewForm(request.POST, request.FILES, initial={'project': project})
-        new_project = form.save()
-        print new_project
+        new_review = form.save()
+        print new_review
+        if project_id is None:
+            project_id = new_review.project.id
 
         event = {
             'time':  datetime.now(),

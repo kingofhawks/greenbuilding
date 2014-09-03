@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, DESCENDING
 from datetime import datetime
 client = MongoClient()
 db = client.greenbuilding
@@ -10,8 +10,8 @@ def create_log(log):
 
 def find_logs(project_id):
     print 'project id:{}'.format(project_id)
-    result = db.logs.find({'project_id': int(project_id)})
-    #Note that you can only iterate over cursor only once!
+    result = db.logs.find({'project_id': int(project_id)}).sort('time', DESCENDING)
+    #Note that you can only iterate over cursor only once! Please do not iterate the cursor here!
     return result
 
 

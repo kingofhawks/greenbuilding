@@ -52,7 +52,7 @@ def signup(request, template="accounts/account_signup.html"):
                 info(request, _("Successfully signed up"))
                 #from django.contrib.auth import authenticate
                 auth_login(request, new_user)
-                return redirect('core.dashboard')
+                return redirect('enterprise.projects')
             except forms.ValidationError as e:
                 error(request, e.message)
             #if not new_user.is_active:

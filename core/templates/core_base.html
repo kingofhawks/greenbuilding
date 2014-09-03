@@ -11,7 +11,7 @@
         background-color: #f5f5f5;
         bottom:0px;
         padding-top: 20px;
-    }
+    }    
     #main {
         /* margin-bottom ensures that last
             content is not obscured by footer */
@@ -53,10 +53,9 @@
     </script>
 {% endblock %}
 
-
 {% block content %}
 <div id="wrapper">
-    <header>
+<header>
     {% block header %}
         <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
@@ -99,7 +98,7 @@
   </div><!-- /.container-fluid -->
 </nav>
     {% endblock %}
-    </header>
+</header>
 
     <div class="container">
     {% if messages %}
