@@ -28,10 +28,9 @@ def login(request, template="accounts/account_login.html"):
             if authenticated_user is not None:
                 if authenticated_user.is_active:
                     auth_login(request, authenticated_user)
-                    # Redirect to a success page.
-                    return redirect('core.dashboard')
-                else:
-                    return redirect('core.dashboard')
+                # Redirect to a success page.
+                #TODO redirect to core.dashboard page
+                return redirect('enterprise.projects')
         except forms.ValidationError as e:
             print e
             print e.message

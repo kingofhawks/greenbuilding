@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
     <link rel="stylesheet" href="{% static 'datatables/media/css/jquery.dataTables.css' %}">
     <link rel="stylesheet" href="{% static "rickshaw/rickshaw.min.css" %}">
+
 {% endblock %}
 
 {% block extra_js %}
@@ -161,6 +162,7 @@
                   element: document.querySelector("#"+chart.id),
                   series: [
                     {
+                      name: '进度',
                       color: 'steelblue',
                       data: [ { x: 0, y: eachData.submission}, { x: 1, y: eachData.review }, { x: 2, y: eachData.report },
                           { x: 3, y: eachData.achievement }, { x: 4, y: eachData.forms }, { x: 5, y: eachData.vote } ]
@@ -195,7 +197,13 @@
             graph.render();
 
             var hoverDetail = new Rickshaw.Graph.HoverDetail( {
-                graph: graph
+                graph: graph,
+                xFormatter: function(x) {
+                    return '';
+                },
+                yFormatter: function(y) {
+                    return y === null ? y : ''+y.toFixed()+'%';
+                }
             });
         });//end forEach
         });//end $.get()
