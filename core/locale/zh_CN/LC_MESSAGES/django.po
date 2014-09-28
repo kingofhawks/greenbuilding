@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-02 11:22+0800\n"
+"POT-Creation-Date: 2014-09-04 09:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,45 +17,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\templates\core_base.html:71
+#: .\templates\core_base.html:67
 msgid "GreenBuilding"
-msgstr "无锡市建筑工程绿色施工监管平台"
+msgstr "建筑工程绿色施工管理系统"
 
-#: .\templates\core_base.html:77
+#: .\templates\core_base.html:73
 msgid "Enterprise Info"
 msgstr "企业库"
 
-#: .\templates\core_base.html:78
+#: .\templates\core_base.html:74
 #, fuzzy
 #| msgid "Projects"
 msgid "Project List"
 msgstr "项目库"
 
-#: .\templates\core_base.html:79
+#: .\templates\core_base.html:75
 msgid "Submission List"
 msgstr ""
 
-#: .\templates\core_base.html:80
+#: .\templates\core_base.html:76
 msgid "Review List"
 msgstr ""
 
-#: .\templates\core_base.html:90
+#: .\templates\core_base.html:86
 msgid "Notification"
 msgstr ""
 
-#: .\templates\core_base.html:95
+#: .\templates\core_base.html:91
 msgid "Settings"
 msgstr "设置"
 
-#: .\templates\core_base.html:97
+#: .\templates\core_base.html:93
 msgid "Sign Out"
 msgstr "退出"
 
-#: .\templates\core_base.html:148
+#: .\templates\core_base.html:144
 msgid "Powered by"
 msgstr ""
 
-#: .\templates\core_base.html:150
+#: .\templates\core_base.html:146
 msgid "and"
 msgstr ""
 
