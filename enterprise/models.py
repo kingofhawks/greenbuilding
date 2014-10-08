@@ -74,10 +74,9 @@ class Submission(models.Model):
         permissions = (
             ("approve_submission", "Can approve submissions"),
             ("deny_submission", "Can deny submissions"),
+            ("submit_submission", "Can submit submissions"),
+            ("print_submission", "Can print submissions"),
         )
-
-    #def __str__(self):
-    #    return 'Submission:{}'.format(self.project)
 
     def __unicode__(self):
         return u'Submission:{}'.format(self.project)
@@ -120,9 +119,12 @@ class ApplicationReview(models.Model):
     class Meta:
         verbose_name = _("application_review")
         ordering = ['date']
-
-    #def __str__(self):
-    #    return 'ApplicationReview:{}'.format(self.project)
+        permissions = (
+            ("approve_review", "Can approve reviews"),
+            ("deny_review", "Can deny reviews"),
+            ("submit_review", "Can submit reviews"),
+            ("print_review", "Can print reviews"),
+        )
 
     def __unicode__(self):
         return u'ApplicationReview:{}'.format(self.project)
@@ -141,9 +143,6 @@ class SelfEvaluation(models.Model):
 
     class Meta:
         verbose_name = _("self_evaluation")
-
-    #def __str__(self):
-    #    return 'SelfEvaluation:{}'.format(self.project.name)
 
     def __unicode__(self):
         return u'SelfEvaluation:{}'.format(self.project)
@@ -167,9 +166,10 @@ class Selection(models.Model):
 
     class Meta:
         verbose_name = _("selection")
-
-    #def __str__(self):
-    #    return 'Selection:{}:{}'.format(self.project.name, self.user.username)
+        permissions = (
+            ("thumb_up", "Can thumb up projects"),
+            ("thumb_down", "Can thumb down projects"),
+        )
 
     def __unicode__(self):
         return u'Selection:{}:{}'.format(self.project, self.user.username)
@@ -182,9 +182,6 @@ class PM10(models.Model):
 
     class Meta:
         verbose_name = _('pm10')
-
-    #def __str__(self):
-    #    return 'PM10:{}'.format(self.value)
 
     def __unicode__(self):
         return u'PM10:{}'.format(self.value)
@@ -205,9 +202,6 @@ class Notification(models.Model):
 
     class Meta:
         verbose_name = _('Notification')
-
-    #def __str__(self):
-    #    return 'Notification:{} type:{}'.format(self.id, self.type)
 
     def __unicode__(self):
         return u'Notification:{} type:{}'.format(self.id, self.type)
@@ -245,9 +239,6 @@ class ControlItem(models.Model):
     number_request = models.CharField(verbose_name=_('Number and Request'), max_length=128)
     conclusion = models.CharField(verbose_name=_('Conclusion'), max_length=128)
 
-    #def __str__(self):
-    #    return 'number_request:{}'.format(self.number_request)
-
     def __unicode__(self):
         return u'number_request:{}'.format(self.number_request)
 
@@ -257,9 +248,6 @@ class BaseItem(models.Model):
     count_standard = models.CharField(verbose_name=_('Count Standard'), max_length=128)
     deserved_score = models.FloatField(verbose_name=_('Deserved Score'))
     actual_score = models.FloatField(verbose_name=_('Actual Score'))
-
-    #def __str__(self):
-    #    return 'number_request:{}'.format(self.number_request)
 
     def __unicode__(self):
         return u'number_request:{}'.format(self.number_request)
@@ -289,9 +277,6 @@ class ElementEvaluationForm(models.Model):
     development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
     supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
-
-    #def __str__(self):
-    #    return 'ElementEvaluationForm:{}'.format(self.project.id)
 
     def __unicode__(self):
         return u'ElementEvaluationForm:{}'.format(self.project)
@@ -324,9 +309,6 @@ class BatchEvaluationForm(models.Model):
     #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
 
-    #def __str__(self):
-    #    return 'BatchEvaluationForm:{}'.format(self.project.id)
-
     def __unicode__(self):
         return u'BatchEvaluationForm:{}'.format(self.project)
 
@@ -344,9 +326,6 @@ class StageEvaluationForm(models.Model):
     #development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
     #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
-
-    #def __str__(self):
-    #    return 'StageEvaluationForm:{}'.format(self.project.id)
 
     def __unicode__(self):
         return u'StageEvaluationForm:{}'.format(self.project)
@@ -373,9 +352,6 @@ class UnitEvaluationForm(models.Model):
     #development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
     #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
-
-    #def __str__(self):
-    #    return 'UnitEvaluationForm:{}'.format(self.project.id)
 
     def __unicode__(self):
         return u'UnitEvaluationForm:{}'.format(self.project)

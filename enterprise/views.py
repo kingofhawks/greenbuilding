@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, render_to_resp
 from models import (Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor,
                     Notification, Picture, ElementEvaluationForm, BatchEvaluationForm, StageEvaluationForm,
                     UnitEvaluationForm)
+from accounts.models import UserProfile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
@@ -158,7 +159,8 @@ def project_detail(request, project_id):
     print request.session['_auth_user_id']
     project = get_object_or_404(Project, pk=project_id)
     print project
-    return render(request, 'project_detail.html', {'project': project, 'project_id': project_id})
+    p = get_object_or_404(UserProfile, user_id=project.user.pk)
+    return render(request, 'project_detail.html', {'project': project, 'project_id': project_id, 'profile': p})
 
 
 #Deprecated

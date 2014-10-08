@@ -1,0 +1,11 @@
+{% extends "enterprise_base.html" %}
+{% load i18n staticfiles%}
+
+{% block main %}
+    <div class="container">
+        <label>{% trans "Company" %}</label><p>{{ object.company }}</p>
+        <label>{% trans "Location" %}</label><p>{{ object.location }}<br></p>
+        <label>{% trans "contact" %}</label><p>{{ object.contact }}<br></p>
+        <label>{% trans "phone" %}</label><p>{{ object.phone }}<br></p>
+    </div>
+{% endblock %}

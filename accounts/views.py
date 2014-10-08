@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import ugettext as _
 from forms import SignupForm, LoginForm, ProfileForm
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from models import UserProfile
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.messages import info, error
@@ -13,6 +13,11 @@ class CompanyList(ListView):
     model = UserProfile
     template_name = 'company_list.html'
     context_object_name = 'companies'
+
+
+class CompanyDetail(DetailView):
+    model = UserProfile
+    template_name = 'company_detail.html'
 
 
 # Create your views here.
@@ -82,14 +87,15 @@ def logout(request):
 
 
 def profile(request, template='accounts/account_profile.html'):
-    try:
-        p = get_object_or_404(UserProfile, user_id=request.user.pk)
-    except Http404:
-        p = UserProfile(user=request.user)
-        p.save()
-
+    #try:
+    #    p = get_object_or_404(UserProfile, user_id=request.user.pk)
+    #except Http404:
+    #    p = UserProfile(user=request.user)
+    #    p.save()
+    p = get_object_or_404(UserProfile, user_id=request.user.pk)
     #load form initial value from models
-    form = ProfileForm(request.POST or None, initial={'company': p.company, 'location': p.location, 'contact': p.contact, 'phone': p.phone})
+    form = ProfileForm(request.POST or None,
+                       initial={'company': p.company, 'location': p.location, 'contact': p.contact, 'phone': p.phone})
     #print p
     #print p.company
     if request.method == "POST" and form.is_valid():
@@ -103,3 +109,4 @@ def profile(request, template='accounts/account_profile.html'):
 
     context = {"form": form, "title": _("Update Profile"), "profile": p}
     return render(request, template, context)
+

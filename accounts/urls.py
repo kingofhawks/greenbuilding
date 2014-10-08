@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^companies/$', views.CompanyList.as_view(), name='accounts.companies'),
+    url(r'^company/(?P<pk>\d+)/detail/$', views.CompanyDetail.as_view(), name='accounts.company.detail'),
 )

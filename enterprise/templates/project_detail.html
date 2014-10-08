@@ -508,9 +508,9 @@ $d-chartHeight : 400px;
 
 {% block project_main %}
     <div class="container">
-        <label>{% trans "Project" %}</label>{{ project.name }}<br>
-        <label>{% trans "Company" %}</label>{{ project.construct_company }}<br>
-        <label>{% trans "Location" %}</label>{{ project.location }}<br>
+        <label>{% trans "Project" %}</label><p>{{ project.name }}<br></p>
+        <label>{% trans "Company" %}</label><p><a href="{% url 'accounts.company.detail'  profile.id%}">{{ profile.company }}</a></p>
+        <label>{% trans "Location" %}</label><p>{{ project.location }}<br></p>
         <a href="{% url 'enterprise.project.update'  project.id%}" class="btn btn-primary">{% trans "Modify" %}</a>
     </div>
 <div class="charts--container">

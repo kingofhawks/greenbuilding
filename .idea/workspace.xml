@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8109068e-f781-4376-b3af-70cedec32409" name="Default" comment="">
-      <change type="DELETED" beforePath="E:\Workspace\greenbuilding\enterprise\migrations\0002_project_address.py" afterPath="" />
-      <change type="DELETED" beforePath="E:\Workspace\greenbuilding\enterprise\migrations\0003_project_zipcode.py" afterPath="" />
+      <change type="DELETED" beforePath="E:\Workspace\greenbuilding\media\submission1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="E:\Workspace\greenbuilding\media\submission\1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="E:\Workspace\greenbuilding\media\submission\test.pdf" afterPath="" />
+      <change type="DELETED" beforePath="E:\Workspace\greenbuilding\static\js\media\submission.pdf" afterPath="" />
+      <change type="DELETED" beforePath="E:\Workspace\greenbuilding\static\js\submission.pdf" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/enterprise/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/enterprise/migrations/0001_initial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/enterprise/templates/submission_list.html" afterPath="$PROJECT_DIR$/enterprise/templates/submission_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/templates/company_list.html" afterPath="$PROJECT_DIR$/accounts/templates/company_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/enterprise/ghostdriver.log" afterPath="$PROJECT_DIR$/enterprise/ghostdriver.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/models.py" afterPath="$PROJECT_DIR$/accounts/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/enterprise/models.py" afterPath="$PROJECT_DIR$/enterprise/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/enterprise/templates/project_detail.html" afterPath="$PROJECT_DIR$/enterprise/templates/project_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/urls.py" afterPath="$PROJECT_DIR$/accounts/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/views.py" afterPath="$PROJECT_DIR$/accounts/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/enterprise/views.py" afterPath="$PROJECT_DIR$/enterprise/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="greenbuilding.iws" />
@@ -19,6 +28,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/greenbuilding$Nosetest_TestSequenceFunctions_test_nhnl.coverage" NAME="Nosetest TestSequenceFunctions.test_nhnl Coverage Results" MODIFIED="1404971032870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/enterprise" />
+    <SUITE FILE_PATH="coverage/greenbuilding$tasks.coverage" NAME="tasks Coverage Results" MODIFIED="1405326942210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/enterprise" />
+    <SUITE FILE_PATH="coverage/greenbuilding$dao.coverage" NAME="dao Coverage Results" MODIFIED="1409639789635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/enterprise" />
+    <SUITE FILE_PATH="coverage/greenbuilding$demo.coverage" NAME="demo Coverage Results" MODIFIED="1404970371861" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/enterprise" />
+    <SUITE FILE_PATH="coverage/greenbuilding$Nosetest_TestSequenceFunctions_test_selenium_phantomjs.coverage" NAME="Nosetest TestSequenceFunctions.test_selenium_phantomjs Coverage Results" MODIFIED="1404980046262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/enterprise" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -31,66 +47,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/enterprise/models.py">
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/enterprise/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="42" selection-start="3313" selection-end="3320" vertical-scroll-proportion="-15.96" vertical-offset="741" max-vertical-offset="2831">
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="submission_list.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/enterprise/templates/submission_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="31" selection-start="338" selection-end="338" vertical-scroll-proportion="33.92857" vertical-offset="1102" max-vertical-offset="1615">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="110" selection-end="110" vertical-scroll-proportion="0.31608135" vertical-offset="0" max-vertical-offset="541">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="project_list.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/enterprise/templates/project_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="16" selection-start="419" selection-end="419" vertical-scroll-proportion="-9.5" vertical-offset="0" max-vertical-offset="437">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="review_list.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/enterprise/templates/review_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="38" selection-start="164" selection-end="164" vertical-scroll-proportion="-4.071429" vertical-offset="0" max-vertical-offset="475">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="612" selection-end="612" vertical-scroll-proportion="-7.464286" vertical-offset="0" max-vertical-offset="722">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="account_form.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/account_form.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="95" selection-start="281" selection-end="281" vertical-scroll-proportion="-4.75" vertical-offset="0" max-vertical-offset="513">
+            <state line="14" column="30" selection-start="938" selection-end="949" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1387">
               <folding />
             </state>
           </provider>
@@ -99,30 +59,88 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/accounts/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="16" selection-start="2845" selection-end="2845" vertical-scroll-proportion="-12.28" vertical-offset="1175" max-vertical-offset="1691">
+            <state line="17" column="32" selection-start="601" selection-end="601" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2242">
               <folding>
-                <element signature="e#0#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/enterprise/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="13" selection-start="3461" selection-end="3461" vertical-scroll-proportion="-13.8" vertical-offset="1593" max-vertical-offset="3287">
-              <folding>
-                <element signature="e#0#101#0" expanded="true" />
+                <element signature="e#0#64#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/enterprise/urls.py">
+        <entry file="file://$PROJECT_DIR$/accounts/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="4" selection-start="1142" selection-end="1142" vertical-scroll-proportion="-11.4" vertical-offset="0" max-vertical-offset="589">
+            <state line="12" column="79" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/accounts/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="54" selection-start="1982" selection-end="1989" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1501">
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="project_detail.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/enterprise/templates/project_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="511" column="87" selection-start="12966" selection-end="12989" vertical-scroll-proportion="-7.678571" vertical-offset="9494" max-vertical-offset="10165">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="company_detail.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/enterprise/templates/company_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="0" selection-start="434" selection-end="434" vertical-scroll-proportion="-7.464286" vertical-offset="0" max-vertical-offset="323">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="account_profile.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/account_profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="23" selection-start="234" selection-end="234" vertical-scroll-proportion="-4.75" vertical-offset="0" max-vertical-offset="342">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="company_list.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/accounts/templates/company_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="34" selection-start="684" selection-end="684" vertical-scroll-proportion="-12.214286" vertical-offset="57" max-vertical-offset="665">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="initial_role.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/accounts/fixtures/initial_role.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="33" selection-start="382" selection-end="382" vertical-scroll-proportion="-9.5" vertical-offset="0" max-vertical-offset="551">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/enterprise/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="172" column="0" selection-start="8754" selection-end="8754" vertical-scroll-proportion="0.5681818" vertical-offset="2968" max-vertical-offset="6935">
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,22 +163,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/accounts/templates/accounts/account_profile.html" />
-        <option value="$PROJECT_DIR$/accounts/views.py" />
-        <option value="$PROJECT_DIR$/greenbuilding/settings.py" />
-        <option value="$PROJECT_DIR$/greenbuilding/urls.py" />
-        <option value="$PROJECT_DIR$/enterprise/templates/project_review.html" />
-        <option value="$PROJECT_DIR$/enterprise/templates/project_base.html" />
-        <option value="$PROJECT_DIR$/static/vendor/favico-0.3.4.min.js" />
-        <option value="$PROJECT_DIR$/enterprise/admin.py" />
-        <option value="$PROJECT_DIR$/enterprise/templates/notification_list.html" />
+        <option value="$PROJECT_DIR$/enterprise/templates/project_log.html" />
+        <option value="$PROJECT_DIR$/enterprise/locale/zh_CN/LC_MESSAGES/django.po" />
+        <option value="$PROJECT_DIR$/enterprise/templates/project_list.html" />
+        <option value="$PROJECT_DIR$/enterprise/dao.py" />
         <option value="$PROJECT_DIR$/core/templates/core_base.html" />
-        <option value="$PROJECT_DIR$/enterprise/templates/project_submission.html" />
-        <option value="$PROJECT_DIR$/enterprise/models.py" />
-        <option value="$PROJECT_DIR$/enterprise/urls.py" />
+        <option value="$PROJECT_DIR$/core/locale/zh_CN/LC_MESSAGES/django.po" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/accounts/templates/company_list.html" />
+        <option value="$PROJECT_DIR$/accounts/models.py" />
         <option value="$PROJECT_DIR$/enterprise/views.py" />
-        <option value="$PROJECT_DIR$/enterprise/templates/submission_list.html" />
-        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/accounts/views.py" />
+        <option value="$PROJECT_DIR$/accounts/urls.py" />
+        <option value="$PROJECT_DIR$/enterprise/templates/project_detail.html" />
+        <option value="$PROJECT_DIR$/enterprise/templates/company_detail.html" />
+        <option value="$PROJECT_DIR$/accounts/fixtures/initial_role.json" />
+        <option value="$PROJECT_DIR$/enterprise/models.py" />
       </list>
     </option>
   </component>
@@ -220,22 +238,141 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../django" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="E:/SkyDrive/Workspace/stms_api" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <PyConsoleSettings />
+    </option>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Workspace\greenbuilding\enterprise\templates" />
-      <recent name="E:\Workspace\greenbuilding\static\img" />
-      <recent name="E:\Workspace\greenbuilding\media\images" />
       <recent name="E:\Workspace\greenbuilding\accounts" />
-      <recent name="E:\Workspace\greenbuilding\static\images" />
+      <recent name="E:\Workspace\greenbuilding\media" />
+      <recent name="E:\Workspace\greenbuilding\static\chartjs" />
+      <recent name="E:\Workspace\greenbuilding\static\vendor" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Workspace\greenbuilding\accounts\fixtures" />
+      <recent name="E:\Workspace\greenbuilding\enterprise\templatetags" />
     </key>
   </component>
-  <component name="RunManager" selected="Django server.greenbuilding">
+  <component name="RunManager" selected="Python.dao">
+    <configuration default="false" name="demo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/enterprise" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="greenbuilding" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/enterprise/demo.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Nosetest TestSequenceFunctions.test_nhnl" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/enterprise" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="greenbuilding" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/enterprise/tests.py" />
+      <option name="CLASS_NAME" value="TestSequenceFunctions" />
+      <option name="METHOD_NAME" value="test_nhnl" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Nosetest TestSequenceFunctions.test_selenium_phantomjs" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/enterprise" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="greenbuilding" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/enterprise/tests.py" />
+      <option name="CLASS_NAME" value="TestSequenceFunctions" />
+      <option name="METHOD_NAME" value="test_selenium_phantomjs" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="tasks" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/enterprise" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="greenbuilding" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/enterprise/tasks.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="dao" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/enterprise" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="greenbuilding" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/enterprise/dao.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -432,9 +569,23 @@
       <option name="customRunCommand" value="" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Django server.greenbuilding" />
+      <item index="1" class="java.lang.String" itemvalue="Python.demo" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetest TestSequenceFunctions.test_nhnl" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetest TestSequenceFunctions.test_selenium_phantomjs" />
+      <item index="4" class="java.lang.String" itemvalue="Python.tasks" />
+      <item index="5" class="java.lang.String" itemvalue="Python.dao" />
     </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.dao" />
+        <item index="1" class="java.lang.String" itemvalue="Python.tasks" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetest TestSequenceFunctions.test_selenium_phantomjs" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetest TestSequenceFunctions.test_nhnl" />
+        <item index="4" class="java.lang.String" itemvalue="Python.demo" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="TaskManager">
@@ -455,17 +606,17 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24088748" sideWeight="0.67118645" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24088748" sideWeight="0.68135595" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12828948" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31864408" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32881355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18135594" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -486,125 +637,127 @@
           <url>file://D:/Anaconda/Lib/site-packages/django/http/response.py</url>
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/enterprise/templates/enterprise_base.html">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="14" selection-start="399" selection-end="399" vertical-scroll-proportion="0.31962618" vertical-offset="0" max-vertical-offset="535">
+        <state line="606" column="24" selection-start="9258" selection-end="9265" vertical-scroll-proportion="0.21626617" vertical-offset="11397" max-vertical-offset="17461" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/locale/zh_CN/LC_MESSAGES/django.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="1048" selection-end="1048" vertical-scroll-proportion="0.5120148" vertical-offset="559" max-vertical-offset="1539">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/enterprise/templates/project_base.html">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="71" selection-start="947" selection-end="957" vertical-scroll-proportion="-10.178572" vertical-offset="0" max-vertical-offset="608">
+        <state line="6" column="14" selection-start="106" selection-end="106" vertical-scroll-proportion="0.21072088" vertical-offset="0" max-vertical-offset="541">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/greenbuilding/settings.py">
+    <entry file="file://$PROJECT_DIR$/core/templates/core_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="27" selection-start="1220" selection-end="1224" vertical-scroll-proportion="-12.16" vertical-offset="570" max-vertical-offset="2014">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Anaconda/Lib/site-packages/django/template/defaulttags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="30" selection-start="2170" selection-end="2170" vertical-scroll-proportion="0.7291667" vertical-offset="337" max-vertical-offset="27436">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/account_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="95" selection-start="281" selection-end="281" vertical-scroll-proportion="-4.75" vertical-offset="0" max-vertical-offset="513">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="16" selection-start="2845" selection-end="2845" vertical-scroll-proportion="-12.28" vertical-offset="1175" max-vertical-offset="1691">
-          <folding>
-            <element signature="e#0#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/enterprise/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="42" selection-start="3313" selection-end="3320" vertical-scroll-proportion="-15.96" vertical-offset="741" max-vertical-offset="2831">
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Anaconda/Lib/site-packages/django/core/handlers/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="29" selection-start="4669" selection-end="4678" vertical-scroll-proportion="0.0" vertical-offset="1853" max-vertical-offset="4731">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/enterprise/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="4" selection-start="1142" selection-end="1142" vertical-scroll-proportion="-11.4" vertical-offset="0" max-vertical-offset="589">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Anaconda/Lib/site-packages/django/http/request.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="298" column="47" selection-start="11279" selection-end="11279" vertical-scroll-proportion="0.33271718" vertical-offset="5159" max-vertical-offset="9918">
+        <state line="124" column="44" selection-start="4228" selection-end="4228" vertical-scroll-proportion="0.0" vertical-offset="1841" max-vertical-offset="3021">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/enterprise/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="13" selection-start="3461" selection-end="3461" vertical-scroll-proportion="-13.8" vertical-offset="1593" max-vertical-offset="3287">
+        <state line="164" column="0" selection-start="5715" selection-end="5715" vertical-scroll-proportion="0.0" vertical-offset="2921" max-vertical-offset="17195">
           <folding>
             <element signature="e#0#101#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/templates/base.html">
+    <entry file="file://$PROJECT_DIR$/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="612" selection-end="612" vertical-scroll-proportion="-7.464286" vertical-offset="0" max-vertical-offset="722">
+        <state line="17" column="32" selection-start="601" selection-end="601" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2242">
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/enterprise/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="30" selection-start="938" selection-end="949" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1387">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/enterprise/templates/review_list.html">
+    <entry file="file://$PROJECT_DIR$/accounts/templates/company_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="38" selection-start="164" selection-end="164" vertical-scroll-proportion="-4.071429" vertical-offset="0" max-vertical-offset="475">
+        <state line="21" column="34" selection-start="684" selection-end="684" vertical-scroll-proportion="-12.214286" vertical-offset="57" max-vertical-offset="665">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/enterprise/templates/project_list.html">
+    <entry file="file://$PROJECT_DIR$/enterprise/templates/project_evaluation.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="16" selection-start="419" selection-end="419" vertical-scroll-proportion="-9.5" vertical-offset="0" max-vertical-offset="437">
+        <state line="8" column="14" selection-start="290" selection-end="290" vertical-scroll-proportion="0.2962963" vertical-offset="0" max-vertical-offset="513">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/enterprise/templates/submission_list.html">
+    <entry file="file://$PROJECT_DIR$/enterprise/templates/project_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="31" selection-start="338" selection-end="338" vertical-scroll-proportion="33.92857" vertical-offset="1102" max-vertical-offset="1615">
+        <state line="511" column="87" selection-start="12966" selection-end="12989" vertical-scroll-proportion="-7.678571" vertical-offset="9494" max-vertical-offset="10165">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/accounts/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="110" selection-end="110" vertical-scroll-proportion="0.31608135" vertical-offset="0" max-vertical-offset="541">
+        <state line="12" column="79" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/account_profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="23" selection-start="234" selection-end="234" vertical-scroll-proportion="-4.75" vertical-offset="0" max-vertical-offset="342">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="54" selection-start="1982" selection-end="1989" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1501">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/enterprise/templates/company_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="434" selection-end="434" vertical-scroll-proportion="-7.464286" vertical-offset="0" max-vertical-offset="323">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/fixtures/initial_role.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="33" selection-start="382" selection-end="382" vertical-scroll-proportion="-9.5" vertical-offset="0" max-vertical-offset="551">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/enterprise/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="172" column="0" selection-start="8754" selection-end="8754" vertical-scroll-proportion="0.5681818" vertical-offset="2968" max-vertical-offset="6935">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -4,6 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser,UserManager, PermissionsMixin,AbstractUser)
 from django.core import validators
 from django.utils import timezone
+from django.db.models.signals import post_save, pre_delete
+from django.dispatch import receiver
+from django.shortcuts import get_object_or_404
 
 
 # Create your models here.
@@ -48,5 +51,23 @@ class UserProfile(models.Model):
     contact = models.CharField(verbose_name=_('contact'), max_length=32, blank=True, null=True)
     phone = models.CharField(verbose_name=_('phone'), max_length=32, blank=True, null=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.company
+
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, **kwargs):
+    if kwargs['created']:
+        #create UserProfile on User created event
+        user = User.objects.get(username=instance.username)
+        p = UserProfile(user=user, company=instance.username)
+        p.save()
+
+@receiver(pre_delete, sender=User)
+def delete_profile(sender, instance, **kwargs):
+    user = User.objects.get(username=instance.username)
+    p = get_object_or_404(UserProfile, user_id=user.pk)
+    p.delete()
+
+
+
