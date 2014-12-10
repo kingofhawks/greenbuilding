@@ -683,8 +683,9 @@ def create_element_evaluation_form(request, project_id, template="create_project
         new_project = form.save()
         print new_project
         return redirect('enterprise.project.form', project_id=project_id)
-    context = {"form": form, "title": _("Create Element Evaluation Form")}
-    return render(request, template, context)
+    else:
+        context = {"form": form, "title": _("Create Element Evaluation Form")}
+        return render(request, template, context)
 
 
 class ElementEvaluationFormUpdate(UpdateView):

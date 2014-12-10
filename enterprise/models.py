@@ -31,11 +31,9 @@ class Project(models.Model):
         verbose_name = _("project")
         ordering = ['name']
 
-    #def __str__(self):
-    #    return 'Project:{}'.format(self.name)
-
+    #for python2.7
     def __unicode__(self):
-        return u'Project:{}'.format(self.name)
+        return self.name
 
     def get_absolute_url(self):
         return reverse('enterprise.project.detail', args=[str(self.id)])
@@ -239,8 +237,11 @@ class ControlItem(models.Model):
     number_request = models.CharField(verbose_name=_('Number and Request'), max_length=128)
     conclusion = models.CharField(verbose_name=_('Conclusion'), max_length=128)
 
+    class Meta:
+        verbose_name = _("Control Items")
+
     def __unicode__(self):
-        return u'number_request:{}'.format(self.number_request)
+        return self.number_request
 
 
 class BaseItem(models.Model):
@@ -250,15 +251,17 @@ class BaseItem(models.Model):
     actual_score = models.FloatField(verbose_name=_('Actual Score'))
 
     def __unicode__(self):
-        return u'number_request:{}'.format(self.number_request)
+        return self.number_request
 
 
 class GeneralItem(BaseItem):
-    pass
+    class Meta:
+        verbose_name = _("General Items")
 
 
 class ExcellentItem(BaseItem):
-    pass
+    class Meta:
+        verbose_name = _("Excellent Items")
 
 
 class ElementEvaluationForm(models.Model):
@@ -277,6 +280,9 @@ class ElementEvaluationForm(models.Model):
     development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
     supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
+
+    class Meta:
+        verbose_name = _("Element Evaluation Form")
 
     def __unicode__(self):
         return u'ElementEvaluationForm:{}'.format(self.project)
@@ -309,6 +315,9 @@ class BatchEvaluationForm(models.Model):
     #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
 
+    class Meta:
+        verbose_name = _("Batch Evaluation Form")
+
     def __unicode__(self):
         return u'BatchEvaluationForm:{}'.format(self.project)
 
@@ -326,6 +335,9 @@ class StageEvaluationForm(models.Model):
     #development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
     #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
+
+    class Meta:
+        verbose_name = _("Stage Evaluation Form")
 
     def __unicode__(self):
         return u'StageEvaluationForm:{}'.format(self.project)
@@ -352,6 +364,9 @@ class UnitEvaluationForm(models.Model):
     #development_unit_sign = models.CharField(verbose_name=_('development_unit_sign'), max_length=256, blank=True, null=True)
     #supervision_unit_sign = models.CharField(verbose_name=_('supervision_unit_sign'), max_length=256, blank=True, null=True)
     #construction_unit_sign = models.CharField(verbose_name=_('construction_unit_sign'), max_length=256, blank=True, null=True)
+
+    class Meta:
+        verbose_name = _("Unit Evaluation Form")
 
     def __unicode__(self):
         return u'UnitEvaluationForm:{}'.format(self.project)
