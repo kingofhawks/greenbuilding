@@ -10,6 +10,7 @@ class Project(models.Model):
     user = models.ForeignKey(User)
 
     #project info
+    PrjNum = models.CharField(verbose_name=_("prj_num"), max_length=256)
     name = models.CharField(verbose_name=_("project_name"), max_length=256)
     location = models.CharField(verbose_name=_("location"), max_length=256, blank=True, null=True)
     area = models.IntegerField(verbose_name=_('area'), blank=True, null=True)

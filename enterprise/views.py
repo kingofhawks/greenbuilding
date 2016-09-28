@@ -230,6 +230,16 @@ def project_progress_data(request):
     return HttpResponse(json.dumps(result), content_type="application/json")
 
 
+def project_sk(request):
+    from sk_ws_client import get_project
+    project = get_project()
+
+    result = {'name': project.name, 'area': project.area, 'cost': project.cost, 'start_date': project.start_date,
+              'end_date': project.end_date, 'construct_company': project.construct_company}
+    return HttpResponse(json.dumps(result), content_type="application/json")
+    # return HttpResponse(json.loads(data), content_type="application/json")
+
+
 @login_required
 def project_submission(request, project_id):
     submission = None

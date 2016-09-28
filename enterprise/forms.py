@@ -3,13 +3,14 @@ from models import (Project, Submission, ApplicationReview, ElementEvaluationFor
                     UnitEvaluationForm)
 
 
-#Create form from models
+# Create form from models
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
         #fields = ['name', 'description', 'location', 'area', 'cost', 'structure_type', 'start_date', 'end_date',
         #          'construct_company', 'postal_address', 'zipcode']
         #exclude = ['user']
+        fields = '__all__'
 
 
 class SubmissionForm(ModelForm):

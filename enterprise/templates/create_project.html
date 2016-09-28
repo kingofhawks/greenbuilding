@@ -8,9 +8,32 @@
         {{ form.as_p }}
         <div class="form-actions">
             {% block account_form_actions %}
-            <input class="btn btn-success btn-lg form-control" type="submit" value="{{ title }}">
+            <input class="btn btn-success btn-small form-control" type="submit" value="{{ title }}">
             {% endblock %}
         </div>
     </form>
     </div>
 {%  endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+    $(document).ready(function() {
+
+        // Event listener to the two range filtering inputs to redraw on input
+        $('#id_PrjNum').blur( function() {
+            console.log($('#id_PrjNum').val());
+            $.get('{% url "enterprise.project.sk" %}', function (data){
+                            console.log(data);
+                $('#id_name').val(data.name);
+                $('#id_area').val(data.area);
+                $('#id_cost').val(data.cost);
+                $('#id_construct_company').val(data.construct_company);
+                $('#id_begin_date').val(data.begin_date);
+                $('#id_end_date').val(data.end_date);
+            });
+
+        } );
+    } );
+    </script>
+{% endblock %}

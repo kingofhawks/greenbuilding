@@ -25,6 +25,9 @@ msgstr ""
 msgid "project_name"
 msgstr "项目名称"
 
+msgid "prj_num"
+msgstr "项目编码"
+
 #: .\models.py:14
 msgid "location"
 msgstr "地点"
