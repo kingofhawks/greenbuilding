@@ -22,7 +22,9 @@ page.paperSize = {
                 if (pageNum == 1) {
                     return "";
                 }
-                return "<h1>Header <span style='float:right'>" + pageNum + " / " + numPages + "</span></h1>";
+                //TODO header
+                // return "<h2><span style='float:right'>" + pageNum + " / " + numPages + "</span></h2>";
+                return "";
             })
         },
         footer: {
@@ -31,7 +33,7 @@ page.paperSize = {
                 if (pageNum == numPages) {
                     return "";
                 }
-                return "<h1>Footer <span style='float:right'>" + pageNum + " / " + numPages + "</span></h1>";
+                return "<h2><span style='float:right'>" + pageNum + " / " + numPages + "</span></h2>";
             })
         }};
 //page.content = '<html><body><p id="surface">hello world王小儿！</p></body></html>';

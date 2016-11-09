@@ -17,24 +17,28 @@ class SubmissionForm(ModelForm):
     class Meta:
         model = Submission
         exclude = ['date']
+        fields = '__all__'
 
 
 class ReviewForm(ModelForm):
     class Meta:
         model = ApplicationReview
         exclude = ['date']
+        fields = '__all__'
 
 
 class ElementEvaluationFormForm(ModelForm):
     class Meta:
         model = ElementEvaluationForm
         exclude = ['date']
+        fields = '__all__'
 
 
 class BatchEvaluationFormForm(ModelForm):
     class Meta:
         model = BatchEvaluationForm
         exclude = ['date']
+        fields = '__all__'
 
 
 class StageEvaluationFormForm(ModelForm):

@@ -224,27 +224,30 @@
 <table id="table" class="display table table-bordered">
     <thead>
         <th>{% trans "Project" %}</th>
+        <th>{% trans "prj_num" %}</th>
+        <th>{% trans "location" %}</th>
+        <th>{% trans "area" %}</th>
+        <th>{% trans "owner" %}</th>
+        <th>{% trans "construct_company" %}</th>
         <th>{% trans "Vote Result" %}</th>
-        <th style="width:200px">{% trans "Progress" %}</th>
+{#        <th style="width:200px">{% trans "Progress" %}</th>#}
     </thead>
     {% for p in projects %}
         <tr data-row-key="{{ p.id }}">
             <td><a href="{%  url 'enterprise.project.detail' p.id %}" class="hint--right" data-hint="{% trans 'Detail' %}">{{ p.name }}</a></td>
+            <td>{{ p.PrjNum }}</td>
+            <td>{{ p.location }}</td>
+            <td>{{ p.area }}</td>
+            <td>{{ p.owner }}</td>
+            <td>{{ p.construct_company }}</td>
             <td>{{ p.id |vote_result }}</td>
-            <td>
-{#                <canvas id="myChart{{ p.id }}" class="progress-chart" width="100" height="30"></canvas>#}
-{#                <div id="myChart{{ p.id }}" class="progress-chart"></div>#}
-        <div id="chart_container" style="width:450px">
-                    <div id="myChart{{ p.id }}" class="progress-chart" ></div>
-                    <div id="x_axis{{ p.id }}"></div>
-            <div id="legend"></div>
-        </div>
-{#                <div id="chart_container">#}
-{#                    <div id="y_axis"></div>#}
-{#                    <div id="chart"></div>#}
-{#                    <div id="x_axis"></div>#}
-{#                </div>#}
-            </td>
+{#            <td>#}
+{#            <div id="chart_container" style="width:450px">#}
+{#                        <div id="myChart{{ p.id }}" class="progress-chart" ></div>#}
+{#                        <div id="x_axis{{ p.id }}"></div>#}
+{#                <div id="legend"></div>#}
+{#            </div>#}
+{#            </td>#}
         </tr>
     {% endfor %}
 </table>

@@ -20,17 +20,17 @@
     <table class="table table-bordered">
         <tr>
             <td rowspan="2" colspan="3">工程名称</td>
-            <td rowspan="2" colspan="6"></td>
+            <td rowspan="2" colspan="6">{{ project.name }}</td>
             <td colspan="2">编号</td>
             <td colspan="4"></td>
         </tr>
         <tr>
             <td colspan="2">填表日期</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.date }}</td>
         </tr>
         <tr>
             <td colspan="3">评价阶段</td>
-            <td colspan="12"></td>
+            <td colspan="12">{{ form.evaluation_phase }}</td>
         </tr>
         <tr>
             <td colspan="3">评价要素</td>
@@ -40,39 +40,39 @@
         </tr>
         <tr>
             <td colspan="3">环境保护</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.env_evaluation_score }}</td>
             <td colspan="2">0.3</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.env_real_score }}</td>
         </tr>
         <tr>
             <td colspan="3">节材与材料资源利用</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.materials_evaluation_score }}</td>
             <td colspan="2">0.2</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.materials_real_score }}</td>
         </tr>
         <tr>
             <td colspan="3">节水与水资源利用</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.water_evaluation_score }}</td>
             <td colspan="2">0.2</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.water_real_score }}</td>
         </tr>
         <tr>
             <td colspan="3">节能与能源利用</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.power_evaluation_score }}</td>
             <td colspan="2">0.2</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.power_real_score }}</td>
         </tr>
         <tr>
             <td colspan="3">节地与施工用地保护</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.land_evaluation_score }}</td>
             <td colspan="2">0.1</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.land_real_score }}</td>
         </tr>
         <tr>
             <td colspan="3">合计</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.total_evaluation_score }}</td>
             <td colspan="2">1</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.total_real_score }}</td>
         </tr>
         <tr>
             <td colspan="3">评价评论</td>

@@ -19,18 +19,33 @@
     {{ block.super }}
     <script>
     $(document).ready(function() {
-
         // Event listener to the two range filtering inputs to redraw on input
         $('#id_PrjNum').blur( function() {
-            console.log($('#id_PrjNum').val());
-            $.get('{% url "enterprise.project.sk" %}', function (data){
+            var prjNum = $('#id_PrjNum').val();
+            console.log(prjNum);
+            $.get('{% url "enterprise.project.sk" %}', {'prjNum': prjNum}, function (data){
                             console.log(data);
-                $('#id_name').val(data.name);
-                $('#id_area').val(data.area);
-                $('#id_cost').val(data.cost);
-                $('#id_construct_company').val(data.construct_company);
-                $('#id_begin_date').val(data.begin_date);
-                $('#id_end_date').val(data.end_date);
+                var status = data.status;
+                if (status == 'OK'){
+                    $('#id_name').val(data.name);
+                    $('#id_area').val(data.area);
+                    $('#id_cost').val(data.cost);
+                    $('#id_owner').val(data.construct_company);
+                    $('#id_begin_date').val(data.begin_date);
+                    $('#id_end_date').val(data.end_date);
+                    $('#id_location').val(data.location);
+                    $('#id_construct_company').val("{{ enterprise }}");
+                } else {
+                    alert("项目编码不存在!");
+                    $('#id_name').val('');
+                    $('#id_area').val('');
+                    $('#id_cost').val('');
+                    $('#id_owner').val('');
+                    $('#id_begin_date').val('');
+                    $('#id_end_date').val('');
+                    $('#id_location').val('');
+                }
+
             });
 
         } );

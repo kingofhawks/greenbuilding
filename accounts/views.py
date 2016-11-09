@@ -14,6 +14,9 @@ class CompanyList(ListView):
     template_name = 'company_list.html'
     context_object_name = 'companies'
 
+    def get_queryset(self):
+        return UserProfile.objects.filter(is_company=True)
+
 
 class CompanyDetail(DetailView):
     model = UserProfile
@@ -34,7 +37,11 @@ def login(request, template="accounts/account_login.html"):
                 if authenticated_user.is_active:
                     auth_login(request, authenticated_user)
                 # Redirect to a success page.
-                #TODO redirect to core.dashboard page
+                # TODO redirect to core.dashboard page
+                p = get_object_or_404(UserProfile, user_id=request.user.pk)
+                print p
+                print p.company
+                request.session['company'] = p.company
                 return redirect('enterprise.projects')
         except forms.ValidationError as e:
             print e
@@ -87,13 +94,8 @@ def logout(request):
 
 
 def profile(request, template='accounts/account_profile.html'):
-    #try:
-    #    p = get_object_or_404(UserProfile, user_id=request.user.pk)
-    #except Http404:
-    #    p = UserProfile(user=request.user)
-    #    p.save()
     p = get_object_or_404(UserProfile, user_id=request.user.pk)
-    #load form initial value from models
+    # load form initial value from models
     form = ProfileForm(request.POST or None,
                        initial={'company': p.company, 'location': p.location, 'contact': p.contact, 'phone': p.phone})
     #print p

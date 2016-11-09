@@ -20,13 +20,13 @@
     <table class="table table-bordered">
         <tr>
             <td rowspan="2" colspan="3">工程名称</td>
-            <td rowspan="2" colspan="6"></td>
+            <td rowspan="2" colspan="6">{{ project.name }}</td>
             <td colspan="2">编号</td>
             <td colspan="4"></td>
         </tr>
         <tr>
             <td colspan="2">填表日期</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.date }}</td>
         </tr>
         <tr>
             <td colspan="3">评价阶段</td>
@@ -36,27 +36,27 @@
         </tr>
         <tr>
             <td colspan="3">地基与基础</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.foundation_stage_score }}</td>
             <td colspan="2">0.3</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.foundation_real_score }}</td>
         </tr>
         <tr>
             <td colspan="3">结构工程</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.architecture_stage_score }}</td>
             <td colspan="2">0.5</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.architecture_real_score }}</td>
         </tr>
         <tr>
             <td colspan="3">装饰装修与机电安装</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.install_stage_score }}</td>
             <td colspan="2">0.2</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.install_real_score }}</td>
         </tr>
         <tr>
             <td colspan="3">合计</td>
-            <td colspan="6"></td>
+            <td colspan="6">{{ form.total_evaluation_score }}</td>
             <td colspan="2">1</td>
-            <td colspan="4"></td>
+            <td colspan="4">{{ form.total_real_score }}</td>
         </tr>
         <tr style="height:150px">
             <td colspan="1">评价评论</td>

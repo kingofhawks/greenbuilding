@@ -22,6 +22,7 @@ def vote_state(value, arg):
     else:
         return _('Thumbs Down')
 
+
 @register.filter(name='vote_result')
 def vote_result(value):
     status = _('Not yet voted')

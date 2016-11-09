@@ -46,6 +46,8 @@ class CompanyProjectList(ListView):
 class ProjectUpdate(UpdateView):
     model = Project
     template_name = 'create_project.html'
+    # fields = ['name', 'PrjNum', 'location', 'area', 'cost', 'description']
+    fields = '__all__'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -64,6 +66,7 @@ class SubmissionList(ListView):
 class SubmissionUpdate(UpdateView):
     model = Submission
     template_name = 'create_project.html'
+    fields = '__all__'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -82,6 +85,7 @@ class ApplicationReviewList(ListView):
 class ApplicationReviewUpdate(UpdateView):
     model = ApplicationReview
     template_name = 'create_project.html'
+    fields = '__all__'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -138,7 +142,7 @@ def create_project(request, template="create_project.html"):
         new_project = form.save()
         print new_project
         return redirect('enterprise.projects')
-    context = {"form": form, "title": _("Create Project")}
+    context = {"form": form, "title": _("Create Project"), "enterprise": request.session['company']}
     return render(request, template, context)
 
 
@@ -163,7 +167,7 @@ def project_detail(request, project_id):
     return render(request, 'project_detail.html', {'project': project, 'project_id': project_id, 'profile': p})
 
 
-#Deprecated
+# Deprecated
 def project_progress(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
@@ -231,13 +235,18 @@ def project_progress_data(request):
 
 
 def project_sk(request):
+    prj_num = request.GET.get('prjNum')
     from sk_ws_client import get_project
-    project = get_project()
+    project = get_project(prj_num)
 
-    result = {'name': project.name, 'area': project.area, 'cost': project.cost, 'start_date': project.start_date,
-              'end_date': project.end_date, 'construct_company': project.construct_company}
+    if project:
+        result = {'status': 'OK', 'name': project.name, 'area': project.area, 'cost': project.cost,
+                  'start_date': project.start_date, 'end_date': project.end_date,
+                  'location': project.location,
+                  'construct_company': project.construct_company}
+    else:
+        result = {'status': 'Fail'}
     return HttpResponse(json.dumps(result), content_type="application/json")
-    # return HttpResponse(json.loads(data), content_type="application/json")
 
 
 @login_required
@@ -322,13 +331,13 @@ def submission_commit(request):
 def submission_approve(request):
     project_id = request.POST.get('project_id')
     print project_id
-    #update submission status
+    # update submission status
     submission = get_object_or_404(Submission, pk=project_id)
     print submission
     submission.approved = True
     submission.save()
 
-    #clear relevant notification
+    # clear relevant notification
     try:
         notification = get_object_or_404(Notification, label=submission.project.name, type=1)
         print notification
@@ -343,8 +352,9 @@ def submission_approve(request):
     }
     create_log(event)
 
-    #generate PDF
-    html2pdf(request.build_absolute_uri(submission.get_pdf_url()), 'E:/workspace/greenbuilding/media/submission/', project_id)
+    # generate PDF
+    html2pdf(request.build_absolute_uri(submission.get_pdf_url()),
+             'D:/workspace/greenbuilding/media/submission/', project_id)
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
@@ -473,7 +483,7 @@ def review_approve(request, project_id):
     create_log(event)
 
     #generate PDF
-    html2pdf(request.build_absolute_uri(review.get_pdf_url()), 'E:/workspace/greenbuilding/media/review/', project_id)
+    html2pdf(request.build_absolute_uri(review.get_pdf_url()), 'D:/workspace/greenbuilding/media/review/', project_id)
 
     return HttpResponse(json.dumps('OK'), content_type="application/json")
 
@@ -681,7 +691,7 @@ def element_evaluation_print(request, project_id):
 
     #generate PDF
     pdf_url = reverse('enterprise.project.pdf.element', args=[str(project_id)])
-    html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/element/', project_id)
+    html2pdf(request.build_absolute_uri(pdf_url), 'D:/workspace/greenbuilding/media/review/form/element/', project_id)
 
     return render(request, 'element_evaluation_print.html', {'project_id': project_id})
 
@@ -701,6 +711,7 @@ def create_element_evaluation_form(request, project_id, template="create_project
 class ElementEvaluationFormUpdate(UpdateView):
     model = ElementEvaluationForm
     template_name = 'create_project.html'
+    fields = '__all__'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -716,7 +727,7 @@ def batch_evaluation_print(request, project_id):
 
     #generate PDF
     pdf_url = reverse('enterprise.project.pdf.batch', args=[str(project_id)])
-    html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/batch/', project_id)
+    html2pdf(request.build_absolute_uri(pdf_url), 'D:/workspace/greenbuilding/media/review/form/batch/', project_id)
 
     return render(request, 'batch_evaluation_print.html', {'project_id': project_id})
 
@@ -734,6 +745,7 @@ def create_batch_evaluation_form(request, project_id, template="create_project.h
 class BatchEvaluationFormUpdate(UpdateView):
     model = BatchEvaluationForm
     template_name = 'create_project.html'
+    fields = '__all__'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -749,7 +761,7 @@ def stage_evaluation_print(request, project_id):
 
     #generate PDF
     pdf_url = reverse('enterprise.project.pdf.stage', args=[str(project_id)])
-    html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/stage/', project_id)
+    html2pdf(request.build_absolute_uri(pdf_url), 'D:/workspace/greenbuilding/media/review/form/stage/', project_id)
 
     return render(request, 'stage_evaluation_print.html', {'project_id': project_id})
 
@@ -767,6 +779,7 @@ def create_stage_evaluation_form(request, project_id, template="create_project.h
 class StageEvaluationFormUpdate(UpdateView):
     model = StageEvaluationForm
     template_name = 'create_project.html'
+    fields = '__all__'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -782,7 +795,7 @@ def unit_evaluation_print(request, project_id):
 
     #generate PDF
     pdf_url = reverse('enterprise.project.pdf.unit', args=[str(project_id)])
-    html2pdf(request.build_absolute_uri(pdf_url), 'E:/workspace/greenbuilding/media/review/form/unit/', project_id)
+    html2pdf(request.build_absolute_uri(pdf_url), 'D:/workspace/greenbuilding/media/review/form/unit/', project_id)
 
     return render(request, 'unit_evaluation_print.html', { 'project_id': project_id})
 
@@ -801,6 +814,7 @@ def create_unit_evaluation_form(request, project_id, template="create_project.ht
 class UnitEvaluationFormUpdate(UpdateView):
     model = UnitEvaluationForm
     template_name = 'create_project.html'
+    fields = '__all__'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context

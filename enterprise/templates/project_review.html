@@ -5,6 +5,8 @@
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'vex/css/vex.css' %}">
     <link rel="stylesheet" href="{% static 'vex/css/vex-theme-os.css' %}">
+    <link rel="stylesheet" href="{% static 'messenger/build/css/messenger.css' %}">
+    <link rel="stylesheet" href="{% static 'messenger/build/css/messenger-theme-future.css' %}">
 {#    <link rel="stylesheet" href="{% static 'ladda/dist/ladda.min.css' %}">#}
     <link rel="stylesheet" href="{% static 'ladda/dist/ladda-themeless.min.css' %}">
 {% endblock %}
@@ -14,6 +16,8 @@
     <script src="{% static 'ladda/dist/spin.min.js' %}"></script>
     <script src="{% static 'ladda/dist/ladda.min.js' %}"></script>
     <script src="{% static 'jquery-cookie/jquery.cookie.js' %}"></script>
+    <script src="{% static 'messenger/build/js/messenger.min.js' %}"></script>
+    <script src="{% static 'messenger/build/js/messenger-theme-future.js' %}"></script>
     <script src="{% static 'vex/js/vex.combined.min.js' %}"></script>
     <script>vex.defaultOptions.className = 'vex-theme-os';</script>
 
@@ -64,6 +68,24 @@
             });
         });
 
+
+        $('#submitReview').click( function () {
+            var csrf_token = $.cookie('csrftoken');
+            $.post("{% url 'enterprise.review.commit'%}",{project_id:"{{ review.id }}", csrfmiddlewaretoken:csrf_token },function(data){
+                message = "{% trans 'ApplicationReview committed successfully' %}"
+                msg_level = "success"
+                if (data.indexOf("OK") == -1){
+                    message = data
+                    msg_level = "error"
+                }
+                console.log(message);
+                Messenger().post({
+                  message: message,
+                  type: msg_level,
+                  showCloseButton:true
+                })
+        })
+    } );
     });
     </script>
 {% endblock %}
@@ -81,6 +103,7 @@
 <div>
 <div>
     <a href="{% url 'enterprise.review.update'  review.id%}" class="btn btn-primary">{% trans "Modify" %}</a>
+    <a href="#" id="submitReview" class="btn btn-primary">{% trans "Submit ApplicationReview" %}</a>
     <a target="_blank" href="{{ MEDIA_URL }}/review/{{ review.id }}.pdf" class="btn btn-primary">{% trans "Print" %}</a>
     <button id="approve" class="btn btn-primary ladda-button" data-style="expand-right" data-size="s" data-color="blue"><span class="ladda-label">{% trans "Approve" %}</span></button>
     <a href="#" id="deny" class="btn btn-primary">{% trans "Deny" %}</a>

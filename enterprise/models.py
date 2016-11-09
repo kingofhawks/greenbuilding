@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -9,19 +10,22 @@ from django.core.urlresolvers import reverse
 class Project(models.Model):
     user = models.ForeignKey(User)
 
-    #project info
-    PrjNum = models.CharField(verbose_name=_("prj_num"), max_length=256)
+    # project info
+    PrjNum = models.CharField(verbose_name=_("prj_num"), max_length=256, default='3202041503050102')
     name = models.CharField(verbose_name=_("project_name"), max_length=256)
     location = models.CharField(verbose_name=_("location"), max_length=256, blank=True, null=True)
-    area = models.IntegerField(verbose_name=_('area'), blank=True, null=True)
-    cost = models.IntegerField(verbose_name=_('cost'), blank=True, null=True)
+    area = models.FloatField(verbose_name=_('area'), blank=True, null=True)
+    cost = models.FloatField(verbose_name=_('cost'), blank=True, null=True)
     structure_type = models.CharField(verbose_name=_('structure_type'), max_length=32, blank=True, null=True)
     start_date = models.DateField(verbose_name=_('start_date'), blank=True, null=True)
     end_date = models.DateField(verbose_name=_('end_date'), blank=True, null=True)
     description = models.CharField(verbose_name=_("description"), max_length=1024, blank=True, null=True)
 
-    #company info
+    # company info
+    # 施工单位
     construct_company = models.CharField(verbose_name=_('construct_company'), max_length=256, blank=True, null=True)
+    # 建设单位
+    owner = models.CharField(verbose_name=_('owner'), max_length=256, blank=True, null=True)
     postal_address = models.CharField(verbose_name=_('postal_address'), max_length=256, blank=True, null=True)
     zipcode = models.CharField(verbose_name=_('zipcode'), max_length=6, blank=True, null=True)
 
@@ -32,7 +36,7 @@ class Project(models.Model):
         verbose_name = _("project")
         ordering = ['name']
 
-    #for python2.7
+    # for python2.7
     def __unicode__(self):
         return self.name
 
@@ -87,7 +91,7 @@ class Submission(models.Model):
         return reverse('enterprise.project.submission.pdf', args=[str(self.project.id)])
 
 
-#Project application review form
+# Project application review form
 class ApplicationReview(models.Model):
     project = models.ForeignKey(Project)
     grade = models.CharField(verbose_name=_("Grade"), max_length=64, choices=GRADE_CHOICES)
@@ -263,6 +267,18 @@ class GeneralItem(BaseItem):
 class ExcellentItem(BaseItem):
     class Meta:
         verbose_name = _("Excellent Items")
+
+
+class Stage(models.Model):
+    project = models.ForeignKey(Project, verbose_name=_('project'))
+    name = models.CharField(verbose_name=_('stage_name'), max_length=128, blank=False, null=False)
+
+
+class Batch(models.Model):
+    project = models.ForeignKey(Project, verbose_name=_('project'))
+    stage = models.ForeignKey(Stage, verbose_name=_('stage_name'))
+    name = models.CharField(verbose_name=_('batch_name'), max_length=128, blank=False, null=False)
+    date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
 
 
 class ElementEvaluationForm(models.Model):

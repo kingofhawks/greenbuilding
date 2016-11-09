@@ -50,6 +50,7 @@ class UserProfile(models.Model):
     location = models.CharField(verbose_name=_("location"), max_length=256, blank=True, null=True)
     contact = models.CharField(verbose_name=_('contact'), max_length=32, blank=True, null=True)
     phone = models.CharField(verbose_name=_('phone'), max_length=32, blank=True, null=True)
+    is_company = models.BooleanField(verbose_name=_('is_company'), default=True)
 
     def __unicode__(self):
         return self.company
