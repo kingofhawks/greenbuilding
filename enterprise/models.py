@@ -270,19 +270,31 @@ class ExcellentItem(BaseItem):
 
 
 class Stage(models.Model):
-    project = models.ForeignKey(Project, verbose_name=_('project'))
-    name = models.CharField(verbose_name=_('stage_name'), max_length=128, blank=False, null=False)
+    name = models.CharField(verbose_name=_('stage'), max_length=128, blank=False, null=False)
+
+    class Meta:
+        verbose_name = _("stage")
+
+    def __unicode__(self):
+        return self.name
 
 
 class Batch(models.Model):
     project = models.ForeignKey(Project, verbose_name=_('project'))
-    stage = models.ForeignKey(Stage, verbose_name=_('stage_name'))
-    name = models.CharField(verbose_name=_('batch_name'), max_length=128, blank=False, null=False)
+    stage = models.ForeignKey(Stage, verbose_name=_('stage'))
+    name = models.CharField(verbose_name=_('batch'), max_length=128, blank=False, null=False)
     date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
+
+    class Meta:
+        verbose_name = _("batch")
+
+    def __unicode__(self):
+        return self.name
 
 
 class ElementEvaluationForm(models.Model):
     project = models.ForeignKey(Project, verbose_name=_('project'))
+    batch = models.ForeignKey(Batch, verbose_name=_('batch'))
     number = models.CharField(verbose_name=_('Number'), max_length=128, blank=True, null=True)
     date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
     construction_phase = models.CharField(verbose_name=_('construction_phase'), max_length=64, blank=True, null=True)
@@ -310,6 +322,7 @@ class ElementEvaluationForm(models.Model):
 
 class BatchEvaluationForm(models.Model):
     project = models.ForeignKey(Project, verbose_name=_('project'))
+    batch = models.ForeignKey(Batch, verbose_name=_('batch'))
     number = models.CharField(verbose_name=_('Number'), max_length=128, blank=True, null=True)
     date = models.DateField(verbose_name=_('Date'), blank=True, null=True)
     evaluation_phase = models.CharField(verbose_name=_('evaluation_phase'), max_length=64, blank=True, null=True)

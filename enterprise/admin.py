@@ -1,14 +1,14 @@
 from django.contrib import admin
 from models import (Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor,
                     Notification, Picture, ControlItem, GeneralItem, ExcellentItem,
-                    ElementEvaluationForm, BatchEvaluationForm, StageEvaluationForm, UnitEvaluationForm)
+                    ElementEvaluationForm, BatchEvaluationForm, StageEvaluationForm, UnitEvaluationForm, Stage, Batch)
 from django.utils.translation import ugettext as _
 
 
 class SubmissionAdmin(admin.ModelAdmin):
-    fieldsets = [('Project Info', {'fields':['project', 'grade']}),
-                 ('Company Info', {'fields':['person_in_charge','phone1','technical_in_charge','phone2','company_technical_in_charge','phone3']}),
-                 (None,{'fields':['content','measures', 'schedule','benefits', 'company_opinion', 'management_opinion','approved',  'date']})]
+    fieldsets = [('Project Info', {'fields': ['project', 'grade']}),
+                 ('Company Info', {'fields': ['person_in_charge', 'phone1', 'technical_in_charge', 'phone2', 'company_technical_in_charge','phone3']}),
+                 (None, {'fields': ['content', 'measures', 'schedule','benefits', 'company_opinion', 'management_opinion','approved',  'date']})]
     list_display = ('project', 'grade','date')
     actions = ['change_grade']
 
@@ -38,4 +38,5 @@ admin.site.register(ElementEvaluationForm)
 admin.site.register(BatchEvaluationForm)
 admin.site.register(StageEvaluationForm)
 admin.site.register(UnitEvaluationForm)
-
+admin.site.register(Stage)
+admin.site.register(Batch)

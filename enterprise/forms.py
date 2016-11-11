@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from models import (Project, Submission, ApplicationReview, ElementEvaluationForm, BatchEvaluationForm, StageEvaluationForm,
-                    UnitEvaluationForm)
+                    UnitEvaluationForm, Stage, Batch)
 
 
 # Create form from models
@@ -51,3 +51,15 @@ class UnitEvaluationFormForm(ModelForm):
     class Meta:
         model = UnitEvaluationForm
         exclude = ['date']
+
+
+class StageForm(ModelForm):
+    class Meta:
+        model = Stage
+        fields = '__all__'
+
+
+class BatchForm(ModelForm):
+    class Meta:
+        model = Batch
+        fields = '__all__'

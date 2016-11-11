@@ -1,0 +1,44 @@
+{% extends "project_base.html" %}
+{% load i18n staticfiles project_filters%}
+
+
+{% block left_panel %}
+    {% include "review_left_panel.html" %}
+{% endblock %}
+
+{% block project_main %}
+{% if review.id != 99999 %}
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">{% trans "Element Evaluation Form" %}(企业自评)</h3>
+  </div>
+  <div class="panel-body">
+    {% if element %}
+        <a href="{% url 'enterprise.project.element.update' element.id %}" >{% trans "Element Evaluation Form" %}</a>
+    {% else %}
+        <a href="{% url 'enterprise.project.element.add' project_id %}" >{% trans "Element Evaluation Form" %}</a>
+    {% endif %}
+    <a target="_main" href="{% url 'enterprise.project.print.element' project_id %}" >{% trans "Print" %}</a>
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">{% trans "Batch Evaluation Form" %}(企业自评)</h3>
+  </div>
+  <div class="panel-body">
+    {% if batch %}
+        <a href="{% url 'enterprise.project.batch.update' batch.id %}" >{% trans "Batch Evaluation Form" %}</a>
+    {% else %}
+        <a href="{% url 'enterprise.project.batch.add' project_id %}" >{% trans "Batch Evaluation Form" %}</a>
+    {% endif %}
+    <a target="_main" href="{% url 'enterprise.project.print.batch' project_id %}" >{% trans "Print" %}</a>
+  </div>
+</div>
+
+{% endif %}
+</div>
+</div>
+{% endblock %}

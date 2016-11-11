@@ -1,13 +1,15 @@
+import traceback
+
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response, get_list_or_404
 from models import (Submission, Project, ApplicationReview, SelfEvaluation, Selection, PM10, ProgressMonitor,
                     Notification, Picture, ElementEvaluationForm, BatchEvaluationForm, StageEvaluationForm,
-                    UnitEvaluationForm)
+                    UnitEvaluationForm, Stage, Batch)
 from accounts.models import UserProfile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from django.views.generic.edit import UpdateView
 from forms import (ProjectForm, SubmissionForm, ReviewForm, ElementEvaluationFormForm, BatchEvaluationFormForm,
-                   StageEvaluationFormForm, UnitEvaluationFormForm)
+                   StageEvaluationFormForm, UnitEvaluationFormForm, StageForm, BatchForm)
 from django.utils.translation import ugettext as _
 import json
 from django.http import HttpResponse, Http404
@@ -685,6 +687,107 @@ def project_evaluation_form(request, project_id):
                    'element': element, 'batch': batch, 'stage': stage, 'unit': unit})
 
 
+def project_stage(request, project_id):
+    stages = get_list_or_404(Stage)
+    try:
+        review = get_object_or_404(ApplicationReview, project_id=project_id)
+        print review
+    except Http404:
+        warning(request, _('Review is not submitted yet.'))
+        review = ApplicationReview(id=99999)#hack an empty review
+
+    element = None
+    try:
+        element = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    batch = None
+    try:
+        batch = get_object_or_404(BatchEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    stage = None
+    try:
+        stage = get_object_or_404(StageEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    unit = None
+    try:
+        unit = get_object_or_404(UnitEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    return render(request, 'project_stage_list.html',
+                  {'review': review, 'project_id': project_id,
+                   'element': element, 'batch': batch, 'stage': stage, 'unit': unit,
+                   'stages': stages})
+
+
+def stage_batch(request, project_id, stage_id):
+    print '***'*10
+    print stage_id
+    print project_id
+    try:
+        review = get_object_or_404(ApplicationReview, project_id=project_id)
+        print review
+    except Http404:
+        warning(request, _('Review is not submitted yet.'))
+        review = ApplicationReview(id=99999)#hack an empty review
+
+    batches = []
+    try:
+        batches = get_list_or_404(Batch, stage_id=stage_id)
+        print batches
+    except Http404:
+        traceback.print_exc()
+        print 'error'
+
+    return render(request, 'project_batch_list.html',
+                  {'review': review, 'project_id': project_id, 'stage_id': stage_id,
+                   'batches': batches})
+
+
+def batch_detail(request, project_id, batch_id):
+    review = None
+    try:
+        review = get_object_or_404(ApplicationReview, project_id=project_id)
+        print review
+    except Http404:
+        warning(request, _('Review is not submitted yet.'))
+        review = ApplicationReview(id=99999)#hack an empty review
+
+    element = None
+    try:
+        element = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    batch = None
+    try:
+        batch = get_object_or_404(BatchEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    stage = None
+    try:
+        stage = get_object_or_404(StageEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    unit = None
+    try:
+        unit = get_object_or_404(UnitEvaluationForm, project_id=project_id)
+    except Http404:
+        pass
+
+    return render(request, 'batch_detail.html',
+                  {'review': review, 'project_id': project_id,
+                   'element': element, 'batch': batch, 'stage': stage, 'unit': unit})
+
+
 def element_evaluation_print(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
@@ -742,6 +845,16 @@ def create_batch_evaluation_form(request, project_id, template="create_project.h
     return render(request, template, context)
 
 
+def create_batch(request, project_id, stage_id, template="create_project.html"):
+    form = BatchForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_project = form.save()
+        print new_project
+        return redirect('enterprise.project.form', project_id=project_id)
+    context = {"form": form, "title": _("Create Batch")}
+    return render(request, template, context)
+
+
 class BatchEvaluationFormUpdate(UpdateView):
     model = BatchEvaluationForm
     template_name = 'create_project.html'
@@ -787,6 +900,16 @@ class StageEvaluationFormUpdate(UpdateView):
         # Add extra context variable
         context['title'] = _('Modify StageEvaluationForm')
         return context
+
+
+def create_stage(request, project_id, template="create_project.html"):
+    form = StageForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_project = form.save()
+        print new_project
+        return redirect('enterprise.project.stage', project_id=project_id)
+    context = {"form": form, "title": _("Create Stage")}
+    return render(request, template, context)
 
 
 def unit_evaluation_print(request, project_id):

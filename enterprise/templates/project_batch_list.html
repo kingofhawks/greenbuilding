@@ -1,0 +1,22 @@
+{% extends "project_base.html" %}
+{% load i18n staticfiles project_filters%}
+
+
+{% block left_panel %}
+    {% include "review_left_panel.html" %}
+{% endblock %}
+
+{% block project_main %}
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">{% trans "Batch" %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'enterprise.stage.batch.create' project_id stage_id%}">{% trans "Create Batch" %}</a>
+    </h3>
+  </div>
+  <div class="panel-body">
+      {% for batch in batches %}
+          <p><a href="{% url 'enterprise.stage.batch.detail' project_id batch.id%}" >{{ batch.name }}</a></p>
+      {% endfor %}
+  </div>
+</div>
+{% endblock %}
