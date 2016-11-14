@@ -12,21 +12,29 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">{% trans "Element Evaluation Form" %}(企业自评)</h3>
+    <h3 class="panel-title">{% trans "Element Evaluation Form" %}(企业自评)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'enterprise.project.element.add' project_id %}" >{% trans "Create" %}</a>
+    </h3>
   </div>
   <div class="panel-body">
-    {% if element %}
-        <a href="{% url 'enterprise.project.element.update' element.id %}" >{% trans "Element Evaluation Form" %}</a>
-    {% else %}
-        <a href="{% url 'enterprise.project.element.add' project_id %}" >{% trans "Element Evaluation Form" %}</a>
-    {% endif %}
-    <a target="_main" href="{% url 'enterprise.project.print.element' project_id %}" >{% trans "Print" %}</a>
+{#    {% if element %}#}
+{#        <a href="{% url 'enterprise.project.element.update' element.id %}" >{% trans "Element Evaluation Form" %}</a>#}
+{#    {% else %}#}
+{#        <a href="{% url 'enterprise.project.element.add' project_id %}" >{% trans "Element Evaluation Form" %}</a>#}
+{#    {% endif %}#}
+    {% for element in elements %}
+        <p>
+            <a href="{% url 'enterprise.project.element.update' element.id %}" >{{ element.evaluation_indicator }}</a>
+            <a target="_main" href="{% url 'enterprise.project.print.element' project_id element.id%}" >{% trans "Print" %}</a>
+        </p>
+    {% endfor %}
   </div>
 </div>
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">{% trans "Batch Evaluation Form" %}(企业自评)</h3>
+    <h3 class="panel-title">{% trans "Batch Evaluation Form" %}(企业自评)
+    </h3>
   </div>
   <div class="panel-body">
     {% if batch %}

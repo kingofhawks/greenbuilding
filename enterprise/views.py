@@ -617,10 +617,10 @@ def project_achievement_pictures(request, project_id):
     return HttpResponse(json.dumps(result), content_type="application/json")
 
 
-def element_evaluation_pdf(request, project_id):
+def element_evaluation_pdf(request, project_id, element_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
-    form = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+    form = get_object_or_404(ElementEvaluationForm, pk=element_id)
     print form
     return render(request, 'element_evaluation_pdf.html', {'form': form, 'project': project,  'project_id': project_id})
 
@@ -658,9 +658,9 @@ def project_evaluation_form(request, project_id):
         warning(request, _('Review is not submitted yet.'))
         review = ApplicationReview(id=99999)#hack an empty review
 
-    element = None
+    elements = None
     try:
-        element = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+        elements = get_list_or_404(ElementEvaluationForm, project_id=project_id)
     except Http404:
         pass
 
@@ -684,7 +684,7 @@ def project_evaluation_form(request, project_id):
 
     return render(request, 'project_evaluation_form.html',
                   {'review': review, 'project_id': project_id,
-                   'element': element, 'batch': batch, 'stage': stage, 'unit': unit})
+                   'elements': elements, 'batch': batch, 'stage': stage, 'unit': unit})
 
 
 def project_stage(request, project_id):
@@ -696,9 +696,9 @@ def project_stage(request, project_id):
         warning(request, _('Review is not submitted yet.'))
         review = ApplicationReview(id=99999)#hack an empty review
 
-    element = None
+    elements = None
     try:
-        element = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+        elements = get_list_or_404(ElementEvaluationForm, project_id=project_id)
     except Http404:
         pass
 
@@ -722,7 +722,7 @@ def project_stage(request, project_id):
 
     return render(request, 'project_stage_list.html',
                   {'review': review, 'project_id': project_id,
-                   'element': element, 'batch': batch, 'stage': stage, 'unit': unit,
+                   'elements': elements, 'batch': batch, 'stage': stage, 'unit': unit,
                    'stages': stages})
 
 
@@ -759,9 +759,9 @@ def batch_detail(request, project_id, batch_id):
         warning(request, _('Review is not submitted yet.'))
         review = ApplicationReview(id=99999)#hack an empty review
 
-    element = None
+    elements = None
     try:
-        element = get_object_or_404(ElementEvaluationForm, project_id=project_id)
+        elements = get_list_or_404(ElementEvaluationForm, batch_id=batch_id)
     except Http404:
         pass
 
@@ -785,15 +785,15 @@ def batch_detail(request, project_id, batch_id):
 
     return render(request, 'batch_detail.html',
                   {'review': review, 'project_id': project_id,
-                   'element': element, 'batch': batch, 'stage': stage, 'unit': unit})
+                   'elements': elements, 'batch': batch, 'stage': stage, 'unit': unit})
 
 
-def element_evaluation_print(request, project_id):
+def element_evaluation_print(request, project_id, element_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
 
-    #generate PDF
-    pdf_url = reverse('enterprise.project.pdf.element', args=[str(project_id)])
+    # generate PDF
+    pdf_url = reverse('enterprise.project.pdf.element', args=[str(project_id), str(element_id)])
     html2pdf(request.build_absolute_uri(pdf_url), 'D:/workspace/greenbuilding/media/review/form/element/', project_id)
 
     return render(request, 'element_evaluation_print.html', {'project_id': project_id})
@@ -805,7 +805,7 @@ def create_element_evaluation_form(request, project_id, template="create_project
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
-        return redirect('enterprise.project.form', project_id=project_id)
+        return redirect('enterprise.project.stage', project_id=project_id)
     else:
         context = {"form": form, "title": _("Create Element Evaluation Form")}
         return render(request, template, context)
@@ -840,7 +840,7 @@ def create_batch_evaluation_form(request, project_id, template="create_project.h
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
-        return redirect('enterprise.project.form', project_id=project_id)
+        return redirect('enterprise.project.stage', project_id=project_id)
     context = {"form": form, "title": _("Create Batch Evaluation Form")}
     return render(request, template, context)
 
@@ -850,7 +850,7 @@ def create_batch(request, project_id, stage_id, template="create_project.html"):
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
-        return redirect('enterprise.project.form', project_id=project_id)
+        return redirect('enterprise.project.stage', project_id=project_id)
     context = {"form": form, "title": _("Create Batch")}
     return render(request, template, context)
 
@@ -884,7 +884,7 @@ def create_stage_evaluation_form(request, project_id, template="create_project.h
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
-        return redirect('enterprise.project.form', project_id=project_id)
+        return redirect('enterprise.project.stage', project_id=project_id)
     context = {"form": form, "title": _("Create Stage Evaluation Form")}
     return render(request, template, context)
 
@@ -916,7 +916,7 @@ def unit_evaluation_print(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     print project
 
-    #generate PDF
+    # generate PDF
     pdf_url = reverse('enterprise.project.pdf.unit', args=[str(project_id)])
     html2pdf(request.build_absolute_uri(pdf_url), 'D:/workspace/greenbuilding/media/review/form/unit/', project_id)
 
@@ -929,7 +929,7 @@ def create_unit_evaluation_form(request, project_id, template="create_project.ht
     if request.method == "POST" and form.is_valid():
         new_project = form.save()
         print new_project
-        return redirect('enterprise.project.form', project_id=project_id)
+        return redirect('enterprise.project.stage', project_id=project_id)
     context = {"form": form, "title": _("Create Unit Evaluation Form")}
     return render(request, template, context)
 

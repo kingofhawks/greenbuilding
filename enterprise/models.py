@@ -314,7 +314,7 @@ class ElementEvaluationForm(models.Model):
         verbose_name = _("Element Evaluation Form")
 
     def __unicode__(self):
-        return u'ElementEvaluationForm:{}'.format(self.project)
+        return u'项目:{} 要素指标:{}'.format(self.project, self.evaluation_indicator)
 
     def get_absolute_url(self):
         return reverse('enterprise.project.form', args=[str(self.project.id)])

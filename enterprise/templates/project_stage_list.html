@@ -8,36 +8,6 @@
 
 {% block project_main %}
 {% if review.id != 99999 %}
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">{% trans "Element Evaluation Form" %}(企业自评)</h3>
-  </div>
-  <div class="panel-body">
-    {% if element %}
-        <a href="{% url 'enterprise.project.element.update' element.id %}" >{% trans "Element Evaluation Form" %}</a>
-    {% else %}
-        <a href="{% url 'enterprise.project.element.add' project_id %}" >{% trans "Element Evaluation Form" %}</a>
-    {% endif %}
-    <a target="_main" href="{% url 'enterprise.project.print.element' project_id %}" >{% trans "Print" %}</a>
-  </div>
-</div>
-
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">{% trans "Batch Evaluation Form" %}(企业自评)</h3>
-  </div>
-  <div class="panel-body">
-    {% if batch %}
-        <a href="{% url 'enterprise.project.batch.update' batch.id %}" >{% trans "Batch Evaluation Form" %}</a>
-    {% else %}
-        <a href="{% url 'enterprise.project.batch.add' project_id %}" >{% trans "Batch Evaluation Form" %}</a>
-    {% endif %}
-    <a target="_main" href="{% url 'enterprise.project.print.batch' project_id %}" >{% trans "Print" %}</a>
-  </div>
-</div>
-
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title">{% trans "Stage Evaluation Form" %}(主管部门过程监督)</h3>
@@ -46,6 +16,20 @@
       {% for stage in stages %}
           <p><a href="{% url 'enterprise.project.batch' project_id stage.id %}" >{{ stage.name }}</a></p>
       {% endfor %}
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">{% trans "Unit Evaluation Form" %}(组织专家评审)</h3>
+  </div>
+  <div class="panel-body">
+    {% if unit %}
+        <a href="{% url 'enterprise.project.unit.update' unit.id %}" >{% trans "Unit Evaluation Form" %}</a>
+    {% else %}
+        <a href="{% url 'enterprise.project.unit.add' project_id %}" >{% trans "Unit Evaluation Form" %}</a>
+    {% endif %}
+    <a target="_main" href="{% url 'enterprise.project.print.unit' project_id %}" >{% trans "Print" %}</a>
   </div>
 </div>
 
