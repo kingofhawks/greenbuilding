@@ -317,7 +317,7 @@ class ElementEvaluationForm(models.Model):
         return u'项目:{} 要素指标:{}'.format(self.project, self.evaluation_indicator)
 
     def get_absolute_url(self):
-        return reverse('enterprise.project.form', args=[str(self.project.id)])
+        return reverse('enterprise.project.stage', args=[str(self.project.id)])
 
 
 class BatchEvaluationForm(models.Model):
@@ -352,7 +352,7 @@ class BatchEvaluationForm(models.Model):
         return u'BatchEvaluationForm:{}'.format(self.project)
 
     def get_absolute_url(self):
-        return reverse('enterprise.project.form', args=[str(self.project.id)])
+        return reverse('enterprise.project.stage', args=[str(self.project.id)])
 
 
 class StageEvaluationForm(models.Model):
@@ -373,7 +373,7 @@ class StageEvaluationForm(models.Model):
         return u'StageEvaluationForm:{}'.format(self.project)
 
     def get_absolute_url(self):
-        return reverse('enterprise.project.form', args=[str(self.project.id)])
+        return reverse('enterprise.project.stage', args=[str(self.project.id)])
 
 
 class UnitEvaluationForm(models.Model):
@@ -402,4 +402,4 @@ class UnitEvaluationForm(models.Model):
         return u'UnitEvaluationForm:{}'.format(self.project)
 
     def get_absolute_url(self):
-        return reverse('enterprise.project.form', args=[str(self.project.id)])
+        return reverse('enterprise.project.stage', args=[str(self.project.id)])

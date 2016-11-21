@@ -708,11 +708,11 @@ def project_stage(request, project_id):
     except Http404:
         pass
 
-    stage = None
-    try:
-        stage = get_object_or_404(StageEvaluationForm, project_id=project_id)
-    except Http404:
-        pass
+    # stage = None
+    # try:
+    #     stage = get_object_or_404(StageEvaluationForm, project_id=project_id)
+    # except Http404:
+    #     pass
 
     unit = None
     try:
@@ -722,7 +722,9 @@ def project_stage(request, project_id):
 
     return render(request, 'project_stage_list.html',
                   {'review': review, 'project_id': project_id,
-                   'elements': elements, 'batch': batch, 'stage': stage, 'unit': unit,
+                   'elements': elements, 'batch': batch,
+                   # 'stage': stage,
+                   'unit': unit,
                    'stages': stages})
 
 
@@ -745,8 +747,15 @@ def stage_batch(request, project_id, stage_id):
         traceback.print_exc()
         print 'error'
 
+    try:
+        stage = get_object_or_404(StageEvaluationForm, pk=stage_id)
+        print review
+    except Http404:
+        # warning(request, _('Review is not submitted yet.'))
+        stage = None
+
     return render(request, 'project_batch_list.html',
-                  {'review': review, 'project_id': project_id, 'stage_id': stage_id,
+                  {'review': review, 'project_id': project_id, 'stage_id': stage_id,'stage': stage,
                    'batches': batches})
 
 
@@ -771,11 +780,11 @@ def batch_detail(request, project_id, batch_id):
     except Http404:
         pass
 
-    stage = None
-    try:
-        stage = get_object_or_404(StageEvaluationForm, project_id=project_id)
-    except Http404:
-        pass
+    # stage = None
+    # try:
+    #     stage = get_object_or_404(StageEvaluationForm, project_id=project_id)
+    # except Http404:
+    #     pass
 
     unit = None
     try:
@@ -785,7 +794,9 @@ def batch_detail(request, project_id, batch_id):
 
     return render(request, 'batch_detail.html',
                   {'review': review, 'project_id': project_id,
-                   'elements': elements, 'batch': batch, 'stage': stage, 'unit': unit})
+                   'elements': elements, 'batch': batch,
+                   # 'stage': stage,
+                   'unit': unit})
 
 
 def element_evaluation_print(request, project_id, element_id):

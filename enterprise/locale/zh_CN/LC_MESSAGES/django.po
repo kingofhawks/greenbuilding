@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-14 09:08+0800\n"
+"POT-Creation-Date: 2016-11-17 11:31+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -316,7 +316,7 @@ msgstr "评价结论"
 
 #: .\models.py:246 .\models.py:304
 msgid "Control Items"
-msgstr "控制项"
+msgstr "控制项(一票否决)"
 
 #: .\models.py:254
 msgid "Count Standard"
@@ -332,11 +332,11 @@ msgstr "实得分"
 
 #: .\models.py:264 .\models.py:305
 msgid "General Items"
-msgstr "一般项"
+msgstr "一般项(2分/项)"
 
 #: .\models.py:269 .\models.py:306
 msgid "Excellent Items"
-msgstr "优选项"
+msgstr "优选项(1分/项)"
 
 #: .\models.py:273 .\models.py:276 .\models.py:284
 msgid "stage"
@@ -485,12 +485,13 @@ msgstr "装饰装修与机电安装实得分(权重0.2)"
 msgid "Unit Evaluation Form"
 msgstr "单位工程绿色施工评价汇总表"
 
-#: .\templates\batch_detail.html:16 .\views.py:810
-msgid "Create Element Evaluation Form"
-msgstr "新增绿色施工要素评价表"
+#: .\templates\batch_detail.html:16 .\templates\project_batch_list.html:13
+#: .\templates\project_list.html:217 .\templates\review_list.html:81
+#: .\templates\submission_list.html:101
+msgid "Create"
+msgstr "新增"
 
 #: .\templates\batch_detail.html:28 .\templates\batch_detail.html.py:45
-#: .\templates\project_evaluation_form.html:23
 #: .\templates\project_evaluation_form.html:37
 #: .\templates\project_evaluation_form.html:51
 #: .\templates\project_evaluation_form.html:65
@@ -553,10 +554,6 @@ msgstr "日志"
 msgid "Batch"
 msgstr "批次"
 
-#: .\templates\project_batch_list.html:13 .\views.py:854
-msgid "Create Batch"
-msgstr "新增批次"
-
 #: .\templates\project_detail.html:512
 msgid "PrjNum"
 msgstr "项目统一编号"
@@ -570,11 +567,6 @@ msgstr "修改"
 #: .\templates\project_list.html:94
 msgid "Are you sure to delete this project?"
 msgstr "你确定要删除此项目？"
-
-#: .\templates\project_list.html:217 .\templates\review_list.html:81
-#: .\templates\submission_list.html:101
-msgid "Create"
-msgstr "新增"
 
 #: .\templates\project_list.html:219 .\templates\review_list.html:83
 #: .\templates\submission_list.html:103
@@ -773,6 +765,10 @@ msgstr "应用评审被退回"
 msgid "Pictures is not uploaded yet."
 msgstr "该项目图片资料尚未上传"
 
+#: .\views.py:810
+msgid "Create Element Evaluation Form"
+msgstr "新增绿色施工要素评价表"
+
 #: .\views.py:823
 msgid "Modify ElementEvaluationForm"
 msgstr "修改绿色施工要素评价表"
@@ -780,6 +776,10 @@ msgstr "修改绿色施工要素评价表"
 #: .\views.py:844
 msgid "Create Batch Evaluation Form"
 msgstr "绿色施工批次评价汇总表"
+
+#: .\views.py:854
+msgid "Create Batch"
+msgstr "新增批次"
 
 #: .\views.py:867
 msgid "Modify BatchEvaluationForm"

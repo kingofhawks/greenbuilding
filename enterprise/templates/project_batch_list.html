@@ -15,8 +15,25 @@
   </div>
   <div class="panel-body">
       {% for batch in batches %}
-          <p><a href="{% url 'enterprise.stage.batch.detail' project_id batch.id%}" >{{ batch.name }}</a></p>
+          <p>
+              <a href="{% url 'enterprise.stage.batch.detail' project_id batch.id%}" >{{ batch.name }}</a>
+              &nbsp;&nbsp;&nbsp;&nbsp;{{ batch.date }}
+          </p>
       {% endfor %}
+  </div>
+</div>
+
+    <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">{% trans "Stage Evaluation Form" %}(主管部门过程监督)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'enterprise.project.stage.add' project_id %}" >{% trans "Create" %}</a>
+    </h3>
+  </div>
+  <div class="panel-body">
+    {% if stage %}
+        <a href="{% url 'enterprise.project.stage.update' stage.id %}" >{% trans "Stage Evaluation Form" %}</a>
+        <a target="_main" href="{% url 'enterprise.project.print.stage' project_id %}" > {% trans "Print" %}</a>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
